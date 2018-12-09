@@ -1,0 +1,9 @@
+name: MirGame
+main: com.Cokes_86.MirGame.MirGame
+version: 1.0
+author: Cokes_86
+softdepend: [Vault]
+
+commands:
+  미르게임:
+     description: MirsvGame main command
