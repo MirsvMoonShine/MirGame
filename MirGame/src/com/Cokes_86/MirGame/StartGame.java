@@ -69,15 +69,12 @@ public class StartGame {
 						p.getInventory().addItem(m.gc.getEye(1));
 						p.getInventory().addItem(m.gc.get완두콩(15));
 						p.giveExp(325);
-						
 					}
 				}
 				
 				m.gi.setItem(i, 29,  Material.STAINED_GLASS_PANE,1,0," ",null);
 				m.gi.setItem(i, 31,  Material.STAINED_GLASS_PANE,1,0," ",null);
 				m.gi.setItem(i, 33,  Material.STAINED_GLASS_PANE,1,0," ",null);
-				
-				m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null);
 				
 				ItemStack repeat = i.getItem(52);
 				if (repeat.getItemMeta().getDisplayName().equals("§r1회 실행")){
@@ -148,35 +145,36 @@ public class StartGame {
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
+				Player p = (Player) e.getWhoClicked();
 				if (i.getItem(29).getType() == i.getItem(31).getType() &&  i.getItem(31).getType() ==  i.getItem(33).getType()){
 					if (i.getItem(29).getType() == Material.DIRT){
-						System.out.println("흙");
+						p.sendMessage("§6[§9미르 게임§6]§r 흙 3개 맞추기 성공!");
 					} else if (i.getItem(29).getType() == Material.WOOD){
-						System.out.println("나무");
+						p.sendMessage("§6[§9미르 게임§6]§r 나무 3개 맞추기 성공!");
 					} else if (i.getItem(29).getType() == Material.STONE){
-						System.out.println("돌");
+						p.sendMessage("§6[§9미르 게임§6]§r 돌 3개 맞추기 성공!");
 					} else if (i.getItem(29).getType() == Material.IRON_INGOT){
-						System.out.println("철");
+						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 슬롯 철 3개를 맞추었습니다!");
 					} else if (i.getItem(29).getType() == Material.GOLD_INGOT){
-						System.out.println("금");
+						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 슬롯 금 3개를 맞추었습니다!");
 					} else if (i.getItem(29).getType() == Material.DIAMOND){
-						System.out.println("다이아몬드");
+						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 슬롯 다이아몬드 3개를 맞추었습니다!");
 					} else if (i.getItem(29).getType() == Material.OBSIDIAN){
-						System.out.println("옵시디언");
+						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 슬롯 옵시디언 3개를 맞추었습니다!");
 					} else if (i.getItem(29).getType() == Material.EMERALD){
-						System.out.println("에메랄드");
+						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 슬롯 에메랄드 3개를 맞추었습니다!");
 					} else if (i.getItem(29).getType() == Material.BEDROCK){
-						System.out.println("배드락");
+						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 슬롯 배드락 3개를 맞추었습니다!");
 					} else if (i.getItem(29).getType() == Material.NETHER_STAR){
-						System.out.println("네더의 별");
+						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 슬롯 네더의 별 3개를 맞추었습니다!");
+						p.getInventory().addItem(new ItemStack(Material.BEACON,1));
+						p.getInventory().addItem(new ItemStack(Material.TOTEM,5));
 					}
 				}
 				
 				m.gi.setItem(i, 29,  Material.STAINED_GLASS_PANE,1,0," ",null);
 				m.gi.setItem(i, 31,  Material.STAINED_GLASS_PANE,1,0," ",null);
 				m.gi.setItem(i, 33,  Material.STAINED_GLASS_PANE,1,0," ",null);
-				
-				m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null);
 				
 				ItemStack repeat = i.getItem(52);
 				if (repeat.getItemMeta().getDisplayName().equals("§r1회 실행")){
