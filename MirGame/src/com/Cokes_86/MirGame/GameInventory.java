@@ -93,7 +93,7 @@ public class GameInventory {
 			setItem(i,a, Material.STAINED_GLASS_PANE,1,10,"§6[§9미르 게임§6]",null);
 		}
 		
-		setItem(i, 0, Material.CHEST, 1, 0, "§r- 코인상점 -", new String[]{"§r⇒ 좌클릭시 코인 상점으로 이동합니다."} );
+		setItem(i, 0, Material.CHEST, 1, 0, "§r- 미르 게임 상점 -", new String[]{"§r⇒ 좌클릭시 미르 게임 상점으로 이동합니다."} );
 		setItem(i, 1, Material.DIAMOND, 1, 0, "§a- (구)슬롯 -", new String[]{"§r⇒ 좌클릭시 (구)슬롯으로 이동합니다."});
 		setItem(i, 2, Material.NETHER_STAR, 1, 0, "§b- 슬롯 -", new String[]{"§r⇒ 좌클릭시 슬롯으로 이동합니다."});
 	}

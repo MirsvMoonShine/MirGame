@@ -74,14 +74,14 @@ public class StartGame {
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
-				if (i.getItem(29).getType() == i.getItem(31).getType() &&  i.getItem(31).getType() ==  i.getItem(33).getType()){
-					if (i.getItem(29).getType() == Material.DIAMOND){
-						Player p = (Player) e.getWhoClicked();
-						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 (구)슬롯에 당첨되었습니다.");
-						p.getInventory().addItem(m.gc.getEye(1));
-						p.getInventory().addItem(m.gc.get완두콩(15));
-						p.giveExp(325);
-					}
+				if (i.getItem(29).getType() == i.getItem(31).getType() &&  i.getItem(31).getType() ==  i.getItem(33).getType() && i.getItem(29).getType() == Material.DIAMOND){
+					Player p = (Player) e.getWhoClicked();
+					Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 (구)슬롯에 당첨되었습니다.");
+					p.getInventory().addItem(m.gc.getEye(1));
+					p.getInventory().addItem(m.gc.get완두콩(15));
+					p.giveExp(325);
+					
+					m.firework(p);
 				}
 				
 				m.gi.setItem(i, 29,  Material.STAINED_GLASS_PANE,1,0," ",null);
@@ -189,6 +189,7 @@ public class StartGame {
 				if (i.getItem(29).getType() == i.getItem(31).getType() &&  i.getItem(31).getType() ==  i.getItem(33).getType()){
 					if (i.getItem(29).getType() == Material.DIRT){
 						p.sendMessage("§6[§9미르 게임§6]§r 흙 3개 맞추기 성공!");
+						p.getInventory().addItem(m.gc.get완두콩(1));
 					} else if (i.getItem(29).getType() == Material.WOOD){
 						p.sendMessage("§6[§9미르 게임§6]§r 나무 3개 맞추기 성공!");
 					} else if (i.getItem(29).getType() == Material.STONE){
@@ -209,6 +210,8 @@ public class StartGame {
 						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 슬롯 네더의 별 3개를 맞추었습니다!");
 						p.getInventory().addItem(new ItemStack(Material.BEACON,1));
 						p.getInventory().addItem(new ItemStack(Material.TOTEM,5));
+						
+						m.firework(p);
 					}
 				}
 				

@@ -1,9 +1,14 @@
 package com.Cokes_86.MirGame;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
+import org.bukkit.FireworkEffect;
+import org.bukkit.FireworkEffect.Type;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -54,5 +59,13 @@ public class MirGame extends JavaPlugin{
 			System.out.println("[미르게임] 콘솔로는 실행할 수 없습니다.");
 		}
 		return false;
+	}
+	
+	public void firework(Player p){
+		Firework fw = (Firework) p.getWorld().spawn(p.getLocation(),Firework.class);
+		FireworkMeta fm = fw.getFireworkMeta();
+		FireworkEffect fe = FireworkEffect.builder().flicker(true).with(Type.BALL).withColor(Color.GREEN).build();
+		fm.addEffect(fe);
+		fw.setFireworkMeta(fm);
 	}
 }
