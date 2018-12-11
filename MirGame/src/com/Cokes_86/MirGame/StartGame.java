@@ -29,6 +29,15 @@ public class StartGame {
 		}
 	}
 	
+	public Material materialOldSlot_HotTime(){
+		int a = r.nextInt(64*9);
+		if (a >= 0 && a < 128){
+			return Material.DIAMOND;
+		} else {
+			return Material.COAL;
+		}
+	}
+	
 	public void startOldSlot(InventoryClickEvent e){
 		Inventory i = e.getClickedInventory();
 		m.gi.setItem(i, 53, Material.STAINED_GLASS_PANE, 1, 1, "§6[§9미르 게임§6]", null);
@@ -41,21 +50,24 @@ public class StartGame {
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
-				m.gi.setItem(i, 29, materialOldSlot(), 1, 0, " ", null);
+				if (!m.hottime) m.gi.setItem(i, 29, materialOldSlot(), 1, 0, " ", null);
+				else m.gi.setItem(i, 29, materialOldSlot_HotTime(), 1, 0, " ", null);
 			}
         }, 15);
 		
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
-				m.gi.setItem(i, 31, materialOldSlot(), 1, 0, " ", null);
+				if (!m.hottime) m.gi.setItem(i, 31, materialOldSlot(), 1, 0, " ", null);
+				else m.gi.setItem(i, 31, materialOldSlot_HotTime(), 1, 0, " ", null);
 			}
         }, 30);
 		
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
-				m.gi.setItem(i, 33, materialOldSlot(), 1, 0, " ", null);
+				if (!m.hottime) m.gi.setItem(i, 33, materialOldSlot(), 1, 0, " ", null);
+				else m.gi.setItem(i, 33, materialOldSlot_HotTime(), 1, 0, " ", null);
 			}
         }, 45);
 		
@@ -112,6 +124,31 @@ public class StartGame {
 		}
 	}
 	
+	public Material materialSlot_HotTime(){
+		int a = r.nextInt(10000);
+		if (a >= 0 && a < 4000){
+			return Material.DIRT;
+		} else if (a >= 4000 && a < 6492){
+			return Material.WOOD;
+		} else if (a >= 6492 && a < 7852){
+			return Material.STONE;
+		} else if (a >= 7852 && a < 8674){
+			return Material.IRON_INGOT;
+		} else if (a >= 8674 && a < 9280){
+			return Material.GOLD_INGOT;
+		} else if (a >= 9280 && a < 9634){
+			return Material.DIAMOND;
+		} else if (a >= 9634 && a < 9834){
+			return Material.OBSIDIAN;
+		} else if (a >= 9834 && a < 9934){
+			return Material.EMERALD;
+		} else if (a >= 9934 && a < 9994){
+			return Material.BEDROCK;
+		} else {
+			return Material.NETHER_STAR;
+		}
+	}
+	
 	public void startSlot(InventoryClickEvent e){
 		Inventory i = e.getClickedInventory();
 		m.gi.setItem(i, 53, Material.STAINED_GLASS_PANE, 1, 1, "§6[§9미르 게임§6]", null);
@@ -124,21 +161,24 @@ public class StartGame {
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
-				m.gi.setItem(i, 29, materialSlot(), 1, 0, " ", null);
+				if (!m.hottime) m.gi.setItem(i, 29, materialSlot(), 1, 0, " ", null);
+				else m.gi.setItem(i, 29, materialSlot_HotTime(), 1, 0, " ", null);
 			}
         }, 15);
 		
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
-				m.gi.setItem(i, 31, materialSlot(), 1, 0, " ", null);
+				if (!m.hottime) m.gi.setItem(i, 31, materialSlot(), 1, 0, " ", null);
+				else m.gi.setItem(i, 31, materialSlot_HotTime(), 1, 0, " ", null);
 			}
         }, 30);
 		
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
-				m.gi.setItem(i, 33, materialSlot(), 1, 0, " ", null);
+				if (!m.hottime) m.gi.setItem(i, 33, materialSlot(), 1, 0, " ", null);
+				else m.gi.setItem(i, 33, materialSlot_HotTime(), 1, 0, " ", null);
 			}
         }, 45);
 		
