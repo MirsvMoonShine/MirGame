@@ -7,16 +7,32 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import com.Cokes_86.MirGame.MirGame;
+
 public class BoxGui implements Listener{
+	final MirGame m;
+	
+	public BoxGui(MirGame m){
+		this.m = m;
+	}
 	
 	public void BoxOpenReady(Player p, ItemStack[] stacks, String title){
 		Inventory i = Bukkit.createInventory(null, 9, "§l선택 상자: "+title);
 		
+		for (int k=0;k<9;k++){
+			ItemStack glass = new ItemStack(Material.STAINED_GLASS_PANE,1);
+			ItemMeta m = glass.getItemMeta();
+			m.setDisplayName(" ");
+			glass.setItemMeta(m);
+			i.setItem(k, glass);
+		}
 		for (int a=0;a<stacks.length;a++){
 			i.setItem(a, stacks[a]);
 		}
@@ -61,16 +77,39 @@ public class BoxGui implements Listener{
 						p.getInventory().addItem(get);
 						p.closeInventory();
 						w.playSound(p.getLocation(), Sound.UI_BUTTON_CLICK, 1, 0);
+						
 					} else if (Click.getItemMeta().getDisplayName().equals("§4취소")){
 						p.closeInventory();
 					}
 				}
 			} else {
-				if (Click.getType() != null || Click.getType() != Material.AIR){
+				if (Click.getType() == Material.STAINED_GLASS_PANE && Click.getItemMeta().getDisplayName().equals(" ")){
+					e.setCancelled(true);
+				} else {
 					String title = inv.getName().substring(9);
 					BoxOpenConfirm(p,Click,title);
-				} else {
-					e.setCancelled(true);
+				}
+			}
+		}
+	}
+	
+	@EventHandler
+	public void onPlayerInteract(PlayerInteractEvent e) {
+		Player p = e.getPlayer();
+		if (e.getAction() == Action.RIGHT_CLICK_AIR){
+			if (p.getInventory().getItemInMainHand().getType() == Material.CHEST){
+				ItemStack stack = p.getInventory().getItemInMainHand();
+				ItemMeta me = stack.getItemMeta();
+				if (me.getLore().get(0).contains("선택 상자")){
+					int a = me.getLore().get(0).indexOf("선택");
+					String boxname = me.getLore().get(0).substring(2, a-1);
+					SelectBox box = null;
+					for (SelectBox b : m.boxs){
+						if (b.getBoxName().equals(boxname)){
+							box = b;
+						}
+					}
+					BoxOpenReady(p,box.list,boxname);
 				}
 			}
 		}

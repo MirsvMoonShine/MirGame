@@ -1,19 +1,24 @@
 package com.Cokes_86.MirGame;
 
+import java.util.ArrayList;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.Cokes_86.MirGame.SelectBox.BoxGui;
+import com.Cokes_86.MirGame.SelectBox.SelectBox;
 
 import net.milkbowl.vault.economy.Economy;
 
@@ -25,7 +30,9 @@ public class MirGame extends JavaPlugin{
 	public StartGame sg = new StartGame(this);
 	public boolean hottime = false;
 	
-	public BoxGui bg = new BoxGui();
+	public BoxGui bg = new BoxGui(this);
+	
+	public ArrayList<SelectBox> boxs = new ArrayList<>();
 	
 	public Economy eco = null;
 	
@@ -33,6 +40,8 @@ public class MirGame extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(ci,this);
 		getServer().getPluginManager().registerEvents(bg,this);
 		setupEconomy();
+		
+		boxs.add(new SelectBox("test",new ItemStack[]{new ItemStack(Material.DIAMOND_SWORD,1)}));
 	}
 	
 	private boolean setupEconomy()
@@ -60,12 +69,15 @@ public class MirGame extends JavaPlugin{
 						hottime = false;
 					}
 				}
-			} else if (label.equals("테스트") && args.length == 1){
-				if (args[0].equals("오픈")){
-					bg.BoxOpenReady(p, new ItemStack[]{gc.get완두콩(20),gc.getCoin(64)}, "슬롯 보상 (배드락)");
-				} else if (args[0].equals("확인")){
-					bg.BoxOpenConfirm(p, gc.get완두콩(20), "슬롯 보상 (배드락)");
-				}
+			} else if (label.equals("테스트") && args.length == 0){
+				ItemStack test = new ItemStack(Material.CHEST,1);
+				ItemMeta m = test.getItemMeta();
+				m.setDisplayName("§r선택 상자 테스트");
+				ArrayList<String> lore = new ArrayList<>();
+				lore.add("§rtest 선택 상자");
+				m.setLore(lore);
+				test.setItemMeta(m);
+				p.getInventory().addItem(test);
 			}
 		} else {
 			System.out.println("[미르게임] 콘솔로는 실행할 수 없습니다.");
