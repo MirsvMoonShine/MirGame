@@ -7,3 +7,5 @@ softdepend: [Vault]
 commands:
   미르게임:
      description: MirsvGame main command
+  테스트:
+     description: MirsvGame command

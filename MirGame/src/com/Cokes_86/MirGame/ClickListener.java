@@ -114,9 +114,6 @@ public class ClickListener implements Listener{
 				}
 			}
 		}
-		else {
-			e.setCancelled(true);
-		}
 	}
 	
 	public void menu(InventoryClickEvent e){

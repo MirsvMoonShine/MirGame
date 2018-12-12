@@ -4,6 +4,8 @@ import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
@@ -40,6 +42,8 @@ public class StartGame {
 	
 	public void startOldSlot(InventoryClickEvent e){
 		Inventory i = e.getClickedInventory();
+		Player p = (Player) e.getWhoClicked();
+		World w = p.getWorld();
 		m.gi.setItem(i, 53, Material.STAINED_GLASS_PANE, 1, 1, "§6[§9미르 게임§6]", null);
 		ItemStack coins = i.getItem(45);
 		if (coins == null) {m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null); return;}
@@ -52,6 +56,7 @@ public class StartGame {
 			public void run() {
 				if (!m.hottime) m.gi.setItem(i, 29, materialOldSlot(), 1, 0, " ", null);
 				else m.gi.setItem(i, 29, materialOldSlot_HotTime(), 1, 0, " ", null);
+				w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
 			}
         }, 15);
 		
@@ -60,6 +65,7 @@ public class StartGame {
 			public void run() {
 				if (!m.hottime) m.gi.setItem(i, 31, materialOldSlot(), 1, 0, " ", null);
 				else m.gi.setItem(i, 31, materialOldSlot_HotTime(), 1, 0, " ", null);
+				w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
 			}
         }, 30);
 		
@@ -68,6 +74,7 @@ public class StartGame {
 			public void run() {
 				if (!m.hottime) m.gi.setItem(i, 33, materialOldSlot(), 1, 0, " ", null);
 				else m.gi.setItem(i, 33, materialOldSlot_HotTime(), 1, 0, " ", null);
+				w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
 			}
         }, 45);
 		
@@ -75,13 +82,13 @@ public class StartGame {
 			@Override
 			public void run() {
 				if (i.getItem(29).getType() == i.getItem(31).getType() &&  i.getItem(31).getType() ==  i.getItem(33).getType() && i.getItem(29).getType() == Material.DIAMOND){
-					Player p = (Player) e.getWhoClicked();
 					Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 (구)슬롯에 당첨되었습니다.");
 					p.getInventory().addItem(m.gc.getEye(1));
 					p.getInventory().addItem(m.gc.get완두콩(15));
 					p.giveExp(325);
 					
 					m.firework(p);
+					w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
 				}
 				
 				m.gi.setItem(i, 29,  Material.STAINED_GLASS_PANE,1,0," ",null);
@@ -151,18 +158,21 @@ public class StartGame {
 	
 	public void startSlot(InventoryClickEvent e){
 		Inventory i = e.getClickedInventory();
+		Player p = (Player) e.getWhoClicked();
 		m.gi.setItem(i, 53, Material.STAINED_GLASS_PANE, 1, 1, "§6[§9미르 게임§6]", null);
 		ItemStack coins = i.getItem(45);
 		if (coins == null) {m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null); return;}
 		int coin = coins.getAmount();
 		if (coin >1) i.setItem(45, m.gc.getCoin(coin-1));
 		else if (coin == 1) i.setItem(45, null);
+		World w = p.getWorld();
 		
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
 				if (!m.hottime) m.gi.setItem(i, 29, materialSlot(), 1, 0, " ", null);
 				else m.gi.setItem(i, 29, materialSlot_HotTime(), 1, 0, " ", null);
+				w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
 			}
         }, 15);
 		
@@ -171,6 +181,7 @@ public class StartGame {
 			public void run() {
 				if (!m.hottime) m.gi.setItem(i, 31, materialSlot(), 1, 0, " ", null);
 				else m.gi.setItem(i, 31, materialSlot_HotTime(), 1, 0, " ", null);
+				w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
 			}
         }, 30);
 		
@@ -179,13 +190,13 @@ public class StartGame {
 			public void run() {
 				if (!m.hottime) m.gi.setItem(i, 33, materialSlot(), 1, 0, " ", null);
 				else m.gi.setItem(i, 33, materialSlot_HotTime(), 1, 0, " ", null);
+				w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
 			}
         }, 45);
 		
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
-				Player p = (Player) e.getWhoClicked();
 				if (i.getItem(29).getType() == i.getItem(31).getType() &&  i.getItem(31).getType() ==  i.getItem(33).getType()){
 					if (i.getItem(29).getType() == Material.DIRT){
 						p.sendMessage("§6[§9미르 게임§6]§r 흙 3개 맞추기 성공!");
@@ -212,6 +223,7 @@ public class StartGame {
 						p.getInventory().addItem(new ItemStack(Material.TOTEM,5));
 						
 						m.firework(p);
+						w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
 					}
 				}
 				
