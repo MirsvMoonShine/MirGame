@@ -98,6 +98,7 @@ public class GameInventory {
 		setItem(i, 0, Material.CHEST, 1, 0, "§r- 미르 게임 상점 -", new String[]{"§r⇒ 좌클릭시 미르 게임 상점으로 이동합니다."} );
 		setItem(i, 1, Material.DIAMOND, 1, 0, "§a- (구)슬롯 -", new String[]{"§r⇒ 좌클릭시 (구)슬롯으로 이동합니다."});
 		setItem(i, 2, Material.NETHER_STAR, 1, 0, "§b- 슬롯 -", new String[]{"§r⇒ 좌클릭시 슬롯으로 이동합니다."});
+		setItem(i, 3, Material.REDSTONE_LAMP_OFF, 1, 0, "§2- 슬라이딩 -", new String[]{"§r⇒ 좌클릭시 슬라이딩으로 이동합니다.","§r⇒ 이용불가"});
 	}
 	
 	public void setItem(Inventory i, int slot, Material m, int ammount, int data, String name, String[] lore){

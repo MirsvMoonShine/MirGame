@@ -115,6 +115,9 @@ public class ClickListener implements Listener{
 					m.gi.setItem(inv, 52, Material.ANVIL,1,0,"§r1회 실행",new String[]{"§r⇒ 좌클릭시 1회 실행, 반복 실행 설정 가능"});
 				}
 			}
+		} else if (inv.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l미르 게임 - 슬라이딩"))){
+			e.setCancelled(true);
+			menu(e);
 		}
 	}
 	
@@ -123,11 +126,12 @@ public class ClickListener implements Listener{
 		Player p = (Player) e.getWhoClicked();
 		if (Click.getType() == Material.CHEST){
 			m.gi.openCoinShop(p);
-		}
-		else if (Click.getType() == Material.DIAMOND){
+		} else if (Click.getType() == Material.DIAMOND){
 			m.gi.openOldSlot(p);
 		} else if (Click.getType() == Material.NETHER_STAR){
 			m.gi.openSlot(p);
-		}
+		} else if (Click.getType() == Material.REDSTONE_LAMP_OFF){
+			m.sl.openSliding(p);
+		} 
 	}
 }

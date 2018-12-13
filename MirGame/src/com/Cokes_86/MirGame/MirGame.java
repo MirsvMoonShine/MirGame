@@ -21,6 +21,7 @@ import com.Cokes_86.MirGame.SelectBox.SelectBox;
 import com.Cokes_86.MirGame.StartSystem.ClickListener;
 import com.Cokes_86.MirGame.StartSystem.StartGame;
 import com.Cokes_86.MirGame.UI.GameInventory;
+import com.Cokes_86.MirGame.UI.Sliding;
 
 import net.milkbowl.vault.economy.Economy;
 
@@ -31,6 +32,7 @@ public class MirGame extends JavaPlugin{
 	public GameCoins gc = new GameCoins();
 	public StartGame sg = new StartGame(this);
 	public boolean hottime = false;
+	public Sliding sl = new Sliding(this);
 	
 	public BoxGui bg = new BoxGui(this);
 	

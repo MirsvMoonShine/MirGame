@@ -70,8 +70,8 @@ public class BoxGui implements Listener{
 						p.getInventory().addItem(get);
 						p.closeInventory();
 						w.playSound(p.getLocation(), Sound.UI_BUTTON_CLICK, 1, 0);
-						if (get.hasItemMeta() && get.getItemMeta() != null) p.sendMessage("§6[§9미르 게임§6]§r 선택 상자에서 "+get.getItemMeta().getDisplayName()+" "+get.getAmount()+"개를 획득하였습니다.");
-						else p.sendMessage("§6[§9미르 게임§6]§r 선택 상자에서 "+get.getType().toString().replace("_", " ").toLowerCase()+" "+get.getAmount()+"개를 획득하였습니다.");
+						if (get.hasItemMeta() && get.getItemMeta() != null) p.sendMessage("§6[§9미르 게임§6]§r 선택 상자에서 "+get.getItemMeta().getDisplayName()+" "+get.getAmount()+"개§r를 획득하였습니다.");
+						else p.sendMessage("§6[§9미르 게임§6]§r 선택 상자에서 "+get.getType().toString().replace("_", " ").toLowerCase()+" "+get.getAmount()+"개§r를 획득하였습니다.");
 						ItemStack Hand = p.getInventory().getItemInMainHand();
 						if (Hand.getAmount() == 1){
 							p.getInventory().setItemInMainHand(null);
