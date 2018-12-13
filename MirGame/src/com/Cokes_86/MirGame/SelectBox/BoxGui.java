@@ -24,15 +24,8 @@ public class BoxGui implements Listener{
 	}
 	
 	public void BoxOpenReady(Player p, ItemStack[] stacks, String title){
-		Inventory i = Bukkit.createInventory(null, 9, "§l선택 상자: "+title);
+		Inventory i = Bukkit.createInventory(null, 9, "§l선택 상자: §r"+title);
 		
-		for (int k=0;k<9;k++){
-			ItemStack glass = new ItemStack(Material.STAINED_GLASS_PANE,1);
-			ItemMeta m = glass.getItemMeta();
-			m.setDisplayName(" ");
-			glass.setItemMeta(m);
-			i.setItem(k, glass);
-		}
 		for (int a=0;a<stacks.length;a++){
 			i.setItem(a, stacks[a]);
 		}
@@ -41,7 +34,7 @@ public class BoxGui implements Listener{
 	}
 	
 	public void BoxOpenConfirm(Player p, ItemStack stack, String title){
-		Inventory i = Bukkit.createInventory(null, 36, "§l선택 상자: "+title+" - 확인");
+		Inventory i = Bukkit.createInventory(null, 36, "§l선택 상자: §r"+title+" - 확인");
 		
 		i.setItem(13, stack);
 		
@@ -77,13 +70,22 @@ public class BoxGui implements Listener{
 						p.getInventory().addItem(get);
 						p.closeInventory();
 						w.playSound(p.getLocation(), Sound.UI_BUTTON_CLICK, 1, 0);
-						
+						if (get.hasItemMeta() && get.getItemMeta() != null) p.sendMessage("§6[§9미르 게임§6]§r 선택 상자에서 "+get.getItemMeta().getDisplayName()+" "+get.getAmount()+"개를 획득하였습니다.");
+						else p.sendMessage("§6[§9미르 게임§6]§r 선택 상자에서 "+get.getType().toString().replace("_", " ").toLowerCase()+" "+get.getAmount()+"개를 획득하였습니다.");
+						ItemStack Hand = p.getInventory().getItemInMainHand();
+						if (Hand.getAmount() == 1){
+							p.getInventory().setItemInMainHand(null);
+						} else {
+							ItemStack Hand2 = Hand;
+							Hand2.setAmount(Hand.getAmount()-1);
+							p.getInventory().setItemInMainHand(Hand2);
+						}
 					} else if (Click.getItemMeta().getDisplayName().equals("§4취소")){
 						p.closeInventory();
 					}
 				}
 			} else {
-				if (Click.getType() == Material.STAINED_GLASS_PANE && Click.getItemMeta().getDisplayName().equals(" ")){
+				if (Click == null || Click.getType() == Material.AIR){
 					e.setCancelled(true);
 				} else {
 					String title = inv.getName().substring(9);
@@ -96,20 +98,22 @@ public class BoxGui implements Listener{
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent e) {
 		Player p = e.getPlayer();
-		if (e.getAction() == Action.RIGHT_CLICK_AIR){
+		if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK ){
 			if (p.getInventory().getItemInMainHand().getType() == Material.CHEST){
 				ItemStack stack = p.getInventory().getItemInMainHand();
 				ItemMeta me = stack.getItemMeta();
-				if (me.getLore().get(0).contains("선택 상자")){
-					int a = me.getLore().get(0).indexOf("선택");
-					String boxname = me.getLore().get(0).substring(2, a-1);
-					SelectBox box = null;
-					for (SelectBox b : m.boxs){
-						if (b.getBoxName().equals(boxname)){
-							box = b;
-						}
+				if (me.hasLore()){
+					if (me.getLore().get(0).equals("§a§l미르게임 선택 상자")){
+						e.setCancelled(true);
+					    String boxname = me.getDisplayName().substring(2);
+					    SelectBox box = null;
+					    for (SelectBox b : m.boxs){
+						    if (b.getBoxName().equals(boxname)){
+							    box = b;
+						    }
+					    }
+					    BoxOpenReady(p,box.list,boxname);
 					}
-					BoxOpenReady(p,box.list,boxname);
 				}
 			}
 		}

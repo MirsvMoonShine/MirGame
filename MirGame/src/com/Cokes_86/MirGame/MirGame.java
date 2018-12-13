@@ -13,7 +13,6 @@ import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -42,6 +41,7 @@ public class MirGame extends JavaPlugin{
 		setupEconomy();
 		
 		boxs.add(new SelectBox("test",new ItemStack[]{new ItemStack(Material.DIAMOND_SWORD,1)}));
+		boxs.add(new SelectBox("§l슬롯 보상 <배드락>",new ItemStack[]{gc.getEye(5),gc.get완두콩(30),new ItemStack(Material.BEACON,1)}));
 	}
 	
 	private boolean setupEconomy()
@@ -69,15 +69,9 @@ public class MirGame extends JavaPlugin{
 						hottime = false;
 					}
 				}
-			} else if (label.equals("테스트") && args.length == 0){
-				ItemStack test = new ItemStack(Material.CHEST,1);
-				ItemMeta m = test.getItemMeta();
-				m.setDisplayName("§r선택 상자 테스트");
-				ArrayList<String> lore = new ArrayList<>();
-				lore.add("§rtest 선택 상자");
-				m.setLore(lore);
-				test.setItemMeta(m);
-				p.getInventory().addItem(test);
+			} else if (label.equals("테스트") && args.length == 0 && p.isOp()){
+				p.getInventory().addItem(boxs.get(0).getBox());
+				p.getInventory().addItem(boxs.get(1).getBox());
 			}
 		} else {
 			System.out.println("[미르게임] 콘솔로는 실행할 수 없습니다.");
