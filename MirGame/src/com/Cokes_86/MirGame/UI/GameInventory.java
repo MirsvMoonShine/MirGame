@@ -1,4 +1,4 @@
-package com.Cokes_86.MirGame;
+package com.Cokes_86.MirGame.UI;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +10,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import com.Cokes_86.MirGame.MirGame;
 
 public class GameInventory {
 	

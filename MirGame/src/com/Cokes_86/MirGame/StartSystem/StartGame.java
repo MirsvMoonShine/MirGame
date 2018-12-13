@@ -1,4 +1,4 @@
-package com.Cokes_86.MirGame;
+package com.Cokes_86.MirGame.StartSystem;
 
 import java.util.Random;
 
@@ -11,6 +11,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitScheduler;
+
+import com.Cokes_86.MirGame.MirGame;
 
 public class StartGame {
 	final MirGame m;
