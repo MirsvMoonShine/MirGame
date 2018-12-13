@@ -1,4 +1,4 @@
-package com.Cokes_86.MirGame;
+package com.Cokes_86.MirGame.StartSystem;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -8,6 +8,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+
+import com.Cokes_86.MirGame.MirGame;
 
 public class ClickListener implements Listener{
 	final MirGame m;
