@@ -1,5 +1,7 @@
 package com.Cokes_86.MirGame.SelectBox;
 
+import java.util.Random;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -106,13 +108,40 @@ public class BoxGui implements Listener{
 					if (me.getLore().get(0).equals("§a§l미르게임 선택 상자")){
 						e.setCancelled(true);
 					    String boxname = me.getDisplayName().substring(2);
-					    SelectBox box = null;
-					    for (SelectBox b : m.boxs){
+					    Box box = null;
+					    for (Box b : m.boxs){
 						    if (b.getBoxName().equals(boxname)){
 							    box = b;
 						    }
 					    }
-					    BoxOpenReady(p,box.list,boxname);
+					    if (box!=null && box.Box == 1) BoxOpenReady(p,box.list,boxname);
+					    else p.sendMessage("§6[§9미르 게임§6]§r 이 상자는 더이상 열 수 없습니다.");
+					} else if (me.getLore().get(0).equals("§a§l미르게임 랜덤 상자")){
+						e.setCancelled(true);
+					    String boxname = me.getDisplayName().substring(2);
+					    Box box = null;
+					    for (Box b : m.boxs){
+						    if (b.getBoxName().equals(boxname)){
+							    box = b;
+						    }
+					    }
+					    if (box!=null && box.Box == 0){
+					    	Random r = new Random();
+					    	int a = r.nextInt(box.list.length);
+					    	ItemStack get = box.list[a];
+					    	p.getInventory().addItem(get);
+					    	if (get.hasItemMeta() && get.getItemMeta() != null) p.sendMessage("§6[§9미르 게임§6]§r 랜덤 상자에서 "+get.getItemMeta().getDisplayName()+" "+get.getAmount()+"개§r를 획득하였습니다.");
+							else p.sendMessage("§6[§9미르 게임§6]§r 랜덤 상자에서 "+get.getType().toString().replace("_", " ").toLowerCase()+" "+get.getAmount()+"개§r를 획득하였습니다.");
+					    	ItemStack Hand = p.getInventory().getItemInMainHand();
+							if (Hand.getAmount() == 1){
+								p.getInventory().setItemInMainHand(null);
+							} else {
+								ItemStack Hand2 = Hand;
+								Hand2.setAmount(Hand.getAmount()-1);
+								p.getInventory().setItemInMainHand(Hand2);
+							}
+					    }
+					    else p.sendMessage("§6[§9미르 게임§6]§r 이 상자는 더이상 열 수 없습니다.");
 					}
 				}
 			}
