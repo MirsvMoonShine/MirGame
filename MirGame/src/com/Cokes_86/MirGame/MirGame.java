@@ -18,6 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.Cokes_86.MirGame.SelectBox.Box;
 import com.Cokes_86.MirGame.SelectBox.BoxGui;
+import com.Cokes_86.MirGame.SelectBox.CorrectBox;
 import com.Cokes_86.MirGame.SelectBox.RandomBox;
 import com.Cokes_86.MirGame.SelectBox.SelectBox;
 import com.Cokes_86.MirGame.StartSystem.ClickListener;
@@ -50,6 +51,7 @@ public class MirGame extends JavaPlugin{
 		boxs.add(new SelectBox("test",new ItemStack[]{new ItemStack(Material.DIAMOND_SWORD,1)}));
 		boxs.add(new SelectBox("§l슬롯 보상 <배드락>",new ItemStack[]{gc.getEye(5),gc.get완두콩(30),new ItemStack(Material.BEACON,1)}));
 		boxs.add(new RandomBox("§l슬롯 보상 <나무>",new ItemStack[]{gc.getCoin(30), gc.get완두콩(5)}));
+		boxs.add(new CorrectBox("§l슬롯 보상 <네더의 별>",new ItemStack[]{new ItemStack(Material.BEACON,1), new ItemStack(Material.TOTEM,5)}));
 	}
 	
 	private boolean setupEconomy()
@@ -78,7 +80,7 @@ public class MirGame extends JavaPlugin{
 					}
 				}
 			} else if (label.equals("테스트") && args.length == 0 && p.isOp()){
-				p.getInventory().addItem(boxs.get(0).getBox());
+				p.getInventory().addItem(boxs.get(3).getBox());
 				p.getInventory().addItem(boxs.get(1).getBox());
 				p.getInventory().addItem(boxs.get(2).getBox());
 			}

@@ -15,11 +15,13 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scheduler.BukkitScheduler;
 
 import com.Cokes_86.MirGame.MirGame;
 
 public class BoxGui implements Listener{
 	final MirGame m;
+	BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
 	
 	public BoxGui(MirGame m){
 		this.m = m;
@@ -55,6 +57,68 @@ public class BoxGui implements Listener{
 		p.openInventory(i);
 	}
 	
+	public void BoxRandom(Player p, ItemStack[] list, String title){
+		Inventory i = Bukkit.createInventory(null, 36, "§l여는중...: §r"+title);
+		RandomBox(i,list,0);
+		loading(p,i,list,0,title);
+		p.openInventory(i);
+	}
+	
+	public void RandomBox(Inventory i, ItemStack[] list,int a){
+		i.setItem(13, list[a]);
+		
+		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
+			@Override
+			public void run() {
+				if (a == list.length-1) RandomBox(i,list,0);
+				else RandomBox(i,list,a+1);
+			}
+        }, (long)1.5);
+	}
+	
+	public void RandomOpenComplete(Player p, ItemStack is, String title){
+		Inventory i = Bukkit.createInventory(null, 9, "§l얻었습니다!: §r"+title);
+		
+		i.setItem(4, is);
+		
+		p.openInventory(i);
+	}
+	
+	public void loading(Player p, Inventory i, ItemStack[] list,int a,String title){
+		ItemStack pane = new ItemStack(Material.STAINED_GLASS_PANE,1,(short)13);
+		ItemMeta itemmeta = pane.getItemMeta();
+		itemmeta.setDisplayName(" ");
+		pane.setItemMeta(itemmeta);
+		i.setItem(27+a, pane);
+		
+		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
+			@Override
+			public void run() {
+				if (a==8) {
+					Random r = new Random();
+			    	int c = r.nextInt(list.length);
+			    	ItemStack get = list[c];
+			    	p.getInventory().addItem(get);
+			    	if (get.hasItemMeta() && get.getItemMeta().getDisplayName() != null) p.sendMessage("§6[§9미르 게임§6]§r 랜덤 상자에서 "+get.getItemMeta().getDisplayName()+" "+get.getAmount()+"개§r를 획득하였습니다.");
+					else p.sendMessage("§6[§9미르 게임§6]§r 랜덤 상자에서 "+get.getType().toString().replace("_", " ").toLowerCase()+" "+get.getAmount()+"개§r를 획득하였습니다.");
+			    	ItemStack Hand = p.getInventory().getItemInMainHand();
+					if (Hand.getAmount() == 1){
+						p.getInventory().setItemInMainHand(null);
+					} else {
+						ItemStack Hand2 = Hand;
+						Hand2.setAmount(Hand.getAmount()-1);
+						p.getInventory().setItemInMainHand(Hand2);
+					}
+					
+					RandomOpenComplete(p,get,title);
+				}
+				else {
+					loading(p,i,list,a+1,title);
+				}
+			}
+        }, 5);
+	}
+	
 	@EventHandler
 	public void onInventoryClickEvent(InventoryClickEvent e){
 		Inventory inv = e.getClickedInventory();
@@ -72,7 +136,7 @@ public class BoxGui implements Listener{
 						p.getInventory().addItem(get);
 						p.closeInventory();
 						w.playSound(p.getLocation(), Sound.UI_BUTTON_CLICK, 1, 0);
-						if (get.hasItemMeta() && get.getItemMeta() != null) p.sendMessage("§6[§9미르 게임§6]§r 선택 상자에서 "+get.getItemMeta().getDisplayName()+" "+get.getAmount()+"개§r를 획득하였습니다.");
+						if (get.hasItemMeta() && get.getItemMeta().getDisplayName() != null) p.sendMessage("§6[§9미르 게임§6]§r 선택 상자에서 "+get.getItemMeta().getDisplayName()+" "+get.getAmount()+"개§r를 획득하였습니다.");
 						else p.sendMessage("§6[§9미르 게임§6]§r 선택 상자에서 "+get.getType().toString().replace("_", " ").toLowerCase()+" "+get.getAmount()+"개§r를 획득하였습니다.");
 						ItemStack Hand = p.getInventory().getItemInMainHand();
 						if (Hand.getAmount() == 1){
@@ -94,6 +158,10 @@ public class BoxGui implements Listener{
 					BoxOpenConfirm(p,Click,title);
 				}
 			}
+		} else if (inv.getTitle().contains("§l여는중")){
+			e.setCancelled(true);
+		} else if (inv.getTitle().contains("§l얻었습니다!")){
+			e.setCancelled(true);
 		}
 	}
 	
@@ -125,13 +193,24 @@ public class BoxGui implements Listener{
 							    box = b;
 						    }
 					    }
-					    if (box!=null && box.Box == 0){
-					    	Random r = new Random();
-					    	int a = r.nextInt(box.list.length);
-					    	ItemStack get = box.list[a];
-					    	p.getInventory().addItem(get);
-					    	if (get.hasItemMeta() && get.getItemMeta() != null) p.sendMessage("§6[§9미르 게임§6]§r 랜덤 상자에서 "+get.getItemMeta().getDisplayName()+" "+get.getAmount()+"개§r를 획득하였습니다.");
-							else p.sendMessage("§6[§9미르 게임§6]§r 랜덤 상자에서 "+get.getType().toString().replace("_", " ").toLowerCase()+" "+get.getAmount()+"개§r를 획득하였습니다.");
+					    if (box!=null && box.Box == 0) BoxRandom(p,box.list,box.getBoxName());
+					    else p.sendMessage("§6[§9미르 게임§6]§r 이 상자는 더이상 열 수 없습니다.");
+					} else if (me.getLore().get(0).equals("§a§l미르게임 상자")){
+						e.setCancelled(true);
+					    String boxname = me.getDisplayName().substring(2);
+					    Box box = null;
+					    for (Box b : m.boxs){
+						    if (b.getBoxName().equals(boxname)){
+							    box = b;
+						    }
+					    }
+					    if (box!=null && box.Box == 2) {
+					    	for (ItemStack s : box.list){
+					    		p.getInventory().addItem(s);
+					    		if (s.hasItemMeta() && s.getItemMeta().getDisplayName() != null) p.sendMessage("§6[§9미르 게임§6]§r 상자에서 "+s.getItemMeta().getDisplayName()+" "+s.getAmount()+"개§r를 획득하였습니다.");
+								else p.sendMessage("§6[§9미르 게임§6]§r 상자에서 "+s.getType().toString().replace("_", " ").toLowerCase()+" "+s.getAmount()+"개§r를 획득하였습니다.");
+					    	}
+					    	
 					    	ItemStack Hand = p.getInventory().getItemInMainHand();
 							if (Hand.getAmount() == 1){
 								p.getInventory().setItemInMainHand(null);
