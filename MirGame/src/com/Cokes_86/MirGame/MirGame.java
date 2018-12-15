@@ -18,7 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.Cokes_86.MirGame.SelectBox.Box;
 import com.Cokes_86.MirGame.SelectBox.BoxGui;
-import com.Cokes_86.MirGame.SelectBox.CorrectBox;
+import com.Cokes_86.MirGame.SelectBox.CollectBox;
 import com.Cokes_86.MirGame.SelectBox.RandomBox;
 import com.Cokes_86.MirGame.SelectBox.SelectBox;
 import com.Cokes_86.MirGame.StartSystem.ClickListener;
@@ -51,7 +51,8 @@ public class MirGame extends JavaPlugin{
 		boxs.add(new SelectBox("test",new ItemStack[]{new ItemStack(Material.DIAMOND_SWORD,1)}));
 		boxs.add(new SelectBox("§l슬롯 보상 <배드락>",new ItemStack[]{gc.getEye(5),gc.get완두콩(30),new ItemStack(Material.BEACON,1)}));
 		boxs.add(new RandomBox("§l슬롯 보상 <나무>",new ItemStack[]{gc.getCoin(30), gc.get완두콩(5)}));
-		boxs.add(new CorrectBox("§l슬롯 보상 <네더의 별>",new ItemStack[]{new ItemStack(Material.BEACON,1), new ItemStack(Material.TOTEM,5)}));
+		boxs.add(new CollectBox("§l슬롯 보상 <네더의 별>",new ItemStack[]{new ItemStack(Material.BEACON,1), new ItemStack(Material.TOTEM,5)}));
+		boxs.add(new CollectBox("§l(구)슬롯 보상", new ItemStack[]{gc.get완두콩(15),gc.getEye(1)}));
 	}
 	
 	private boolean setupEconomy()
@@ -96,5 +97,15 @@ public class MirGame extends JavaPlugin{
 		FireworkEffect fe = FireworkEffect.builder().flicker(true).with(Type.BALL).withColor(Color.GREEN).build();
 		fm.addEffect(fe);
 		fw.setFireworkMeta(fm);
+	}
+	
+	public Box getBox(String Title){
+		Box box = null;
+	    for (Box b : boxs){
+		    if (b.getBoxName().equals(Title)){
+			    box = b;
+		    }
+	    }
+	    return box;
 	}
 }

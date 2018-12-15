@@ -6,11 +6,11 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class CorrectBox extends Box{
+public class CollectBox extends Box{
 	final String BoxName;
 	final ItemStack[] list;
 	
-	public CorrectBox(String name, ItemStack[] list){
+	public CollectBox(String name, ItemStack[] list){
 		super(name,list, 2);
 		this.BoxName = name;
 		this.list = list;
