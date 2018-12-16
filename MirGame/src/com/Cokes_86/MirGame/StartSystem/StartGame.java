@@ -85,8 +85,7 @@ public class StartGame {
 			public void run() {
 				if (i.getItem(29).getType() == i.getItem(31).getType() &&  i.getItem(31).getType() ==  i.getItem(33).getType() && i.getItem(29).getType() == Material.DIAMOND){
 					Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 (구)슬롯에 당첨되었습니다.");
-					p.getInventory().addItem(m.gc.getEye(1));
-					p.getInventory().addItem(m.gc.get완두콩(15));
+					p.getInventory().addItem(m.getBox("§l(구)슬롯 보상").getBox());
 					p.giveExp(325);
 					
 					m.firework(p);
@@ -219,10 +218,10 @@ public class StartGame {
 						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 슬롯 에메랄드 3개를 맞추었습니다!");
 					} else if (i.getItem(29).getType() == Material.BEDROCK){
 						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 슬롯 배드락 3개를 맞추었습니다!");
+						p.getInventory().addItem(m.getBox("§l슬롯 보상 <배드락>").getBox());
 					} else if (i.getItem(29).getType() == Material.NETHER_STAR){
 						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 슬롯 네더의 별 3개를 맞추었습니다!");
-						p.getInventory().addItem(new ItemStack(Material.BEACON,1));
-						p.getInventory().addItem(new ItemStack(Material.TOTEM,5));
+						p.getInventory().addItem(m.getBox("§l슬롯 보상 <네더의 별>").getBox());
 						
 						m.firework(p);
 						w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);

@@ -37,6 +37,9 @@ public class GameInventory {
 		setItem(i, 19, Material.GOLD_NUGGET, 10, 0, "§r금화 10개 구입", new String[]{"§r⇒ 좌클릭시 금화 10개 구입","§r⇒ 가격: 9500원"});
 		setItem(i, 20, Material.GOLD_NUGGET, 64, 0, "§r금화 64개 구입", new String[]{"§r⇒ 좌클릭시 금화 64개 구입","§r⇒ 가격: 60000원"});
 		
+		setItem(i, 27, Material.DIAMOND_SWORD, 1, 0, "§r§4봉인된 드래곤 슬레이어 구입", new String[]{"§r⇒ 좌클릭시 봉인된 드래곤 슬레이어 구입", "§r⇒ 가격: 캡슐 10개"});
+		setItem(i, 28, Material.DIAMOND_SWORD, 1, 0, "§r§4§l드래곤 슬레이어 구입", new String[]{"§r⇒ 좌클릭시 드래곤 슬레이어 구입", "§r⇒ 가격: 봉인된 드래곤 슬레이어 2개"});
+		
 		setItem(i, 49, Material.BOOK, 1, 0, "§r보유자산: "+m.eco.getBalance(p), null);
 		
 		p.openInventory(i);
