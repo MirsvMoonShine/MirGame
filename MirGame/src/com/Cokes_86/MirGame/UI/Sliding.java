@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -23,16 +24,27 @@ public class Sliding {
 	
 	public void openSliding(Player p){
 		Inventory i = Bukkit.createInventory(null, 54, "§l미르 게임 - 슬라이딩");
-		//0 1 2 3 4 5 6 7 8
-		//9 0 1 2 3 4 5 6 7
-		//8 9 0 1 2 3 4 5 6
-		//7 8 9 0 1 2 3 4 5
-		//6 7 8 9 0 1 2 3 4
+		/*0 1 2 3 4 5 6 7 8
+		   9 0 1 2 3 4 5 6 7
+		   8 9 0 1 2 3 4 5 6
+		   7 8 9 0 1 2 3 4 5
+		   6 7 8 9 0 1 2 3 4
+		   5 6 7 8 9 0 1 2 3*/
 		m.gi.setMenu(i);
 		for (int a=27;a<36;a++){
 			setItem(i, a, Material.STAINED_GLASS_PANE, 1, 0, " ", null);
 		}
 		loading(i,0);
+		ItemStack Book = new ItemStack(Material.ENCHANTED_BOOK,1);
+		ItemMeta bookmeta = Book.getItemMeta();
+		bookmeta.setDisplayName("§r§e수선책");
+		bookmeta.addEnchant(Enchantment.MENDING, 1, true);
+		Book.setItemMeta(bookmeta);
+		i.setItem(26, Book);
+		
+		setItem(i, 45, Material.BARRIER,1,0," ",null);
+		i.remove(Material.BARRIER);
+		setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null);
 		
 		p.openInventory(i);
 	}

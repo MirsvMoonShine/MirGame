@@ -1,5 +1,6 @@
-package com.Cokes_86.MirGame.SelectBox;
+package com.Cokes_86.MirGame.Box;
 
+import java.util.HashMap;
 import java.util.Random;
 
 import org.bukkit.Bukkit;
@@ -11,6 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -22,6 +24,7 @@ import com.Cokes_86.MirGame.MirGame;
 public class BoxGui implements Listener{
 	final MirGame m;
 	BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+	HashMap<Player, Boolean> open = new HashMap<>();
 	
 	public BoxGui(MirGame m){
 		this.m = m;
@@ -61,6 +64,7 @@ public class BoxGui implements Listener{
 		Inventory i = Bukkit.createInventory(null, 36, "§l여는중...: §r"+title);
 		RandomBox(i,list,0);
 		loading(p,i,list,0,title);
+		open.put(p, true);
 		p.openInventory(i);
 	}
 	
@@ -78,7 +82,7 @@ public class BoxGui implements Listener{
 	
 	public void RandomOpenComplete(Player p, ItemStack is, String title){
 		Inventory i = Bukkit.createInventory(null, 9, "§l얻었습니다!: §r"+title);
-		
+		open.put(p, false);
 		i.setItem(4, is);
 		
 		p.openInventory(i);
@@ -162,6 +166,19 @@ public class BoxGui implements Listener{
 			e.setCancelled(true);
 		} else if (inv.getTitle().contains("§l얻었습니다!")){
 			e.setCancelled(true);
+		}
+	}
+	
+	@EventHandler
+	public void closeInventory(InventoryCloseEvent e){
+		Inventory i = e.getInventory();
+		if (i.getTitle().contains("§l여는중") && open.getOrDefault(e.getPlayer(), false)){
+			scheduler.scheduleSyncDelayedTask(m, new Runnable(){
+				@Override
+				public void run() {
+					e.getPlayer().openInventory(e.getInventory());
+				}
+			},1);
 		}
 	}
 	

@@ -9,11 +9,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import com.Cokes_86.MirGame.MirGame;
+import com.Cokes_86.MirGame.Box.Box;
 
 public class ClickListener implements Listener{
 	final MirGame m;
@@ -33,7 +35,7 @@ public class ClickListener implements Listener{
 			e.setCancelled(true);
 			menu(e);
 		}
-		else if (inv.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l미르 게임 - 코인상점"))){
+		else if (inv.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l미르 게임 - 상점"))){
 			e.setCancelled(true);
 			menu(e);
 			if (Click.getType() == Material.GOLD_NUGGET){
@@ -73,10 +75,10 @@ public class ClickListener implements Listener{
 								buy += 1;
 							}
 						}
-						if (buy == 2) break;
+						if (buy == 3) break;
 					}
 					
-					if (buy == 2){
+					if (buy == 3){
 						ItemStack dragonslayer = new ItemStack(Material.DIAMOND_SWORD,1);
 						ItemMeta m = dragonslayer.getItemMeta();
 						m.setDisplayName("§r§4§l드래곤 슬레이어");
@@ -106,26 +108,69 @@ public class ClickListener implements Listener{
 					}
 				} else if (Click.getItemMeta().getDisplayName().equals("§r§4봉인된 드래곤 슬레이어 구입")){
 					Inventory playeriv = p.getInventory();
+					boolean eye = false;
+					boolean bean = false;
 					for (int s=0;s<36;s++){
 						ItemStack stack = playeriv.getItem(s);
+						
 						if (stack != null && stack.hasItemMeta()){
-							if (stack.getItemMeta().getDisplayName().equals(m.gc.getEye(1).getItemMeta().getDisplayName()) && stack.getAmount()>= 10){
-								ItemStack dragonslayer = new ItemStack(Material.DIAMOND_SWORD,1);
-								ItemMeta m = dragonslayer.getItemMeta();
-								m.setDisplayName("§r§4봉인된 드래곤 슬레이어");
-								m.setLore(Arrays.asList(new String[]{"§r§l검을 손에 쥐자 엄청난 미지의 힘이 흘러나온다.","§r§l한번만 휘둘러도 부서질 것만 같다."}));
-								m.addEnchant(Enchantment.DAMAGE_ALL, 7, true);
-								m.addEnchant(Enchantment.KNOCKBACK, 3, true);
-								m.addEnchant(Enchantment.FIRE_ASPECT, 3, true);
-								m.addEnchant(Enchantment.LOOT_BONUS_MOBS, 3, true);
-								m.addEnchant(Enchantment.SWEEPING_EDGE, 3, true);
-								dragonslayer.setItemMeta(m);
-								dragonslayer.setDurability((short)1561);
-								playeriv.addItem(dragonslayer);
-								
-								if (stack.getAmount() == 10) playeriv.setItem(s, null);
-								else {int a =stack.getAmount(); stack.setAmount(a-10);}
+							if (!eye && stack.getItemMeta().getDisplayName().equals("§d캡슐") && stack.getAmount()>= 15){
+								eye = true;
 							}
+							if (!bean && stack.getItemMeta().getDisplayName().equals("§a완두콩") && stack.getAmount()>= 60){
+								bean = true;
+							}
+						}
+						
+						if (eye && bean){
+							ItemStack dragonslayer = new ItemStack(Material.DIAMOND_SWORD,1);
+							ItemMeta m = dragonslayer.getItemMeta();
+							m.setDisplayName("§r§4봉인된 드래곤 슬레이어");
+							m.setLore(Arrays.asList(new String[]{"§r§l검을 손에 쥐자 엄청난 미지의 힘이 흘러나온다.","§r§l한번만 건들어도 부서질 것만 같다."}));
+							m.addEnchant(Enchantment.DAMAGE_ALL, 7, true);
+							m.addEnchant(Enchantment.KNOCKBACK, 3, true);
+							m.addEnchant(Enchantment.FIRE_ASPECT, 3, true);
+							m.addEnchant(Enchantment.LOOT_BONUS_MOBS, 3, true);
+							m.addEnchant(Enchantment.SWEEPING_EDGE, 3, true);
+							dragonslayer.setItemMeta(m);
+							dragonslayer.setDurability((short)1561);
+							playeriv.addItem(dragonslayer);
+							
+							for (int k =0;k<36;k++){
+								ItemStack stack2 = playeriv.getItem(k);
+								if (stack2 != null && stack2.hasItemMeta()){
+									if (eye && stack2.getItemMeta().hasDisplayName() && stack2.getItemMeta().getDisplayName().equals("§d캡슐")){
+										if (stack2.getAmount() == 15) playeriv.setItem(k,null);
+										else {
+											ItemStack o = stack2;
+											stack2.setAmount(o.getAmount()-15);
+										}
+										eye = false;
+									} else if (eye && stack2.getItemMeta().hasLocalizedName() && stack2.getItemMeta().getLocalizedName().equals("§d캡슐")){
+										if (stack2.getAmount() == 15) playeriv.setItem(k,null);
+										else {
+											ItemStack o = stack2;
+											stack2.setAmount(o.getAmount()-15);
+										}
+										eye = false;
+									} else if (bean && stack2.getItemMeta().hasDisplayName() && stack2.getItemMeta().getDisplayName().equals("§a완두콩")){
+										if (stack2.getAmount() == 60) playeriv.setItem(k,null);
+										else {
+											ItemStack o = stack2;
+											stack2.setAmount(o.getAmount()-60);
+										}
+										bean = false;
+									} else if (bean && stack2.getItemMeta().hasLocalizedName() && stack2.getItemMeta().getLocalizedName().equals("§a완두콩")){
+										if (stack2.getAmount() == 60) playeriv.setItem(k,null);
+										else {
+											ItemStack o = stack2;
+											stack2.setAmount(o.getAmount()-60);
+										}
+										bean = false;
+									}
+								}
+							}
+							break;
 						}
 					}
 				}
@@ -189,20 +234,62 @@ public class ClickListener implements Listener{
 		} else if (inv.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l미르 게임 - 슬라이딩"))){
 			e.setCancelled(true);
 			menu(e);
+		} else if (inv.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l미르 게임 - 보상 목록"))){
+			e.setCancelled(true);
+			menu(e);
+			if (p.isOp()){
+				ItemStack s = e.getCurrentItem();
+				for (Box b : m.boxs){
+					if (s.hasItemMeta() && s.getItemMeta().getDisplayName().equals(b.getBox().getItemMeta().getDisplayName())){
+						p.getInventory().addItem(s);
+						break;
+					}
+				}
+			}
 		}
 	}
 	
 	public void menu(InventoryClickEvent e){
 		ItemStack Click = e.getCurrentItem();
 		Player p = (Player) e.getWhoClicked();
-		if (Click.getType() == Material.CHEST){
+		if (Click.getType() == Material.CHEST && Click.getItemMeta().getDisplayName().equals("§r- 미르 게임 상점 -")){
 			m.gi.openCoinShop(p);
+			returnCoin(e);
 		} else if (Click.getType() == Material.DIAMOND){
 			m.gi.openOldSlot(p);
+			returnCoin(e);
 		} else if (Click.getType() == Material.NETHER_STAR){
 			m.gi.openSlot(p);
-		} else if (Click.getType() == Material.REDSTONE_LAMP_OFF){
+			returnCoin(e);
+		} else if (Click.getType() == Material.REDSTONE_LAMP_OFF && p.isOp()){
 			m.sl.openSliding(p);
-		} 
+			returnCoin(e);
+		} else if (Click.getType() == Material.TRAPPED_CHEST){
+			m.gi.openRewards(p);
+			returnCoin(e);
+		}
+	}
+	
+	public void returnCoin(InventoryClickEvent e){
+		Player p = (Player) e.getWhoClicked();
+		ItemStack coin = e.getInventory().getItem(45);
+		if (coin != null){
+			if (!(coin.hasItemMeta() && coin.getItemMeta().hasDisplayName() && coin.getItemMeta().getDisplayName().equals("§6[§9미르 게임§6]"))){
+				p.getInventory().addItem(coin);
+			}
+		}
+	}
+	
+	@EventHandler
+	public void closeInventory(InventoryCloseEvent e){
+		Inventory i = e.getInventory();
+		if (i.getTitle().contains("§l미르 게임")){
+			ItemStack returnitem = i.getItem(45);
+			if (returnitem != null){
+				if (!(returnitem.hasItemMeta() && returnitem.getItemMeta().hasDisplayName() && returnitem.getItemMeta().getDisplayName().equals("§6[§9미르 게임§6]"))){
+					e.getPlayer().getInventory().addItem(returnitem);
+				}
+			}
+		}
 	}
 }

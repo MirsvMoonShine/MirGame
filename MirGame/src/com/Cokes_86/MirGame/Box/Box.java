@@ -1,4 +1,4 @@
-package com.Cokes_86.MirGame.SelectBox;
+package com.Cokes_86.MirGame.Box;
 
 import java.util.ArrayList;
 

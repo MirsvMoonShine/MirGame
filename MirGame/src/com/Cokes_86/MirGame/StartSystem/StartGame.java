@@ -201,28 +201,44 @@ public class StartGame {
 				if (i.getItem(29).getType() == i.getItem(31).getType() &&  i.getItem(31).getType() ==  i.getItem(33).getType()){
 					if (i.getItem(29).getType() == Material.DIRT){
 						p.sendMessage("§6[§9미르 게임§6]§r 흙 3개 맞추기 성공!");
-						p.getInventory().addItem(m.gc.get완두콩(1));
+						p.getInventory().addItem(m.getBox("§l슬롯 보상 <흙>").getBox());
 					} else if (i.getItem(29).getType() == Material.WOOD){
 						p.sendMessage("§6[§9미르 게임§6]§r 나무 3개 맞추기 성공!");
+						p.getInventory().addItem(m.getBox("§l슬롯 보상 <나무>").getBox());
 					} else if (i.getItem(29).getType() == Material.STONE){
 						p.sendMessage("§6[§9미르 게임§6]§r 돌 3개 맞추기 성공!");
+						p.getInventory().addItem(m.getBox("§l슬롯 보상 <돌>").getBox());
 					} else if (i.getItem(29).getType() == Material.IRON_INGOT){
 						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 슬롯 철 3개를 맞추었습니다!");
+						p.getInventory().addItem(m.getBox("§l슬롯 보상 <철>").getBox());
 					} else if (i.getItem(29).getType() == Material.GOLD_INGOT){
 						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 슬롯 금 3개를 맞추었습니다!");
+						p.getInventory().addItem(m.getBox("§l슬롯 보상 <금>").getBox());
+						m.firework(p);
+						w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
 					} else if (i.getItem(29).getType() == Material.DIAMOND){
 						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 슬롯 다이아몬드 3개를 맞추었습니다!");
+						p.getInventory().addItem(m.getBox("§l슬롯 보상 <다이아몬드>").getBox());
+						m.firework(p);
+						w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
 					} else if (i.getItem(29).getType() == Material.OBSIDIAN){
 						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 슬롯 옵시디언 3개를 맞추었습니다!");
+						p.getInventory().addItem(m.getBox("§l슬롯 보상 <옵시디언>").getBox());
+						m.firework(p);
+						w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
 					} else if (i.getItem(29).getType() == Material.EMERALD){
 						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 슬롯 에메랄드 3개를 맞추었습니다!");
+						p.getInventory().addItem(m.getBox("§l슬롯 보상 <에메랄드>").getBox());
+						m.firework(p);
+						w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
 					} else if (i.getItem(29).getType() == Material.BEDROCK){
 						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 슬롯 배드락 3개를 맞추었습니다!");
 						p.getInventory().addItem(m.getBox("§l슬롯 보상 <배드락>").getBox());
+						m.firework(p);
+						w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
 					} else if (i.getItem(29).getType() == Material.NETHER_STAR){
 						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §l"+p.getName()+"§r님이 슬롯 네더의 별 3개를 맞추었습니다!");
 						p.getInventory().addItem(m.getBox("§l슬롯 보상 <네더의 별>").getBox());
-						
 						m.firework(p);
 						w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
 					}
