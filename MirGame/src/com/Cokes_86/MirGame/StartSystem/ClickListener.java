@@ -1,6 +1,7 @@
 package com.Cokes_86.MirGame.StartSystem;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -19,6 +20,7 @@ import com.Cokes_86.MirGame.Box.Box;
 
 public class ClickListener implements Listener{
 	final MirGame m;
+	public HashMap<Player, Boolean> start = new HashMap<>();
 	
 	public ClickListener (MirGame main){
 		this.m = main;
@@ -190,6 +192,7 @@ public class ClickListener implements Listener{
 					if (coin.getType() == Material.GOLD_NUGGET){
 						if (coin.hasItemMeta()){
 							if (coin.getItemMeta().hasDisplayName() && coin.getItemMeta().getDisplayName().equals("§e금화")){
+								start.put(p, true);
 								m.sg.startOldSlot(e);
 							}
 						}
@@ -218,6 +221,7 @@ public class ClickListener implements Listener{
 					if (coin.getType() == Material.GOLD_NUGGET){
 						if (coin.hasItemMeta()){
 							if (coin.getItemMeta().hasDisplayName() && coin.getItemMeta().getDisplayName().equals("§e금화")){
+								start.put(p, true);
 								m.sg.startSlot(e);
 							}
 						}
@@ -272,6 +276,7 @@ public class ClickListener implements Listener{
 			ItemStack returnitem = i.getItem(45);
 			if (returnitem != null){
 				if (!(returnitem.hasItemMeta() && returnitem.getItemMeta().hasDisplayName() && returnitem.getItemMeta().getDisplayName().equals("§6[§9미르 게임§6]"))){
+					start.put((Player) e.getPlayer(), false);
 					e.getPlayer().getInventory().addItem(returnitem);
 				}
 			}

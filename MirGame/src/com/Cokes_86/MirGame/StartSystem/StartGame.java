@@ -99,7 +99,8 @@ public class StartGame {
 				ItemStack repeat = i.getItem(52);
 				if (repeat.getItemMeta().getDisplayName().equals("§r1회 실행")){
 					m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null);
-				} else if (repeat.getItemMeta().getDisplayName().equals("§r반복 실행")){
+					m.ci.start.put(p, false);
+				} else if (repeat.getItemMeta().getDisplayName().equals("§r반복 실행") && m.ci.start.get(p)){
 					startOldSlot(e);
 				}
 			}
@@ -251,7 +252,8 @@ public class StartGame {
 				ItemStack repeat = i.getItem(52);
 				if (repeat.getItemMeta().getDisplayName().equals("§r1회 실행")){
 					m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null);
-				} else if (repeat.getItemMeta().getDisplayName().equals("§r반복 실행")){
+					m.ci.start.put(p, false);
+				} else if (repeat.getItemMeta().getDisplayName().equals("§r반복 실행") && m.ci.start.get(p)){
 					startSlot(e);
 				}
 			}
