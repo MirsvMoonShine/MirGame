@@ -254,29 +254,14 @@ public class ClickListener implements Listener{
 		Player p = (Player) e.getWhoClicked();
 		if (Click.getType() == Material.CHEST && Click.getItemMeta().getDisplayName().equals("§r- 미르 게임 상점 -")){
 			m.gi.openCoinShop(p);
-			returnCoin(e);
 		} else if (Click.getType() == Material.DIAMOND){
 			m.gi.openOldSlot(p);
-			returnCoin(e);
 		} else if (Click.getType() == Material.NETHER_STAR){
 			m.gi.openSlot(p);
-			returnCoin(e);
 		} else if (Click.getType() == Material.REDSTONE_LAMP_OFF && p.isOp()){
 			m.sl.openSliding(p);
-			returnCoin(e);
 		} else if (Click.getType() == Material.TRAPPED_CHEST){
 			m.gi.openRewards(p);
-			returnCoin(e);
-		}
-	}
-	
-	public void returnCoin(InventoryClickEvent e){
-		Player p = (Player) e.getWhoClicked();
-		ItemStack coin = e.getInventory().getItem(45);
-		if (coin != null){
-			if (!(coin.hasItemMeta() && coin.getItemMeta().hasDisplayName() && coin.getItemMeta().getDisplayName().equals("§6[§9미르 게임§6]"))){
-				p.getInventory().addItem(coin);
-			}
 		}
 	}
 	
