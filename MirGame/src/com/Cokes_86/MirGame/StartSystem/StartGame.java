@@ -48,8 +48,9 @@ public class StartGame {
 		World w = p.getWorld();
 		m.gi.setItem(i, 53, Material.STAINED_GLASS_PANE, 1, 1, "§6[§9미르 게임§6]", null);
 		ItemStack coins = i.getItem(45);
-		if (coins == null) {m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null); return;}
+		if (coins == null) {m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null); m.ci.start.put(p, false); return;}
 		int coin = coins.getAmount();
+		if (coins != m.gc.getCoin(coin)) {m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null); m.ci.start.put(p, false); return;}
 		if (coin >1) i.setItem(45, m.gc.getCoin(coin-1));
 		else if (coin == 1) i.setItem(45, null);
 		
@@ -165,6 +166,7 @@ public class StartGame {
 		ItemStack coins = i.getItem(45);
 		if (coins == null) {m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null); return;}
 		int coin = coins.getAmount();
+		if (coins != m.gc.getCoin(coin)) {m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null); m.ci.start.put(p, false); return;}
 		if (coin >1) i.setItem(45, m.gc.getCoin(coin-1));
 		else if (coin == 1) i.setItem(45, null);
 		World w = p.getWorld();
