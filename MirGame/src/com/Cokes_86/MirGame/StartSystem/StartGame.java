@@ -50,7 +50,7 @@ public class StartGame {
 		ItemStack coins = i.getItem(45);
 		if (coins == null) {m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null); m.ci.start.put(p, false); return;}
 		int coin = coins.getAmount();
-		if (coins != m.gc.getCoin(coin)) {m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null); m.ci.start.put(p, false); return;}
+		if (!(coins.hasItemMeta() && coins.getItemMeta().hasDisplayName() && coins.getItemMeta().getDisplayName().equals(m.gc.getCoin(1).getItemMeta().getDisplayName()))) {m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null); m.ci.start.put(p, false); return;}
 		if (coin >1) i.setItem(45, m.gc.getCoin(coin-1));
 		else if (coin == 1) i.setItem(45, null);
 		
@@ -166,7 +166,7 @@ public class StartGame {
 		ItemStack coins = i.getItem(45);
 		if (coins == null) {m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null); return;}
 		int coin = coins.getAmount();
-		if (coins != m.gc.getCoin(coin)) {m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null); m.ci.start.put(p, false); return;}
+		if (!(coins.hasItemMeta() && coins.getItemMeta().hasDisplayName() && coins.getItemMeta().getDisplayName().equals(m.gc.getCoin(1).getItemMeta().getDisplayName()))) {m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null); m.ci.start.put(p, false); return;}
 		if (coin >1) i.setItem(45, m.gc.getCoin(coin-1));
 		else if (coin == 1) i.setItem(45, null);
 		World w = p.getWorld();

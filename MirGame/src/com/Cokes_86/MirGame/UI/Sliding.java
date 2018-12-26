@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -35,12 +34,7 @@ public class Sliding {
 			setItem(i, a, Material.STAINED_GLASS_PANE, 1, 0, " ", null);
 		}
 		loading(i,0);
-		ItemStack Book = new ItemStack(Material.ENCHANTED_BOOK,1);
-		ItemMeta bookmeta = Book.getItemMeta();
-		bookmeta.setDisplayName("¡×r¡×e¼ö¼±Ã¥");
-		bookmeta.addEnchant(Enchantment.MENDING, 1, true);
-		Book.setItemMeta(bookmeta);
-		i.setItem(26, Book);
+		i.setItem(26, m.gr.MendingBook(1));
 		
 		setItem(i, 45, Material.BARRIER,1,0," ",null);
 		i.remove(Material.BARRIER);

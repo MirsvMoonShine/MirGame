@@ -1,6 +1,5 @@
-package com.Cokes_86.MirGame;
+package com.Cokes_86.MirGame.StartSystem;
 
-import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -8,9 +7,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+
+import com.Cokes_86.MirGame.MirGame;
 
 public class SystemListener implements Listener {
 	final MirGame m;
@@ -46,21 +46,6 @@ public class SystemListener implements Listener {
 				p.getInventory().setItemInMainHand(null);
 				p.getWorld().playSound(p.getLocation(), Sound.ENTITY_ENDERDRAGON_GROWL, 0.5F, 0);
 				p.sendMessage("§4§l아직 그대에겐 이 검을 사용할 자격이 주어지지 않았다.");
-			}
-		}
-	}
-	
-	@EventHandler
-	public void onCraft(PrepareItemCraftEvent e) {
-		for (int a = 0 ; a<9;a++){
-			if (e.getInventory().getItem(a) != null){
-				ItemStack s = e.getInventory().getItem(a);
-				if (s.hasItemMeta() && s.getItemMeta().hasDisplayName()){
-					if (s.getType() == Material.GOLD_NUGGET && s.getItemMeta().getDisplayName().equals("§e금화")){
-						e.getInventory().setResult(null);
-						break;
-					}
-				}
 			}
 		}
 	}

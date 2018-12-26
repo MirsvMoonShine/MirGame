@@ -22,7 +22,9 @@ import com.Cokes_86.MirGame.Box.CollectBox;
 import com.Cokes_86.MirGame.Box.RandomBox;
 import com.Cokes_86.MirGame.Box.SelectBox;
 import com.Cokes_86.MirGame.StartSystem.ClickListener;
+import com.Cokes_86.MirGame.StartSystem.CraftListener;
 import com.Cokes_86.MirGame.StartSystem.StartGame;
+import com.Cokes_86.MirGame.StartSystem.SystemListener;
 import com.Cokes_86.MirGame.UI.GameInventory;
 import com.Cokes_86.MirGame.UI.Sliding;
 
@@ -34,9 +36,11 @@ public class MirGame extends JavaPlugin{
 	public SystemListener sys = new SystemListener(this);
 	public ClickListener ci = new ClickListener(this);
 	public GameCoins gc = new GameCoins();
+	public GameRewards gr = new GameRewards();
 	public StartGame sg = new StartGame(this);
 	public boolean hottime = false;
 	public Sliding sl = new Sliding(this);
+	public CraftListener cl = new CraftListener(this);
 	
 	public BoxGui bg = new BoxGui(this);
 	
@@ -48,6 +52,7 @@ public class MirGame extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(ci,this);
 		getServer().getPluginManager().registerEvents(bg,this);
 		getServer().getPluginManager().registerEvents(sys,this);
+		getServer().getPluginManager().registerEvents(cl,this);
 		setupEconomy();
 		
 		boxs.add(new CollectBox("¡×l(±¸)½½·Ô º¸»ó", new ItemStack[]{gc.get¿ÏµÎÄá(15),gc.getEye(1)})); //(±¸)½½·Ô º¸»ó
