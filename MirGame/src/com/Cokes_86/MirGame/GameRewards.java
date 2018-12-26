@@ -40,10 +40,21 @@ public class GameRewards {
 		ItemMeta getm = get.getItemMeta();
 		if (a==0){
 			getm.setDisplayName("§r커먼 §r§2수박아저씨의 칼");
+			getm.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 1, true);
+			getm.addEnchant(Enchantment.DIG_SPEED, 3, true);
+			getm.setLore(Arrays.asList(new String[]{"§r수박을 자를때 사용한 칼.", "§r칼날이 약간 무뎌져있다."}));
 		} else if (a==1){
 			getm.setDisplayName("§e언커먼 §r§2수박아저씨의 칼");
+			getm.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 3, true);
+			getm.addEnchant(Enchantment.DIG_SPEED, 5, true);
+			getm.addEnchant(Enchantment.DURABILITY, 2, true);
+			getm.setLore(Arrays.asList(new String[]{"§r수박을 능숙히 자르기 위해 탄생한 칼.", "§r아직 무언가 부족한 느낌이다."}));
 		} else if (a==2){
-			getm.setDisplayName("§6미르 §r§2수박아저씨의 칼");
+			getm.setDisplayName("§6§l미르 §r§2수박아저씨의 칼");
+			getm.addEnchant(Enchantment.SILK_TOUCH, 1, true);
+			getm.addEnchant(Enchantment.DIG_SPEED, 7, true);
+			getm.addEnchant(Enchantment.DURABILITY, 5, true);
+			getm.setLore(Arrays.asList(new String[]{"§r수박을 위한 완벽한 칼.", "§r이제는 수박 자체를 잘라낼 수 있다."}));
 		}
 		get.setItemMeta(getm);
 		return get;
@@ -54,6 +65,7 @@ public class GameRewards {
 		ItemMeta m = get.getItemMeta();
 		m.setDisplayName("§e초월석");
 		m.setLore(Arrays.asList(new String[]{"§r의문의 힘이 담긴 돌."}));
+		m.addEnchant(Enchantment.VANISHING_CURSE, 1, true);
 		get.setItemMeta(m);
 		return get;
 	}
@@ -65,5 +77,19 @@ public class GameRewards {
 		bookmeta.addEnchant(Enchantment.MENDING, 1, true);
 		Book.setItemMeta(bookmeta);
 		return Book;
+	}
+	
+	public ItemStack CrokersBow(){
+		ItemStack get = new ItemStack(Material.BOW,1);
+		ItemMeta m = get.getItemMeta();
+		m.setDisplayName("§3사냥터지기의 활");
+		m.addEnchant(Enchantment.ARROW_INFINITE, 1, true);
+		m.addEnchant(Enchantment.ARROW_DAMAGE, 3, true);
+		m.addEnchant(Enchantment.ARROW_FIRE, 1, true);
+		m.addEnchant(Enchantment.DURABILITY, 3, true);
+		m.addEnchant(Enchantment.LOOT_BONUS_MOBS, 3, true);
+		m.setLore(Arrays.asList(new String[]{"§r사냥터지기 크로커가 지녔던 활"}));
+		get.setItemMeta(m);
+		return get;
 	}
 }

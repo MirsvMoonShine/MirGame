@@ -38,6 +38,7 @@ public class Sliding {
 		
 		setItem(i, 45, Material.BARRIER,1,0," ",null);
 		i.remove(Material.BARRIER);
+		setItem(i, 46, Material.BOOK, 1, 0, "§r도움말", new String[]{"§r⇒ 왼쪽 빈 공간에 금화를 넣은 후 오른쪽 양털을 클릭", "§r⇒ 하얀 유리창이 붉은 유리창으로 바뀐 갯수만큼 보상"});
 		setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null);
 		
 		p.openInventory(i);
@@ -65,7 +66,6 @@ public class Sliding {
 			resultm.setLore(lore2);
 		}
 		result.setItemMeta(resultm);
-		
 		
 		i.setItem(slot, result);
 	}

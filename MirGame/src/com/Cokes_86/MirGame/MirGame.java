@@ -99,6 +99,16 @@ public class MirGame extends JavaPlugin{
 						p.getInventory().addItem(b.getBox());
 					}
 					p.sendMessage("§6[§9미르 게임§6]§r 모든 보상 박스가 지급되었습니다.");
+				} else if (args[0].equals("테스트")){
+					if (args[1].equals("초월석") && args.length==2){
+						p.getInventory().addItem(gr.UpgradeStone(1));
+					} else if (args[1].equals("수박") && args.length==2){
+						p.getInventory().addItem(gr.WatermelonSword(0));
+						p.getInventory().addItem(gr.WatermelonSword(1));
+						p.getInventory().addItem(gr.WatermelonSword(2));
+					} else if (args[1].equals("사냥터지기") && args.length==2){
+						p.getInventory().addItem(gr.CrokersBow());
+					}
 				}
 			}
 		} else {
