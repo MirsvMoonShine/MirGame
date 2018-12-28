@@ -28,13 +28,14 @@ public class FusionUpgradeListener implements Listener {
 		Inventory inv = e.getClickedInventory();
 		ItemStack Click = e.getCurrentItem();
 		Player p = (Player) e.getWhoClicked();
-		if (inv == p.getInventory()) {e.setCancelled(false);}
+		if (inv == p.getInventory() && inv.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l합성"))) {e.setCancelled(false); check(e);}
 		else if (inv == null) { return; }
+		else if (inv.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l합성 진행중"))){e.setCancelled(true);}
+		else if (inv.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l합성 완료"))){e.setCancelled(true);}
 		else if (inv.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l합성"))){
 			if (Click.getType() == Material.STAINED_GLASS_PANE) {e.setCancelled(true);}
 			else if (Click.getType() == Material.WOOL){
-				
-			} else {
+				e.setCancelled(true);
 				ArrayList<ItemStack> list = new ArrayList<>();
 				scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 					public void run() {
@@ -47,15 +48,43 @@ public class FusionUpgradeListener implements Listener {
 		        }, 1);
 				scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 					public void run() {
-						if (list.size() == 3 && list.get(0) == list.get(1) && list.get(0) == list.get(2)){
-							System.out.println("ok");
+						if (list.size() == 3 && list.get(0).equals(list.get(1)) && list.get(0).equals(list.get(2))){
 							if (list.get(0).hasItemMeta() && list.get(0).getItemMeta().hasDisplayName() && list.get(0).getItemMeta().getDisplayName().equals(m.gr.DragonSlayer(0).getItemMeta().getDisplayName())){
-								m.gi.setItem(inv, 22, Material.WOOL, 1, 10, "§r합성 시작", new String[]{"§r결과물: 드래곤 슬레이어"});
+								m.fug.openLoadingFusion(p, m.gr.DragonSlayer(1));
 							}
 						}
 					}
 		        }, 2);
+			} else {
+				check(e);
 			}
 		}
+	}
+	
+	public void check(InventoryClickEvent e){
+		Inventory inv = e.getInventory();
+		ArrayList<ItemStack> list = new ArrayList<>();
+		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
+			public void run() {
+				for (int a= 0;a<18;a++){
+					if (e.getInventory().getItem(a) != null) {
+						list.add(e.getInventory().getItem(a));
+					}
+				}
+			}
+        }, 1);
+		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
+			public void run() {
+				if (list.size() == 3 && list.get(0).equals(list.get(1)) && list.get(0).equals(list.get(2))){
+					if (list.get(0).hasItemMeta() && list.get(0).getItemMeta().hasDisplayName() && list.get(0).getItemMeta().getDisplayName().equals(m.gr.DragonSlayer(0).getItemMeta().getDisplayName())){
+						m.gi.setItem(inv, 22, Material.WOOL, 1, 10, "§r합성 시작", new String[]{"§r결과물: §4§l드래곤 슬레이어"});
+					} else {
+						m.gi.setItem(inv, 22, Material.STAINED_GLASS_PANE, 1, 0, " ", null);
+					}
+				} else {
+					m.gi.setItem(inv, 22, Material.STAINED_GLASS_PANE, 1, 0, " ", null);
+				}
+			}
+        }, 2);
 	}
 }
