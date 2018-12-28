@@ -62,13 +62,15 @@ public class ClickListener implements Listener{
 						m.gi.setItem(inv, 49, Material.BOOK, 1, 0, "§r보유자산: "+m.eco.getBalance(p), null);
 					}
 				}
+			} else if (Click.getType() == Material.WRITTEN_BOOK) {
+				m.wr.openShopWiki(p);
 			} else if (Click.getType() == Material.DIAMOND_SWORD){
 				if (Click.getItemMeta().getDisplayName().equals("§r§4§l드래곤 슬레이어 구입")){
 					Inventory playeriv = p.getInventory();
 					int buy = 0;
 					for (int s=0;s<36;s++){
 						ItemStack stack = playeriv.getItem(s);
-						if (stack != null && stack.hasItemMeta()){
+						if (stack != null && stack.hasItemMeta() && stack.getItemMeta().hasDisplayName()){
 							if (stack.getItemMeta().getDisplayName().equals("§r§4봉인된 드래곤 슬레이어")){
 								buy += 1;
 							}
@@ -100,7 +102,7 @@ public class ClickListener implements Listener{
 					for (int s=0;s<36;s++){
 						ItemStack stack = playeriv.getItem(s);
 						
-						if (stack != null && stack.hasItemMeta()){
+						if (stack != null && stack.hasItemMeta() && stack.getItemMeta().hasDisplayName()){
 							if (!eye && stack.getItemMeta().getDisplayName().equals("§d캡슐") && stack.getAmount()>= 15){
 								eye = true;
 							}

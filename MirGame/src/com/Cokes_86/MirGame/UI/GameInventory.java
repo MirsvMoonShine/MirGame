@@ -41,6 +41,8 @@ public class GameInventory {
 		
 		setItem(i, 49, Material.BOOK, 1, 0, "§r보유자산: "+m.eco.getBalance(p), null);
 		
+		setItem(i, 45, Material.WRITTEN_BOOK, 1, 0, "§r도움말",  new String[]{"§r⇒ 좌클릭시 도움말 오픈"});
+		
 		p.openInventory(i);
 	}
 	

@@ -23,8 +23,10 @@ import com.Cokes_86.MirGame.Box.RandomBox;
 import com.Cokes_86.MirGame.Box.SelectBox;
 import com.Cokes_86.MirGame.StartSystem.ClickListener;
 import com.Cokes_86.MirGame.StartSystem.CraftListener;
+import com.Cokes_86.MirGame.StartSystem.FusionUpgradeListener;
 import com.Cokes_86.MirGame.StartSystem.StartGame;
 import com.Cokes_86.MirGame.StartSystem.SystemListener;
+import com.Cokes_86.MirGame.UI.FusionUpgradeGui;
 import com.Cokes_86.MirGame.UI.GameInventory;
 import com.Cokes_86.MirGame.UI.Sliding;
 
@@ -41,6 +43,9 @@ public class MirGame extends JavaPlugin{
 	public boolean hottime = false;
 	public Sliding sl = new Sliding(this);
 	public CraftListener cl = new CraftListener(this);
+	public WrittenBook wr = new WrittenBook();
+	public FusionUpgradeGui fug = new FusionUpgradeGui(this);
+	public FusionUpgradeListener ful = new FusionUpgradeListener(this);
 	
 	public BoxGui bg = new BoxGui(this);
 	
@@ -53,6 +58,7 @@ public class MirGame extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(bg,this);
 		getServer().getPluginManager().registerEvents(sys,this);
 		getServer().getPluginManager().registerEvents(cl,this);
+		getServer().getPluginManager().registerEvents(ful,this);
 		setupEconomy();
 		
 		boxs.add(new CollectBox("§l(구)슬롯 보상", new ItemStack[]{gc.get완두콩(15),gc.getEye(1)})); //(구)슬롯 보상
@@ -84,6 +90,10 @@ public class MirGame extends JavaPlugin{
 			Player p = (Player) sender;
 			if (label.equals("미르게임") && args.length == 0){
 				gi.openMain(p);
+			} else if (label.equals("미르게임") && args.length > 0){
+				if (args[0].equals("합성") && args.length == 1){
+					fug.openReadyFusion(p);
+				}
 			} else if (label.equals("미르게임") && args.length>0 && p.isOp()){
 				if (args[0].equals("핫타임") && args.length == 1){
 					if (!hottime){

@@ -44,12 +44,14 @@ public class CraftListener implements Listener{
 	public void dontanvil(PrepareAnvilEvent e) {
 		ItemStack[] s = e.getInventory().getContents();
 		ItemStack s1 = s[0], s2 = s[1];
-		if (s1 != null && s2 != null){
+		if (s1 != null && s1.hasItemMeta() && s1.getItemMeta().hasDisplayName()){
 			if (s1.getType() == Material.DIAMOND_SWORD && s1.getItemMeta().getDisplayName().equals("§r§4봉인된 드래곤 슬레이어")){
 				e.setResult(null);
-			} else if (s2.getType() == Material.DIAMOND_SWORD && s2.getItemMeta().getDisplayName().equals("§r§4봉인된 드래곤 슬레이어")){
-				e.setResult(null);
 			} else if (s1.getType() == Material.DIAMOND_SWORD && s1.getItemMeta().getDisplayName().equals("§r§4§l드래곤 슬레이어")){
+				e.setResult(null);
+			}
+		} else if (s2 != null && s2.hasItemMeta() && s2.getItemMeta().hasDisplayName()){
+			if (s2.getType() == Material.DIAMOND_SWORD && s2.getItemMeta().getDisplayName().equals("§r§4봉인된 드래곤 슬레이어")){
 				e.setResult(null);
 			} else if (s2.getType() == Material.DIAMOND_SWORD && s2.getItemMeta().getDisplayName().equals("§r§4§l드래곤 슬레이어")){
 				e.setResult(null);
