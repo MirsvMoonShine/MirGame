@@ -129,8 +129,7 @@ public class BoxGui implements Listener{
 		ItemStack Click = e.getCurrentItem();
 		Player p = (Player) e.getWhoClicked();
 		World w = p.getWorld();
-		if (inv == p.getInventory()) {e.setCancelled(false);}
-		else if (inv == null) { return; }
+		if (inv == null) { return; }
 		else if (inv.getName().contains("§l선택 상자: ")){
 			e.setCancelled(true);
 			if (inv.getName().contains("- 확인")){

@@ -27,7 +27,7 @@ public class ClickListener implements Listener{
 		Inventory inv = e.getClickedInventory();
 		ItemStack Click = e.getCurrentItem();
 		Player p = (Player) e.getWhoClicked();
-		if (inv == p.getInventory()) {e.setCancelled(false);}
+		if (inv == p.getInventory() && inv.getName().contains(ChatColor.translateAlternateColorCodes('&', "&l미르 게임"))) {e.setCancelled(false);}
 		else if (inv == null) { return; }
 		else if (inv.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l미르 게임"))){
 			e.setCancelled(true);

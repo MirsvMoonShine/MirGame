@@ -59,6 +59,28 @@ public class FusionUpgradeListener implements Listener {
 				check(e);
 			}
 		}
+		
+		else if (inv == p.getInventory() && inv.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l초월"))){
+			e.setCancelled(true);
+		}
+		else if (inv.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l초월"))){
+			if (Click.getType() == Material.STAINED_GLASS_PANE) e.setCancelled(true);
+			if (Click.equals(e.getInventory().getItem(13))) e.setCancelled(true);
+			
+			scheduler.scheduleSyncDelayedTask(m, new Runnable(){
+				public void run() {
+					if (e.getInventory().getItem(10) != null && e.getInventory().getItem(16) != null && e.getInventory().getItem(16).equals(m.gr.UpgradeStone(1))){
+						if (e.getInventory().getItem(10).equals(m.gr.WatermelonSword(0))){
+							inv.setItem(13, m.gr.WatermelonSword(1));
+						} else {
+							m.gi.setItem(inv, 13, Material.STAINED_GLASS_PANE, 1, 0, "§r결과", new String[]{"§r양옆에 아이템과 초월석이 채워지면 결과 아이템을 출력합니다."});
+						}
+					} else {
+						m.gi.setItem(inv, 13, Material.STAINED_GLASS_PANE, 1, 0, "§r결과", new String[]{"§r양옆에 아이템과 초월석이 채워지면 결과 아이템을 출력합니다."});
+					}
+				}
+	        }, 1);
+		}
 	}
 	
 	public void check(InventoryClickEvent e){

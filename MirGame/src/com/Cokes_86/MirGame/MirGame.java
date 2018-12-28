@@ -93,31 +93,33 @@ public class MirGame extends JavaPlugin{
 			} else if (label.equals("미르게임") && args.length > 0){
 				if (args[0].equals("합성") && args.length == 1){
 					fug.openReadyFusion(p);
-				}
-			} else if (label.equals("미르게임") && args.length>0 && p.isOp()){
-				if (args[0].equals("핫타임") && args.length == 1){
-					if (!hottime){
-						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r 핫타임이 시작되었습니다!");
-						hottime = true;
-					} else {
-						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r 핫타임이 끝났습니다!");
-						hottime = false;
+				} else if (args[0].equals("초월") && args.length == 1){
+					fug.openReadyUpgrade(p);
+				} else if (p.isOp()){
+					if (args[0].equals("핫타임") && args.length == 1){
+						if (!hottime){
+							Bukkit.broadcastMessage("§6[§9미르 게임§6]§r 핫타임이 시작되었습니다!");
+							hottime = true;
+						} else {
+							Bukkit.broadcastMessage("§6[§9미르 게임§6]§r 핫타임이 끝났습니다!");
+							hottime = false;
+						}
 					}
-				}
-				else if (args[0].equals("박스") && args.length == 1){
-					for (Box b : boxs){
-						p.getInventory().addItem(b.getBox());
-					}
-					p.sendMessage("§6[§9미르 게임§6]§r 모든 보상 박스가 지급되었습니다.");
-				} else if (args[0].equals("테스트")){
-					if (args[1].equals("초월석") && args.length==2){
-						p.getInventory().addItem(gr.UpgradeStone(1));
-					} else if (args[1].equals("수박") && args.length==2){
-						p.getInventory().addItem(gr.WatermelonSword(0));
-						p.getInventory().addItem(gr.WatermelonSword(1));
-						p.getInventory().addItem(gr.WatermelonSword(2));
-					} else if (args[1].equals("사냥터지기") && args.length==2){
-						p.getInventory().addItem(gr.CrokersBow());
+					else if (args[0].equals("박스") && args.length == 1){
+						for (Box b : boxs){
+							p.getInventory().addItem(b.getBox());
+						}
+						p.sendMessage("§6[§9미르 게임§6]§r 모든 보상 박스가 지급되었습니다.");
+					} else if (args[0].equals("테스트")){
+						if (args[1].equals("초월석") && args.length==2){
+							p.getInventory().addItem(gr.UpgradeStone(1));
+						} else if (args[1].equals("수박") && args.length==2){
+							p.getInventory().addItem(gr.WatermelonSword(0));
+							p.getInventory().addItem(gr.WatermelonSword(1));
+							p.getInventory().addItem(gr.WatermelonSword(2));
+						} else if (args[1].equals("사냥터지기") && args.length==2){
+							p.getInventory().addItem(gr.CrokersBow());
+						}
 					}
 				}
 			}

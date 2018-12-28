@@ -65,4 +65,41 @@ public class FusionUpgradeGui {
 		p.getInventory().addItem(result);
 		p.openInventory(i);
 	}
+	
+	public void openReadyUpgrade(Player p){
+		Inventory i = Bukkit.createInventory(null, 27, "§l초월");
+		
+		//아이템
+		m.gi.setItem(i, 0, Material.STAINED_GLASS_PANE, 1, 3, "§r아이템", null);
+		m.gi.setItem(i, 1, Material.STAINED_GLASS_PANE, 1, 3, "§r아이템", null);
+		m.gi.setItem(i, 2, Material.STAINED_GLASS_PANE, 1, 3, "§r아이템", null);
+		m.gi.setItem(i, 9, Material.STAINED_GLASS_PANE, 1, 3, "§r아이템", null);
+		m.gi.setItem(i, 11, Material.STAINED_GLASS_PANE, 1, 3, "§r아이템", null);
+		m.gi.setItem(i, 18, Material.STAINED_GLASS_PANE, 1, 3, "§r아이템", null);
+		m.gi.setItem(i, 19, Material.STAINED_GLASS_PANE, 1, 3, "§r아이템", null);
+		m.gi.setItem(i, 20, Material.STAINED_GLASS_PANE, 1, 3, "§r아이템", null);
+		
+		//결과물
+		m.gi.setItem(i, 3, Material.STAINED_GLASS_PANE, 1, 7, " ", null);
+		m.gi.setItem(i, 4, Material.STAINED_GLASS_PANE, 1, 7, " ", null);
+		m.gi.setItem(i, 5, Material.STAINED_GLASS_PANE, 1, 7, " ", null);
+		m.gi.setItem(i, 12, Material.STAINED_GLASS_PANE, 1, 7, " ", null);
+		m.gi.setItem(i, 13, Material.STAINED_GLASS_PANE, 1, 0, "§r결과", new String[]{"§r양옆에 아이템과 초월석이 채워지면 결과 아이템을 출력합니다."});
+		m.gi.setItem(i, 14, Material.STAINED_GLASS_PANE, 1, 7, " ", null);
+		m.gi.setItem(i, 21, Material.STAINED_GLASS_PANE, 1, 7, " ", null);
+		m.gi.setItem(i, 22, Material.STAINED_GLASS_PANE, 1, 7, " ", null);
+		m.gi.setItem(i, 23, Material.STAINED_GLASS_PANE, 1, 7, " ", null);
+		
+		//초월석
+		m.gi.setItem(i, 6, Material.STAINED_GLASS_PANE, 1, 14, "§r초월석", null);
+		m.gi.setItem(i, 7, Material.STAINED_GLASS_PANE, 1, 14, "§r초월석", null);
+		m.gi.setItem(i, 8, Material.STAINED_GLASS_PANE, 1, 14, "§r초월석", null);
+		m.gi.setItem(i, 15, Material.STAINED_GLASS_PANE, 1, 14, "§r초월석", null);
+		m.gi.setItem(i, 17, Material.STAINED_GLASS_PANE, 1, 14, "§r초월석", null);
+		m.gi.setItem(i, 24, Material.STAINED_GLASS_PANE, 1, 14, "§r초월석", null);
+		m.gi.setItem(i, 25, Material.STAINED_GLASS_PANE, 1, 14, "§r초월석", null);
+		m.gi.setItem(i, 26, Material.STAINED_GLASS_PANE, 1, 14, "§r초월석", null);
+		
+		p.openInventory(i);
+	}
 }
