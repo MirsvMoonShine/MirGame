@@ -62,7 +62,30 @@ public class FusionUpgradeListener implements Listener {
 		
 		else if (inv == p.getInventory() && inv.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l초월"))){
 			e.setCancelled(true);
-		}
+			scheduler.scheduleSyncDelayedTask(m, new Runnable(){
+				public void run() {
+					if (e.getInventory().getItem(10) != null && e.getInventory().getItem(16) != null && e.getInventory().getItem(16).equals(m.gr.UpgradeStone(1))){
+						if (e.getInventory().getItem(10).equals(m.gr.WatermelonSword(0))){
+							inv.setItem(13, m.gr.WatermelonSword(1));
+							m.gi.setItem(inv, 22, Material.WOOL, 1, 13, "§r초월 시작", new String[]{"§r성공 확률: 80%"});
+						} else if (e.getInventory().getItem(10).equals(m.gr.WatermelonSword(1))){
+							inv.setItem(13, m.gr.WatermelonSword(2));
+							m.gi.setItem(inv, 22, Material.WOOL, 1, 13, "§r초월 시작", new String[]{"§r성공 확률: 40%"});
+						}
+						
+						else {
+							m.gi.setItem(inv, 13, Material.STAINED_GLASS_PANE, 1, 0, "§r결과", new String[]{"§r양옆에 아이템과 초월석이 채워지면 결과 아이템을 출력합니다."});
+							m.gi.setItem(inv, 22, Material.STAINED_GLASS_PANE, 1, 7, " ", null);
+						}
+					} else {
+						m.gi.setItem(inv, 13, Material.STAINED_GLASS_PANE, 1, 0, "§r결과", new String[]{"§r양옆에 아이템과 초월석이 채워지면 결과 아이템을 출력합니다."});
+						m.gi.setItem(inv, 22, Material.STAINED_GLASS_PANE, 1, 7, " ", null);
+					}
+				}
+	        }, 2);
+		} else if (inv.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l초월 진행중"))){e.setCancelled(true);}
+		else if (inv.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l초월 성공"))){e.setCancelled(true);}
+		else if (inv.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l초월 실패"))){e.setCancelled(true);}
 		else if (inv.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l초월"))){
 			if (Click.getType() == Material.STAINED_GLASS_PANE) e.setCancelled(true);
 			if (Click.equals(e.getInventory().getItem(13))) e.setCancelled(true);
@@ -72,14 +95,34 @@ public class FusionUpgradeListener implements Listener {
 					if (e.getInventory().getItem(10) != null && e.getInventory().getItem(16) != null && e.getInventory().getItem(16).equals(m.gr.UpgradeStone(1))){
 						if (e.getInventory().getItem(10).equals(m.gr.WatermelonSword(0))){
 							inv.setItem(13, m.gr.WatermelonSword(1));
-						} else {
+							m.gi.setItem(inv, 22, Material.WOOL, 1, 13, "§r초월 시작", new String[]{"§r성공 확률: 80%"});
+						} else if (e.getInventory().getItem(10).equals(m.gr.WatermelonSword(1))){
+							inv.setItem(13, m.gr.WatermelonSword(2));
+							m.gi.setItem(inv, 22, Material.WOOL, 1, 13, "§r초월 시작", new String[]{"§r성공 확률: 40%"});
+						}
+						
+						else {
 							m.gi.setItem(inv, 13, Material.STAINED_GLASS_PANE, 1, 0, "§r결과", new String[]{"§r양옆에 아이템과 초월석이 채워지면 결과 아이템을 출력합니다."});
+							m.gi.setItem(inv, 22, Material.STAINED_GLASS_PANE, 1, 7, " ", null);
 						}
 					} else {
 						m.gi.setItem(inv, 13, Material.STAINED_GLASS_PANE, 1, 0, "§r결과", new String[]{"§r양옆에 아이템과 초월석이 채워지면 결과 아이템을 출력합니다."});
+						m.gi.setItem(inv, 22, Material.STAINED_GLASS_PANE, 1, 7, " ", null);
 					}
 				}
 	        }, 1);
+			
+			if (Click.getType() == Material.WOOL){
+				e.setCancelled(true);
+				
+				if (e.getInventory().getItem(10) != null && e.getInventory().getItem(16) != null && e.getInventory().getItem(16).equals(m.gr.UpgradeStone(1))){
+					if (e.getInventory().getItem(10).equals(m.gr.WatermelonSword(0))){
+						m.fug.openLoadingUpgrade(p, m.gr.WatermelonSword(1), m.gr.WatermelonSword(0), 80);
+					} else if (e.getInventory().getItem(10).equals(m.gr.WatermelonSword(1))){
+						m.fug.openLoadingUpgrade(p, m.gr.WatermelonSword(2), m.gr.WatermelonSword(1), 40);
+					}
+				}
+			}
 		}
 	}
 	

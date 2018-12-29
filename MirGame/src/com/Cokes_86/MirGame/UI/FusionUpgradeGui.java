@@ -1,5 +1,7 @@
 package com.Cokes_86.MirGame.UI;
 
+import java.util.Random;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -100,6 +102,61 @@ public class FusionUpgradeGui {
 		m.gi.setItem(i, 25, Material.STAINED_GLASS_PANE, 1, 14, "§r초월석", null);
 		m.gi.setItem(i, 26, Material.STAINED_GLASS_PANE, 1, 14, "§r초월석", null);
 		
+		p.openInventory(i);
+	}
+	
+	public void openLoadingUpgrade(Player p, ItemStack success, ItemStack fail, int percent){
+		Inventory i = Bukkit.createInventory(null, 27, "§l초월 진행중");
+		
+		loadingUpgrade(0,p,i,success,fail,percent);
+		
+		p.openInventory(i);
+	}
+	
+	public void loadingUpgrade(int a, Player p, Inventory i, ItemStack success, ItemStack fail, int percent){
+		ItemStack pane = new ItemStack(Material.STAINED_GLASS_PANE,1,(short)13);
+		ItemMeta itemmeta = pane.getItemMeta();
+		itemmeta.setDisplayName(" ");
+		pane.setItemMeta(itemmeta);
+		i.setItem(a, pane); i.setItem(9+a, pane); i.setItem(18+a, pane);
+		
+		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
+			@Override
+			public void run() {
+				if (a!=8){
+					loadingUpgrade(a+1,p,i,success,fail,percent);
+				} else {
+					Random r = new Random();
+					int a = r.nextInt(100);
+					if (a < percent){
+						openSuccessUpgrade(p, success);
+					} else {
+						openFailedUpgrade(p, fail);
+					}
+				}
+			}
+		},10);
+	}
+	
+	public void openSuccessUpgrade(Player p, ItemStack success){
+		Inventory i = Bukkit.createInventory(null, 9, "§l초월 성공");
+		for (int a = 0;a<9;a++){
+			m.gi.setItem(i, a, Material.STAINED_GLASS_PANE, 1, 13, " ", null);
+		}
+		
+		i.setItem(4, success);
+		p.getInventory().addItem(success);
+		p.openInventory(i);
+	}
+	
+	public void openFailedUpgrade(Player p, ItemStack fail){
+		Inventory i = Bukkit.createInventory(null, 9, "§l초월 실패");
+		for (int a = 0;a<9;a++){
+			m.gi.setItem(i, a, Material.STAINED_GLASS_PANE, 1, 14, " ", null);
+		}
+		
+		i.setItem(4, fail);
+		p.getInventory().addItem(fail);
 		p.openInventory(i);
 	}
 }
