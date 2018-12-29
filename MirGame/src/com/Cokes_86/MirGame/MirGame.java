@@ -59,6 +59,7 @@ public class MirGame extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(sys,this);
 		getServer().getPluginManager().registerEvents(cl,this);
 		getServer().getPluginManager().registerEvents(ful,this);
+		getServer().getPluginManager().registerEvents(sl,this);
 		setupEconomy();
 		
 		boxs.add(new CollectBox("§l(구)슬롯 보상", new ItemStack[]{gc.get완두콩(15),gc.getEye(1)})); //(구)슬롯 보상
@@ -73,6 +74,25 @@ public class MirGame extends JavaPlugin{
 		boxs.add(new SelectBox("§l슬롯 보상 <에메랄드>",new ItemStack[]{gc.get완두콩(30), gc.getEye(5), new ItemStack(Material.TOTEM,5)}));
 		boxs.add(new SelectBox("§l슬롯 보상 <배드락>",new ItemStack[]{gc.getEye(5), gc.get완두콩(30), new ItemStack(Material.BEACON,1),new ItemStack(Material.TOTEM,5)}));
 		boxs.add(new CollectBox("§l슬롯 보상 <네더의 별>",new ItemStack[]{gc.getEye(7), new ItemStack(Material.BEACON,1), new ItemStack(Material.TOTEM,5)}));
+		//슬라이딩 보상
+		boxs.add(new CollectBox("§r슬라이딩 보상 <1단계>", new ItemStack[]{new ItemStack(Material.COAL, 20)}));
+		boxs.add(new CollectBox("§r슬라이딩 보상 <2단계>", new ItemStack[]{new ItemStack(Material.COAL, 20), new ItemStack(Material.COOKED_BEEF, 5)}));
+		boxs.add(new CollectBox("§r슬라이딩 보상 <3단계>", new ItemStack[]{new ItemStack(Material.COAL, 20), new ItemStack(Material.COOKED_BEEF, 5)
+				, new ItemStack(Material.DIAMOND,1)}));
+		boxs.add(new CollectBox("§r슬라이딩 보상 <4단계>", new ItemStack[]{new ItemStack(Material.COAL, 20), new ItemStack(Material.COOKED_BEEF, 5)
+				, new ItemStack(Material.DIAMOND,1), gc.getCoin(1)}));
+		boxs.add(new CollectBox("§l슬라이딩 보상 <5단계>", new ItemStack[]{new ItemStack(Material.COAL, 20), new ItemStack(Material.COOKED_BEEF, 5)
+				, new ItemStack(Material.DIAMOND,1), gc.getCoin(1), gc.get완두콩(5)}));
+		boxs.add(new CollectBox("§l슬라이딩 보상 <6단계>", new ItemStack[]{new ItemStack(Material.COAL, 20), new ItemStack(Material.COOKED_BEEF, 5)
+				, new ItemStack(Material.DIAMOND,1), gc.getCoin(1), gc.get완두콩(5), gc.getEye(2)}));
+		boxs.add(new CollectBox("§l슬라이딩 보상 <7단계>", new ItemStack[]{new ItemStack(Material.COAL, 20), new ItemStack(Material.COOKED_BEEF, 5)
+				, new ItemStack(Material.DIAMOND,1), gc.getCoin(1), gc.get완두콩(5), gc.getEye(2), new ItemStack(Material.TOTEM,1)}));
+		boxs.add(new CollectBox("§l슬라이딩 보상 <8단계>", new ItemStack[]{new ItemStack(Material.COAL, 20), new ItemStack(Material.COOKED_BEEF, 5)
+				, new ItemStack(Material.DIAMOND,1), gc.getCoin(1), gc.get완두콩(5), gc.getEye(2), new ItemStack(Material.TOTEM,1),
+				new ItemStack(Material.EXP_BOTTLE, 10)}));
+		boxs.add(new CollectBox("§a§l슬라이딩 보상 <9단계>", new ItemStack[]{new ItemStack(Material.COAL, 20), new ItemStack(Material.COOKED_BEEF, 5)
+				, new ItemStack(Material.DIAMOND,1), gc.getCoin(1), gc.get완두콩(5), gc.getEye(2), new ItemStack(Material.TOTEM,1),
+				new ItemStack(Material.EXP_BOTTLE, 10), gr.MendingBook(1)}));
 	}
 	
 	private boolean setupEconomy()

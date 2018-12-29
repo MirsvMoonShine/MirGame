@@ -232,9 +232,9 @@ public class ClickListener implements Listener{
 	public void menu(InventoryClickEvent e){
 		ItemStack Click = e.getCurrentItem();
 		Player p = (Player) e.getWhoClicked();
-		if (Click.getType() == Material.CHEST && Click.getItemMeta().getDisplayName().equals("§r- 미르 게임 상점 -")){
+		if (Click.getType() == Material.CHEST && Click.hasItemMeta() && Click.getItemMeta().hasDisplayName() &&  Click.getItemMeta().getDisplayName().equals("§r- 미르 게임 상점 -")){
 			m.gi.openCoinShop(p);
-		} else if (Click.getType() == Material.DIAMOND){
+		} else if (Click.getType() == Material.DIAMOND && Click.hasItemMeta() && Click.getItemMeta().hasDisplayName() && Click.getItemMeta().getDisplayName().equals("§a- (구)슬롯 -")){
 			m.gi.openOldSlot(p);
 		} else if (Click.getType() == Material.NETHER_STAR){
 			m.gi.openSlot(p);
