@@ -16,19 +16,19 @@ import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.Cokes_86.MirGame.Box.Box;
-import com.Cokes_86.MirGame.Box.BoxGui;
-import com.Cokes_86.MirGame.Box.CollectBox;
-import com.Cokes_86.MirGame.Box.RandomBox;
-import com.Cokes_86.MirGame.Box.SelectBox;
-import com.Cokes_86.MirGame.StartSystem.ClickListener;
-import com.Cokes_86.MirGame.StartSystem.CraftListener;
-import com.Cokes_86.MirGame.StartSystem.FusionUpgradeListener;
-import com.Cokes_86.MirGame.StartSystem.StartGame;
-import com.Cokes_86.MirGame.StartSystem.SystemListener;
-import com.Cokes_86.MirGame.UI.FusionUpgradeGui;
-import com.Cokes_86.MirGame.UI.GameInventory;
-import com.Cokes_86.MirGame.UI.Sliding;
+import com.Cokes_86.MirGame.System.CraftListener;
+import com.Cokes_86.MirGame.System.SystemListener;
+import com.Cokes_86.MirGame.System.Box.Box;
+import com.Cokes_86.MirGame.System.Box.BoxGui;
+import com.Cokes_86.MirGame.System.Box.CollectBox;
+import com.Cokes_86.MirGame.System.Box.RandomBox;
+import com.Cokes_86.MirGame.System.Box.SelectBox;
+import com.Cokes_86.MirGame.System.FusionUpgrade.FusionUpgradeGui;
+import com.Cokes_86.MirGame.System.FusionUpgrade.FusionUpgradeListener;
+import com.Cokes_86.MirGame.System.Sliding.Sliding;
+import com.Cokes_86.MirGame.System.SlotShop.ClickListener;
+import com.Cokes_86.MirGame.System.SlotShop.GameInventory;
+import com.Cokes_86.MirGame.System.SlotShop.StartGame;
 
 import net.milkbowl.vault.economy.Economy;
 

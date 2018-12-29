@@ -1,4 +1,4 @@
-package com.Cokes_86.MirGame.StartSystem;
+package com.Cokes_86.MirGame.System.SlotShop;
 
 import java.util.HashMap;
 
@@ -12,7 +12,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import com.Cokes_86.MirGame.MirGame;
-import com.Cokes_86.MirGame.Box.Box;
+import com.Cokes_86.MirGame.System.Box.Box;
 
 public class ClickListener implements Listener{
 	final MirGame m;

@@ -1,4 +1,4 @@
-package com.Cokes_86.MirGame.UI;
+package com.Cokes_86.MirGame.System.SlotShop;
 
 import java.util.Arrays;
 import java.util.List;

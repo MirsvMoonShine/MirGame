@@ -1,4 +1,4 @@
-package com.Cokes_86.MirGame.StartSystem;
+package com.Cokes_86.MirGame.System;
 
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;

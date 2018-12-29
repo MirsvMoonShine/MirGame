@@ -1,4 +1,4 @@
-package com.Cokes_86.MirGame.Box;
+package com.Cokes_86.MirGame.System.Box;
 
 import java.util.HashMap;
 import java.util.Random;
