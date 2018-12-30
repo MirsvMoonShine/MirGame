@@ -43,7 +43,6 @@ public class MirGame extends JavaPlugin{
 	public boolean hottime = false;
 	public Sliding sl = new Sliding(this);
 	public CraftListener cl = new CraftListener(this);
-	public WrittenBook wr = new WrittenBook();
 	public FusionUpgradeGui fug = new FusionUpgradeGui(this);
 	public FusionUpgradeListener ful = new FusionUpgradeListener(this);
 	

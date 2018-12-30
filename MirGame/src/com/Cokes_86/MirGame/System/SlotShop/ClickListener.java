@@ -42,6 +42,7 @@ public class ClickListener implements Listener{
 						Inventory playerinv = p.getInventory();
 						playerinv.addItem(m.gc.getCoin(1));
 						m.eco.withdrawPlayer(p, 1000);
+						p.sendMessage("§6[§9미르 게임§6]§r §e금화 1개§r를 구입하였습니다.");
 						
 						m.gi.setItem(inv, 49, Material.BOOK, 1, 0, "§r보유자산: "+m.eco.getBalance(p), null);
 					}
@@ -50,6 +51,7 @@ public class ClickListener implements Listener{
 						Inventory playerinv = p.getInventory();
 						playerinv.addItem(m.gc.getCoin(10));
 						m.eco.withdrawPlayer(p, 9500);
+						p.sendMessage("§6[§9미르 게임§6]§r §e금화 10개§r를 구입하였습니다.");
 						
 						m.gi.setItem(inv, 49, Material.BOOK, 1, 0, "§r보유자산: "+m.eco.getBalance(p), null);
 					}
@@ -58,44 +60,54 @@ public class ClickListener implements Listener{
 						Inventory playerinv = p.getInventory();
 						playerinv.addItem(m.gc.getCoin(64));
 						m.eco.withdrawPlayer(p, 60000);
+						p.sendMessage("§6[§9미르 게임§6]§r §e금화 64개§r를 구입하였습니다.");
 						
 						m.gi.setItem(inv, 49, Material.BOOK, 1, 0, "§r보유자산: "+m.eco.getBalance(p), null);
 					}
 				}
-			} else if (Click.getType() == Material.WRITTEN_BOOK) {
-				m.wr.openShopWiki(p);
-			} else if (Click.getType() == Material.DIAMOND_SWORD){
-				if (Click.getItemMeta().getDisplayName().equals("§r§4§l드래곤 슬레이어 구입")){
-					Inventory playeriv = p.getInventory();
-					int buy = 0;
-					for (int s=0;s<36;s++){
-						ItemStack stack = playeriv.getItem(s);
-						if (stack != null && stack.hasItemMeta() && stack.getItemMeta().hasDisplayName()){
-							if (stack.getItemMeta().getDisplayName().equals("§r§4봉인된 드래곤 슬레이어")){
-								buy += 1;
-							}
+			} else if (Click.getType() == Material.WORKBENCH){
+				e.setCancelled(true);
+				m.fug.openReadyFusion(p);
+			} else if (Click.getType() == Material.ANVIL){
+				e.setCancelled(true);
+				m.fug.openReadyUpgrade(p);
+			} else if (Click.getType() == Material.IRON_NUGGET){
+				Inventory playeriv = p.getInventory();
+				boolean eye = false;
+				for (int s=0;s<36;s++){
+					ItemStack stack = playeriv.getItem(s);
+					if (stack != null && stack.hasItemMeta() && stack.getItemMeta().hasDisplayName()){
+						if (!eye && stack.getItemMeta().getDisplayName().equals("§d캡슐") && stack.getAmount()>= 5){
+							eye = true;
 						}
-						if (buy == 3) break;
 					}
 					
-					if (buy == 3){
-						playeriv.addItem(m.gr.DragonSlayer(1));
+					if (eye){
+						playeriv.addItem(m.gr.UpgradeStone(1));
+						p.sendMessage("§6[§9미르 게임§6]§r §e초월석§r을 구입하였습니다.");
 						
-						for (int t=0;t<36;t++){
-							ItemStack lockdragon = playeriv.getItem(t);
-							if (lockdragon != null && lockdragon.hasItemMeta()){
-								if (lockdragon.getItemMeta().getDisplayName().equals("§r§4봉인된 드래곤 슬레이어")){
-									playeriv.setItem(t, null);
-									buy -= 1;
-								}
-							}
+						for (int k =0;k<36;k++){
+							ItemStack stack2 = playeriv.getItem(k);
 							
-							if (buy == 0) {
-								break;
+							if (stack2 != null && stack2.hasItemMeta()){
+								if (eye && stack2.getItemMeta().hasDisplayName() && stack2.getItemMeta().getDisplayName().equals("§d캡슐")){
+									if (stack2.getAmount() == 5) playeriv.setItem(k,null);
+									else {
+										ItemStack o = stack2;
+										stack2.setAmount(o.getAmount()-5);
+									}
+									eye = false;
+								} 
 							}
 						}
+						
+						break;
 					}
-				} else if (Click.getItemMeta().getDisplayName().equals("§r§4봉인된 드래곤 슬레이어 구입")){
+				}
+			}
+			
+			else if (Click.getType() == Material.DIAMOND_SWORD){
+				if (Click.getItemMeta().getDisplayName().equals("§r§4봉인된 드래곤 슬레이어 구입")){
 					Inventory playeriv = p.getInventory();
 					boolean eye = false;
 					boolean bean = false;
@@ -113,6 +125,7 @@ public class ClickListener implements Listener{
 						
 						if (eye && bean){
 							playeriv.addItem(m.gr.DragonSlayer(0));
+							p.sendMessage("§6[§9미르 게임§6]§r §4봉인된 드래곤 슬레이어§r를 구입하였습니다.");
 							
 							for (int k =0;k<36;k++){
 								ItemStack stack2 = playeriv.getItem(k);
@@ -147,6 +160,33 @@ public class ClickListener implements Listener{
 										bean = false;
 									}
 								}
+							}
+							break;
+						}
+					}
+				} else if (Click.getItemMeta().getDisplayName().equals("§r커먼 수박아저씨의 칼 구입")){
+					Inventory playeriv = p.getInventory();
+					boolean bean = false;
+					for (int s=0;s<36;s++){
+						ItemStack stack = playeriv.getItem(s);
+						
+						if (stack != null && stack.hasItemMeta() && stack.getItemMeta().hasDisplayName() && 
+								stack.getItemMeta().getDisplayName().equals("§a완두콩") && stack.getAmount() >= 20) bean = true;
+						
+						if (bean){
+							playeriv.addItem(m.gr.WatermelonSword(0));
+							p.sendMessage("§6[§9미르 게임§6]§r 커먼 §r§2수박아저씨의 칼§r을 구입하였습니다.");
+							for (int k =0;k<36;k++){
+								ItemStack stack2 = playeriv.getItem(k);
+								
+								if (bean && stack2.getItemMeta().hasDisplayName() && stack2.getItemMeta().getDisplayName().equals("§a완두콩")){
+									if (stack2.getAmount() == 20) playeriv.setItem(k,null);
+									else {
+										ItemStack o = stack2;
+										stack2.setAmount(o.getAmount()-20);
+									}
+									bean = false;
+								} 
 							}
 							break;
 						}
@@ -248,7 +288,7 @@ public class ClickListener implements Listener{
 	@EventHandler
 	public void closeInventory(InventoryCloseEvent e){
 		Inventory i = e.getInventory();
-		if (i.getTitle().contains("§l미르 게임")){
+		if (i.getTitle().contains("§l미르 게임") && !i.getTitle().equals("§l미르 게임 - 상점")){
 			ItemStack returnitem = i.getItem(45);
 			if (returnitem != null){
 				if (!(returnitem.hasItemMeta() && returnitem.getItemMeta().hasDisplayName() && returnitem.getItemMeta().getDisplayName().equals("§6[§9미르 게임§6]"))){

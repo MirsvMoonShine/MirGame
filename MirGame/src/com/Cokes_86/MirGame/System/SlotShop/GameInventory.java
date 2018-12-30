@@ -37,11 +37,16 @@ public class GameInventory {
 		setItem(i, 20, Material.GOLD_NUGGET, 64, 0, "§r금화 64개 구입", new String[]{"§r⇒ 좌클릭시 금화 64개 구입","§r⇒ 가격: 60000원"});
 		
 		setItem(i, 27, Material.DIAMOND_SWORD, 1, 0, "§r§4봉인된 드래곤 슬레이어 구입", new String[]{"§r⇒ 좌클릭시 봉인된 드래곤 슬레이어 구입", "§r⇒ 가격: 캡슐 15개, 완두콩 60개"});
-		setItem(i, 28, Material.DIAMOND_SWORD, 1, 0, "§r§4§l드래곤 슬레이어 구입", new String[]{"§r⇒ 좌클릭시 드래곤 슬레이어 구입", "§r⇒ 가격: 봉인된 드래곤 슬레이어 3개"});
 		
 		setItem(i, 49, Material.BOOK, 1, 0, "§r보유자산: "+m.eco.getBalance(p), null);
 		
-		setItem(i, 45, Material.WRITTEN_BOOK, 1, 0, "§r도움말",  new String[]{"§r⇒ 좌클릭시 도움말 오픈"});
+		
+		if (p.isOp()){ //테스트 물품
+			setItem(i, 21, Material.IRON_NUGGET, 1, 0, "§r초월석 구입", new String[]{"§r⇒ 좌클릭시 초월석 구입", "§r⇒ 가격: 캡슐 5개"});
+			setItem(i, 28, Material.DIAMOND_SWORD, 1, 0, "§r커먼 수박아저씨의 칼 구입", new String[]{"§r⇒ 좌클릭시 커먼 수박아저씨의 칼 구입", "§r⇒ 가격: 완두콩 20개"});
+			setItem(i, 45, Material.WORKBENCH, 1, 0, "§r합성", new String[]{"§r⇒ 좌클릭시 합성 창으로 이동"});
+			setItem(i, 46, Material.ANVIL, 1, 0, "§r초월", new String[]{"§r⇒ 좌클릭시 초월 창으로 이동"});
+		}
 		
 		p.openInventory(i);
 	}
