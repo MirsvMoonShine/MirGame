@@ -24,7 +24,7 @@ import com.Cokes_86.MirGame.MirGame;
 public class BoxGui implements Listener{
 	final MirGame m;
 	BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-	HashMap<Player, Boolean> open = new HashMap<>();
+	public HashMap<Player, Boolean> open = new HashMap<>();
 	
 	public BoxGui(MirGame m){
 		this.m = m;

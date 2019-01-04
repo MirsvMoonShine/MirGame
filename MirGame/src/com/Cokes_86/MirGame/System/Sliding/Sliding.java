@@ -42,11 +42,12 @@ public class Sliding implements Listener{
 		i.setItem(18, new ItemStack(Material.COAL, 20));
 		i.setItem(19, new ItemStack(Material.COOKED_BEEF, 5));
 		i.setItem(20, new ItemStack(Material.DIAMOND, 1));
-		m.gi.setItem(i, 21, Material.GOLD_NUGGET, 5, 0, "§e금화§r", null);
+		m.gi.setItem(i, 21, Material.GOLD_NUGGET, 1, 0, "§e금화§r", null);
 		i.setItem(22, m.gc.get완두콩(10));
 		i.setItem(23, m.gc.getEye(2));
-		i.setItem(24, new ItemStack(Material.TOTEM,1));
-		i.setItem(25, new ItemStack(Material.EXP_BOTTLE,10));
+		i.setItem(24, new ItemStack(Material.EXP_BOTTLE,10));
+		i.setItem(25, new ItemStack(Material.TOTEM,1));
+		
 		i.setItem(26, m.gr.MendingBook(1));
 		
 		//기본틀
@@ -214,7 +215,7 @@ public class Sliding implements Listener{
 																					@Override
 																					public void run() {
 																						p.getInventory().addItem(m.getBox("§l슬라이딩 보상 <6단계>").getBox());
-																						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 슬라이딩 6단계 보상을 획득하였습니다.");
+																						p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 6단계 보상을 획득하였습니다.");
 																						reload(e);
 																					}
 																		        }, 5);

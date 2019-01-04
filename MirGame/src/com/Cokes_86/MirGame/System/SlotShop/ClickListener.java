@@ -278,7 +278,7 @@ public class ClickListener implements Listener{
 			m.gi.openOldSlot(p);
 		} else if (Click.getType() == Material.NETHER_STAR){
 			m.gi.openSlot(p);
-		} else if (Click.getType() == Material.REDSTONE_LAMP_OFF && p.isOp()){
+		} else if (Click.getType() == Material.REDSTONE_LAMP_OFF){
 			m.sl.openSliding(p);
 		} else if (Click.getType() == Material.TRAPPED_CHEST){
 			m.gi.openRewards(p);

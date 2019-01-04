@@ -34,6 +34,7 @@ public class FusionUpgradeGui {
 		Inventory i = Bukkit.createInventory(null, 27, "§l합성 진행중");
 		
 		loadingFusion(0,p,i,result);
+		m.bg.open.put(p, true);
 		
 		p.openInventory(i);
 	}
@@ -64,6 +65,7 @@ public class FusionUpgradeGui {
 		}
 		
 		i.setItem(4, result);
+		m.bg.open.put(p, false);
 		p.getInventory().addItem(result);
 		p.openInventory(i);
 	}
@@ -109,6 +111,7 @@ public class FusionUpgradeGui {
 		Inventory i = Bukkit.createInventory(null, 27, "§l초월 진행중");
 		
 		loadingUpgrade(0,p,i,success,fail,percent);
+		m.bg.open.put(p, true);
 		
 		p.openInventory(i);
 	}
@@ -145,6 +148,7 @@ public class FusionUpgradeGui {
 		}
 		
 		i.setItem(4, success);
+		m.bg.open.put(p, false);
 		p.getInventory().addItem(success);
 		p.openInventory(i);
 	}
@@ -156,6 +160,7 @@ public class FusionUpgradeGui {
 		}
 		
 		i.setItem(4, fail);
+		m.bg.open.put(p, false);
 		p.getInventory().addItem(fail);
 		p.openInventory(i);
 	}
