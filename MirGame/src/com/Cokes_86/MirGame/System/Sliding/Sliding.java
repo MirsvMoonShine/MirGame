@@ -45,9 +45,8 @@ public class Sliding implements Listener{
 		m.gi.setItem(i, 21, Material.GOLD_NUGGET, 1, 0, "§e금화§r", null);
 		i.setItem(22, m.gc.get완두콩(10));
 		i.setItem(23, m.gc.getEye(2));
-		i.setItem(24, new ItemStack(Material.EXP_BOTTLE,10));
-		i.setItem(25, new ItemStack(Material.TOTEM,1));
-		
+		i.setItem(24, new ItemStack(Material.TOTEM,1));
+		i.setItem(25, new ItemStack(Material.EXP_BOTTLE,10));
 		i.setItem(26, m.gr.MendingBook(1));
 		
 		//기본틀
@@ -128,49 +127,49 @@ public class Sliding implements Listener{
 				
 				Random r = new Random();
 				int a = r.nextInt(100);
-				if (a < 90){
+				if (a < 80){
 					scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 						@Override
 						public void run() {
 							setItem(i, 28, Material.STAINED_GLASS_PANE, 1, 14, " ", null);
 							int a = r.nextInt(100);
-							if (a < 80){
+							if (a < 70){
 								scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 									@Override
 									public void run() {
 										setItem(i, 29, Material.STAINED_GLASS_PANE, 1, 14, " ", null);
 										int a = r.nextInt(100);
-										if (a < 70){
+										if (a < 55){
 											scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 												@Override
 												public void run() {
 													setItem(i, 30, Material.STAINED_GLASS_PANE, 1, 14, " ", null);
 													int a = r.nextInt(100);
-													if (a < 60){
+													if (a < 45){
 														scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 															@Override
 															public void run() {
 																setItem(i, 31, Material.STAINED_GLASS_PANE, 1, 14, " ", null);
 																int a = r.nextInt(100);
-																if (a < 45){
+																if (a < 30){
 																	scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 																		@Override
 																		public void run() {
 																			setItem(i, 32, Material.STAINED_GLASS_PANE, 1, 14, " ", null);
 																			int a = r.nextInt(100);
-																			if (a < 30){
+																			if (a < 20){
 																				scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 																					@Override
 																					public void run() {
 																						setItem(i, 33, Material.STAINED_GLASS_PANE, 1, 14, " ", null);
 																						int a = r.nextInt(100);
-																						if (a < 20){
+																						if (a < 10){
 																							scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 																								@Override
 																								public void run() {
 																									setItem(i, 34, Material.STAINED_GLASS_PANE, 1, 14, " ", null);
 																									int a = r.nextInt(100);
-																									if (a < 10){
+																									if (a < 4){
 																										scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 																											@Override
 																											public void run() {

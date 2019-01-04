@@ -85,7 +85,7 @@ public class MirGame extends JavaPlugin{
 		boxs.add(new CollectBox("§l슬라이딩 보상 <6단계>", new ItemStack[]{new ItemStack(Material.COAL, 20), new ItemStack(Material.COOKED_BEEF, 5)
 				, new ItemStack(Material.DIAMOND,1), gc.getCoin(1), gc.get완두콩(5), gc.getEye(2)}));
 		boxs.add(new CollectBox("§l슬라이딩 보상 <7단계>", new ItemStack[]{new ItemStack(Material.COAL, 20), new ItemStack(Material.COOKED_BEEF, 5)
-				, new ItemStack(Material.DIAMOND,1), gc.getCoin(1), gc.get완두콩(5), gc.getEye(2), new ItemStack(Material.EXP_BOTTLE, 10)}));
+				, new ItemStack(Material.DIAMOND,1), gc.getCoin(1), gc.get완두콩(5), gc.getEye(2), new ItemStack(Material.TOTEM, 1)}));
 		boxs.add(new CollectBox("§l슬라이딩 보상 <8단계>", new ItemStack[]{new ItemStack(Material.COAL, 20), new ItemStack(Material.COOKED_BEEF, 5)
 				, new ItemStack(Material.DIAMOND,1), gc.getCoin(1), gc.get완두콩(5), gc.getEye(2), new ItemStack(Material.TOTEM,1),
 				new ItemStack(Material.EXP_BOTTLE, 10)}));
