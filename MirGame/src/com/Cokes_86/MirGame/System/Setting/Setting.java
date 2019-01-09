@@ -132,6 +132,23 @@ public class Setting implements Listener{
 						} catch (Exception ex){}
 						m.gi.setItem(i, 36, Material.ANVIL, 1, 0, "§r슬라이딩 속도 설정", new String[]{"§r⇒ 좌클릭시 1씩 증가, 우클릭시 1씩 감소", "§r⇒ 범위: 3 ~ 20 (tick)", "§r⇒ 설정: "+setting.getLong("Speed.Sliding")});
 					} 
+				} else if (Click.getItemMeta().getDisplayName().equals("§r소리")){
+					boolean speed = setting.getBoolean("Sound");
+					if (speed){
+						boolean a = false;
+						setting.set("Speed.Sliding", a);
+						try {
+							setting.save(f);
+						} catch (Exception ex){}
+						m.gi.setItem(i, 20, Material.ANVIL, 1, 0, "§r소리 설정", new String[]{"§r⇒ 좌클릭시 변경", "§r⇒ 꺼짐"});
+					} else if (!speed){
+						boolean a = true;
+						setting.set("Speed.Sliding", a);
+						try {
+							setting.save(f);
+						} catch (Exception ex){}
+						m.gi.setItem(i, 20, Material.ANVIL, 1, 0, "§r소리 설정", new String[]{"§r⇒ 좌클릭시 변경", "§r⇒ 켜짐"});
+					} 
 				}
 			}
 		}
