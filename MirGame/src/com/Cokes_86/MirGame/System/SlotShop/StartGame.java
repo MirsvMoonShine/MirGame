@@ -1,11 +1,14 @@
 package com.Cokes_86.MirGame.System.SlotShop;
 
+import java.io.File;
 import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
@@ -53,33 +56,40 @@ public class StartGame {
 		if (!(coins.hasItemMeta() && coins.getItemMeta().hasDisplayName() && coins.getItemMeta().getDisplayName().equals(m.gc.getCoin(1).getItemMeta().getDisplayName()))) {m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null); m.ci.start.put(p, false); return;}
 		if (coin >1) i.setItem(45, m.gc.getCoin(coin-1));
 		else if (coin == 1) i.setItem(45, null);
+		File f = new File("plugins/MirGame/Setting/"+p.getUniqueId()+".setting");
+		FileConfiguration setting = YamlConfiguration.loadConfiguration(f);
+		try { 
+			setting.load(f);
+		} catch (Exception ex){}
+		long speed = setting.getLong("Speed.OldSlot");
+		boolean sound = setting.getBoolean("Sound");
 		
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
 				if (!m.hottime) m.gi.setItem(i, 29, materialOldSlot(), 1, 0, " ", null);
 				else m.gi.setItem(i, 29, materialOldSlot_HotTime(), 1, 0, " ", null);
-				w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
+				if(sound) w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
 			}
-        }, 15);
+        }, speed);
 		
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
 				if (!m.hottime) m.gi.setItem(i, 31, materialOldSlot(), 1, 0, " ", null);
 				else m.gi.setItem(i, 31, materialOldSlot_HotTime(), 1, 0, " ", null);
-				w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
+				if(sound) w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
 			}
-        }, 30);
+        }, speed*2);
 		
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
 				if (!m.hottime) m.gi.setItem(i, 33, materialOldSlot(), 1, 0, " ", null);
 				else m.gi.setItem(i, 33, materialOldSlot_HotTime(), 1, 0, " ", null);
-				w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
+				if(sound) w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
 			}
-        }, 45);
+        }, speed*3);
 		
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
@@ -90,7 +100,7 @@ public class StartGame {
 					p.giveExp(325);
 					
 					m.firework(p);
-					w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
+					if (sound) w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
 				}
 				
 				m.gi.setItem(i, 29,  Material.STAINED_GLASS_PANE,1,0," ",null);
@@ -105,7 +115,7 @@ public class StartGame {
 					startOldSlot(e);
 				}
 			}
-        }, 60);
+        }, speed*4);
 	}
 	
 	//아래는 슬롯
@@ -170,33 +180,40 @@ public class StartGame {
 		if (coin >1) i.setItem(45, m.gc.getCoin(coin-1));
 		else if (coin == 1) i.setItem(45, null);
 		World w = p.getWorld();
+		File f = new File("plugins/MirGame/Setting/"+p.getUniqueId()+".setting");
+		FileConfiguration setting = YamlConfiguration.loadConfiguration(f);
+		try { 
+			setting.load(f);
+		} catch (Exception ex){}
+		long speed = setting.getLong("Speed.Slot");
+		boolean sound = setting.getBoolean("Sound");
 		
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
 				if (!m.hottime) m.gi.setItem(i, 29, materialSlot(), 1, 0, " ", null);
 				else m.gi.setItem(i, 29, materialSlot_HotTime(), 1, 0, " ", null);
-				w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
+				if (sound) w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
 			}
-        }, 15);
+        }, speed);
 		
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
 				if (!m.hottime) m.gi.setItem(i, 31, materialSlot(), 1, 0, " ", null);
 				else m.gi.setItem(i, 31, materialSlot_HotTime(), 1, 0, " ", null);
-				w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
+				if (sound) w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
 			}
-        }, 30);
+        }, speed*2);
 		
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
 				if (!m.hottime) m.gi.setItem(i, 33, materialSlot(), 1, 0, " ", null);
 				else m.gi.setItem(i, 33, materialSlot_HotTime(), 1, 0, " ", null);
-				w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
+				if (sound) w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
 			}
-        }, 45);
+        }, speed*3);
 		
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
@@ -218,32 +235,32 @@ public class StartGame {
 						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 슬롯 금 3개를 맞추었습니다!");
 						p.getInventory().addItem(m.getBox("§l슬롯 보상 <금>").getBox());
 						m.firework(p);
-						w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
+						if (sound) w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
 					} else if (i.getItem(29).getType() == Material.DIAMOND){
 						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 슬롯 다이아몬드 3개를 맞추었습니다!");
 						p.getInventory().addItem(m.getBox("§l슬롯 보상 <다이아몬드>").getBox());
 						m.firework(p);
-						w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
+						if (sound) w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
 					} else if (i.getItem(29).getType() == Material.OBSIDIAN){
 						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 슬롯 옵시디언 3개를 맞추었습니다!");
 						p.getInventory().addItem(m.getBox("§l슬롯 보상 <옵시디언>").getBox());
 						m.firework(p);
-						w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
+						if (sound) w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
 					} else if (i.getItem(29).getType() == Material.EMERALD){
 						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 슬롯 에메랄드 3개를 맞추었습니다!");
 						p.getInventory().addItem(m.getBox("§l슬롯 보상 <에메랄드>").getBox());
 						m.firework(p);
-						w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
+						if (sound) w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
 					} else if (i.getItem(29).getType() == Material.BEDROCK){
 						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 슬롯 배드락 3개를 맞추었습니다!");
 						p.getInventory().addItem(m.getBox("§l슬롯 보상 <배드락>").getBox());
 						m.firework(p);
-						w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
+						if (sound) w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
 					} else if (i.getItem(29).getType() == Material.NETHER_STAR){
 						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 슬롯 네더의 별 3개를 맞추었습니다!");
 						p.getInventory().addItem(m.getBox("§l슬롯 보상 <네더의 별>").getBox());
 						m.firework(p);
-						w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
+						if (sound) w.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 1, 1);
 					}
 				}
 				
@@ -259,6 +276,6 @@ public class StartGame {
 					startSlot(e);
 				}
 			}
-        }, 60);
+        }, speed*4);
 	}
 }

@@ -67,10 +67,10 @@ public class ClickListener implements Listener{
 				}
 			} else if (Click.getType() == Material.WORKBENCH){
 				e.setCancelled(true);
-				m.fug.openReadyFusion(p);
+				m.mr.fug.openReadyFusion(p);
 			} else if (Click.getType() == Material.ANVIL){
 				e.setCancelled(true);
-				m.fug.openReadyUpgrade(p);
+				m.mr.fug.openReadyUpgrade(p);
 			} else if (Click.getType() == Material.IRON_NUGGET){
 				Inventory playeriv = p.getInventory();
 				boolean eye = false;
@@ -83,7 +83,7 @@ public class ClickListener implements Listener{
 					}
 					
 					if (eye){
-						playeriv.addItem(m.gr.UpgradeStone(1));
+						playeriv.addItem(m.mr.gr.UpgradeStone(1));
 						p.sendMessage("§6[§9미르 게임§6]§r §e초월석§r을 구입하였습니다.");
 						
 						for (int k =0;k<36;k++){
@@ -124,7 +124,7 @@ public class ClickListener implements Listener{
 						}
 						
 						if (eye && bean){
-							playeriv.addItem(m.gr.DragonSlayer(0));
+							playeriv.addItem(m.mr.gr.DragonSlayer(0));
 							p.sendMessage("§6[§9미르 게임§6]§r §4봉인된 드래곤 슬레이어§r를 구입하였습니다.");
 							
 							for (int k =0;k<36;k++){
@@ -174,7 +174,7 @@ public class ClickListener implements Listener{
 								stack.getItemMeta().getDisplayName().equals("§a완두콩") && stack.getAmount() >= 20) bean = true;
 						
 						if (bean){
-							playeriv.addItem(m.gr.WatermelonSword(0));
+							playeriv.addItem(m.mr.gr.WatermelonSword(0));
 							p.sendMessage("§6[§9미르 게임§6]§r 커먼 §r§2수박아저씨의 칼§r을 구입하였습니다.");
 							for (int k =0;k<36;k++){
 								ItemStack stack2 = playeriv.getItem(k);
@@ -282,13 +282,15 @@ public class ClickListener implements Listener{
 			m.sl.openSliding(p);
 		} else if (Click.getType() == Material.TRAPPED_CHEST){
 			m.gi.openRewards(p);
+		} else if (Click.getType() == Material.ANVIL && Click.hasItemMeta() && Click.getItemMeta().hasDisplayName() && Click.getItemMeta().getDisplayName().equals("§r- 설정 -")){
+			m.st.openSetting(p);
 		}
 	}
 	
 	@EventHandler
 	public void closeInventory(InventoryCloseEvent e){
 		Inventory i = e.getInventory();
-		if (i.getTitle().contains("§l미르 게임") && !i.getTitle().equals("§l미르 게임 - 상점")){
+		if (i.getTitle().contains("§l미르 게임") && !i.getTitle().equals("§l미르 게임 - 상점") && !i.getTitle().equals("§l미르 게임 - 설정")){
 			ItemStack returnitem = i.getItem(45);
 			if (returnitem != null){
 				if (!(returnitem.hasItemMeta() && returnitem.getItemMeta().hasDisplayName() && returnitem.getItemMeta().getDisplayName().equals("§6[§9미르 게임§6]"))){

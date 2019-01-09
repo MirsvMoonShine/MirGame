@@ -130,6 +130,7 @@ public class GameInventory {
 		setItem(i, 1, Material.DIAMOND, 1, 0, "§a- (구)슬롯 -", new String[]{"§r⇒ 좌클릭시 (구)슬롯으로 이동합니다."});
 		setItem(i, 2, Material.NETHER_STAR, 1, 0, "§b- 슬롯 -", new String[]{"§r⇒ 좌클릭시 슬롯으로 이동합니다."});
 		setItem(i, 3, Material.REDSTONE_LAMP_OFF, 1, 0, "§2- 슬라이딩 -", new String[]{"§r⇒ 좌클릭시 슬라이딩으로 이동합니다."});
+		setItem(i, 7, Material.ANVIL, 1, 0, "§r- 설정 -", new String[]{"§r⇒ 좌클릭시 설정으로 이동합니다."});
 		setItem(i, 8, Material.TRAPPED_CHEST, 1, 0, "§r- 미르 게임 보상 목록 -", new String[]{"§r⇒ 좌클릭시 미르 게임 보상 목록으로 이동합니다."});
 	}
 	

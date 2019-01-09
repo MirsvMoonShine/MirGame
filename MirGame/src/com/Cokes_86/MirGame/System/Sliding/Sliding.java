@@ -1,5 +1,6 @@
 package com.Cokes_86.MirGame.System.Sliding;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -7,6 +8,8 @@ import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -47,7 +50,7 @@ public class Sliding implements Listener{
 		i.setItem(23, m.gc.getEye(2));
 		i.setItem(24, new ItemStack(Material.TOTEM,1));
 		i.setItem(25, new ItemStack(Material.EXP_BOTTLE,10));
-		i.setItem(26, m.gr.MendingBook(1));
+		i.setItem(26, m.mr.gr.MendingBook(1));
 		
 		//기본틀
 		setItem(i, 45, Material.BARRIER,1,0," ",null);
@@ -119,6 +122,12 @@ public class Sliding implements Listener{
 		if (!(coins.hasItemMeta() && coins.getItemMeta().hasDisplayName() && coins.getItemMeta().getDisplayName().equals(m.gc.getCoin(1).getItemMeta().getDisplayName()))) {m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null); m.ci.start.put(p, false); return;}
 		if (coin >1) i.setItem(45, m.gc.getCoin(coin-1));
 		else if (coin == 1) i.setItem(45, null);
+		File f = new File("plugins/MirGame/Setting/"+p.getUniqueId()+".setting");
+		FileConfiguration setting = YamlConfiguration.loadConfiguration(f);
+		try { 
+			setting.load(f);
+		} catch (Exception ex){}
+		long speed = setting.getLong("Speed.Sliding");
 		
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
@@ -181,9 +190,9 @@ public class Sliding implements Listener{
 																														Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 슬라이딩 9단계 보상을 획득하였습니다.");
 																														reload(e);
 																													}
-																										        }, 5);
+																										        }, speed);
 																											}
-																								        }, 5);
+																								        }, speed);
 																									} else {
 																										scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 																											@Override
@@ -192,11 +201,10 @@ public class Sliding implements Listener{
 																												Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 슬라이딩 8단계 보상을 획득하였습니다.");
 																												reload(e);
 																											}
-																								        }, 5);
+																								        }, speed);
 																									}
-																									
 																								}
-																					        }, 5);
+																					        }, speed);
 																						} else {
 																							scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 																								@Override
@@ -205,10 +213,10 @@ public class Sliding implements Listener{
 																									Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 슬라이딩 7단계 보상을 획득하였습니다.");
 																									reload(e);
 																								}
-																					        }, 5);
+																					        }, speed);
 																						}
 																					}
-																		        }, 5);
+																		        }, speed);
 																			} else {
 																				scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 																					@Override
@@ -217,10 +225,10 @@ public class Sliding implements Listener{
 																						p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 6단계 보상을 획득하였습니다.");
 																						reload(e);
 																					}
-																		        }, 5);
+																		        }, speed);
 																			}
 																		}
-															        }, 5);
+															        }, speed);
 																} else {
 																	scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 																		@Override
@@ -229,10 +237,10 @@ public class Sliding implements Listener{
 																			p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 5단계 보상을 획득하였습니다.");
 																			reload(e);
 																		}
-															        }, 5);
+															        }, speed);
 																}
 															}
-												        }, 5);
+												        }, speed);
 													} else {
 														scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 															@Override
@@ -241,10 +249,10 @@ public class Sliding implements Listener{
 																p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 4단계 보상을 획득하였습니다.");
 																reload(e);
 															}
-												        }, 5);
+												        }, speed);
 													}
 												}
-									        }, 5);
+									        }, speed);
 										} else {
 											scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 												@Override
@@ -253,10 +261,10 @@ public class Sliding implements Listener{
 													p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 3단계 보상을 획득하였습니다.");
 													reload(e);
 												}
-									        }, 5);
+									        }, speed);
 										}
 									}
-						        }, 5);
+						        }, speed);
 							} else {
 								scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 									@Override
@@ -265,10 +273,10 @@ public class Sliding implements Listener{
 										p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 2단계 보상을 획득하였습니다.");
 										reload(e);
 									}
-						        }, 5);
+						        }, speed);
 							}
 						}
-			        }, 5);
+			        }, speed);
 				} else {
 					scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 						@Override
@@ -277,10 +285,10 @@ public class Sliding implements Listener{
 							p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 1단계 보상을 획득하였습니다.");
 							reload(e);
 						}
-			        }, 5);
+			        }, speed);
 				}
 			}
-		},5);
+		},speed);
 	}
 	
 	public void reload(InventoryClickEvent e){

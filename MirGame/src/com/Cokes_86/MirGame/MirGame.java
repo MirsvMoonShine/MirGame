@@ -16,35 +16,31 @@ import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.Cokes_86.MirGame.System.CraftListener;
-import com.Cokes_86.MirGame.System.SystemListener;
 import com.Cokes_86.MirGame.System.Box.Box;
 import com.Cokes_86.MirGame.System.Box.BoxGui;
 import com.Cokes_86.MirGame.System.Box.CollectBox;
 import com.Cokes_86.MirGame.System.Box.RandomBox;
 import com.Cokes_86.MirGame.System.Box.SelectBox;
-import com.Cokes_86.MirGame.System.FusionUpgrade.FusionUpgradeGui;
-import com.Cokes_86.MirGame.System.FusionUpgrade.FusionUpgradeListener;
+import com.Cokes_86.MirGame.System.Setting.Setting;
 import com.Cokes_86.MirGame.System.Sliding.Sliding;
 import com.Cokes_86.MirGame.System.SlotShop.ClickListener;
 import com.Cokes_86.MirGame.System.SlotShop.GameInventory;
 import com.Cokes_86.MirGame.System.SlotShop.StartGame;
+import com.Cokes_86.MirRewards.MirRewards;
 
 import net.milkbowl.vault.economy.Economy;
 
 public class MirGame extends JavaPlugin{
 	
 	public GameInventory gi = new GameInventory(this);
-	public SystemListener sys = new SystemListener(this);
 	public ClickListener ci = new ClickListener(this);
 	public GameCoins gc = new GameCoins();
-	public GameRewards gr = new GameRewards();
 	public StartGame sg = new StartGame(this);
 	public boolean hottime = false;
 	public Sliding sl = new Sliding(this);
-	public CraftListener cl = new CraftListener(this);
-	public FusionUpgradeGui fug = new FusionUpgradeGui(this);
-	public FusionUpgradeListener ful = new FusionUpgradeListener(this);
+	public Setting st = new Setting(this);
+	
+	public MirRewards mr = (MirRewards) Bukkit.getPluginManager().getPlugin("MirRewards");
 	
 	public BoxGui bg = new BoxGui(this);
 	
@@ -54,11 +50,9 @@ public class MirGame extends JavaPlugin{
 	
 	public void onEnable(){
 		getServer().getPluginManager().registerEvents(ci,this);
-		getServer().getPluginManager().registerEvents(bg,this);
-		getServer().getPluginManager().registerEvents(sys,this);
-		getServer().getPluginManager().registerEvents(cl,this);
-		getServer().getPluginManager().registerEvents(ful,this);
+		getServer().getPluginManager().registerEvents(bg,this);;
 		getServer().getPluginManager().registerEvents(sl,this);
+		getServer().getPluginManager().registerEvents(st,this);
 		setupEconomy();
 		
 		boxs.add(new CollectBox("§l(구)슬롯 보상", new ItemStack[]{gc.get완두콩(15),gc.getEye(1)})); //(구)슬롯 보상
@@ -91,7 +85,7 @@ public class MirGame extends JavaPlugin{
 				new ItemStack(Material.EXP_BOTTLE, 10)}));
 		boxs.add(new CollectBox("§a§l슬라이딩 보상 <9단계>", new ItemStack[]{new ItemStack(Material.COAL, 20), new ItemStack(Material.COOKED_BEEF, 5)
 				, new ItemStack(Material.DIAMOND,1), gc.getCoin(1), gc.get완두콩(5), gc.getEye(2), new ItemStack(Material.TOTEM,1),
-				new ItemStack(Material.EXP_BOTTLE, 10), gr.MendingBook(1)}));
+				new ItemStack(Material.EXP_BOTTLE, 10), mr.gr.MendingBook(1)}));
 	}
 	
 	private boolean setupEconomy()
@@ -110,11 +104,7 @@ public class MirGame extends JavaPlugin{
 			if (label.equals("미르게임") && args.length == 0){
 				gi.openMain(p);
 			} else if (label.equals("미르게임") && args.length > 0){
-				if (args[0].equals("합성") && args.length == 1){
-					fug.openReadyFusion(p);
-				} else if (args[0].equals("초월") && args.length == 1){
-					fug.openReadyUpgrade(p);
-				} else if (p.isOp()){
+				if (p.isOp()){
 					if (args[0].equals("핫타임") && args.length == 1){
 						if (!hottime){
 							Bukkit.broadcastMessage("§6[§9미르 게임§6]§r 핫타임이 시작되었습니다!");
@@ -129,16 +119,6 @@ public class MirGame extends JavaPlugin{
 							p.getInventory().addItem(b.getBox());
 						}
 						p.sendMessage("§6[§9미르 게임§6]§r 모든 보상 박스가 지급되었습니다.");
-					} else if (args[0].equals("테스트")){
-						if (args[1].equals("초월석") && args.length==2){
-							p.getInventory().addItem(gr.UpgradeStone(1));
-						} else if (args[1].equals("수박") && args.length==2){
-							p.getInventory().addItem(gr.WatermelonSword(0));
-							p.getInventory().addItem(gr.WatermelonSword(1));
-							p.getInventory().addItem(gr.WatermelonSword(2));
-						} else if (args[1].equals("사냥터지기") && args.length==2){
-							p.getInventory().addItem(gr.CrokersBow());
-						}
 					}
 				}
 			}

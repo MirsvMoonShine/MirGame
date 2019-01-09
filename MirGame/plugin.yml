@@ -2,10 +2,8 @@ name: MirGame
 main: com.Cokes_86.MirGame.MirGame
 version: 1.2.0
 author: Cokes_86
-softdepend: [Vault]
+softdepend: [Vault, MirRewards]
 
 commands:
   미르게임:
      description: MirsvGame main command
-  테스트:
-     description: MirsvGame command
