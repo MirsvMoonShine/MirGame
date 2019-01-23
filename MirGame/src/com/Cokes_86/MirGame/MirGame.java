@@ -55,7 +55,11 @@ public class MirGame extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(st,this);
 		setupEconomy();
 		
-		boxs.add(new CollectBox("§l(구)슬롯 보상", new ItemStack[]{gc.get완두콩(15),gc.getEye(1)})); //(구)슬롯 보상
+		box();
+	}
+	
+	private void box() {
+		boxs.add(new CollectBox("§l(구)슬롯 보상", new ItemStack[]{gc.get완두콩(35),gc.getEye(2), gc.getCloth(5)})); //(구)슬롯 보상
 		//슬롯 보상
 		boxs.add(new CollectBox("§l슬롯 보상 <흙>", new ItemStack[]{gc.get완두콩(1)}));
 		boxs.add(new RandomBox("§l슬롯 보상 <나무>",new ItemStack[]{gc.getCoin(30), gc.get완두콩(5)}));
@@ -64,9 +68,9 @@ public class MirGame extends JavaPlugin{
 		boxs.add(new CollectBox("§l슬롯 보상 <금>",new ItemStack[]{gc.get완두콩(15), gc.getEye(1), new ItemStack(Material.DIAMOND,5)}));
 		boxs.add(new RandomBox("§l슬롯 보상 <다이아몬드>",new ItemStack[]{gc.get완두콩(20), gc.getEye(2), new ItemStack(Material.TOTEM,1)}));
 		boxs.add(new RandomBox("§l슬롯 보상 <옵시디언>",new ItemStack[]{gc.get완두콩(30), gc.getEye(5), new ItemStack(Material.TOTEM,3)}));
-		boxs.add(new SelectBox("§l슬롯 보상 <에메랄드>",new ItemStack[]{gc.get완두콩(30), gc.getEye(5), new ItemStack(Material.TOTEM,5)}));
-		boxs.add(new SelectBox("§l슬롯 보상 <배드락>",new ItemStack[]{gc.getEye(5), gc.get완두콩(30), new ItemStack(Material.BEACON,1),new ItemStack(Material.TOTEM,5)}));
-		boxs.add(new CollectBox("§l슬롯 보상 <네더의 별>",new ItemStack[]{gc.getEye(7), new ItemStack(Material.BEACON,1), new ItemStack(Material.TOTEM,5)}));
+		boxs.add(new SelectBox("§l슬롯 보상 <에메랄드>",new ItemStack[]{mr.gr.MendingBook(1), gc.get완두콩(30), gc.getEye(5), new ItemStack(Material.TOTEM,5)}));
+		boxs.add(new SelectBox("§l슬롯 보상 <배드락>",new ItemStack[]{mr.gr.MendingBook(1), gc.getEye(7), gc.get완두콩(30), new ItemStack(Material.BEACON,1),new ItemStack(Material.TOTEM,5)}));
+		boxs.add(new CollectBox("§l슬롯 보상 <네더의 별>",new ItemStack[]{mr.gr.MendingBook(1), gc.getEye(7), new ItemStack(Material.BEACON,1), new ItemStack(Material.TOTEM,5)}));
 		//슬라이딩 보상
 		boxs.add(new CollectBox("§r슬라이딩 보상 <1단계>", new ItemStack[]{new ItemStack(Material.COAL, 20)}));
 		boxs.add(new CollectBox("§r슬라이딩 보상 <2단계>", new ItemStack[]{new ItemStack(Material.COAL, 20), new ItemStack(Material.COOKED_BEEF, 5)}));
@@ -87,7 +91,7 @@ public class MirGame extends JavaPlugin{
 				, new ItemStack(Material.DIAMOND,1), gc.getCoin(1), gc.get완두콩(5), gc.getEye(2), new ItemStack(Material.TOTEM,1),
 				new ItemStack(Material.EXP_BOTTLE, 10), mr.gr.MendingBook(1)}));
 	}
-	
+
 	private boolean setupEconomy()
     {
         RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
@@ -113,12 +117,10 @@ public class MirGame extends JavaPlugin{
 							Bukkit.broadcastMessage("§6[§9미르 게임§6]§r 핫타임이 끝났습니다!");
 							hottime = false;
 						}
-					}
-					else if (args[0].equals("박스") && args.length == 1){
-						for (Box b : boxs){
-							p.getInventory().addItem(b.getBox());
-						}
-						p.sendMessage("§6[§9미르 게임§6]§r 모든 보상 박스가 지급되었습니다.");
+					} else if (args[0].equals("박스")){
+						boxs.clear();
+						box();
+						p.sendMessage("§6[§9미르 게임§6]§r 박스가 재부팅되었습니다.");
 					}
 				}
 			}

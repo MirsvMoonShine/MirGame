@@ -128,6 +128,7 @@ public class Sliding implements Listener{
 			setting.load(f);
 		} catch (Exception ex){}
 		long speed = setting.getLong("Speed.Sliding");
+		boolean br =  setting.getBoolean("Broadcast");
 		
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
@@ -222,7 +223,7 @@ public class Sliding implements Listener{
 																					@Override
 																					public void run() {
 																						p.getInventory().addItem(m.getBox("§l슬라이딩 보상 <6단계>").getBox());
-																						p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 6단계 보상을 획득하였습니다.");
+																						if (br) p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 6단계 보상을 획득하였습니다.");
 																						reload(e);
 																					}
 																		        }, speed);
@@ -234,7 +235,7 @@ public class Sliding implements Listener{
 																		@Override
 																		public void run() {
 																			p.getInventory().addItem(m.getBox("§l슬라이딩 보상 <5단계>").getBox());
-																			p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 5단계 보상을 획득하였습니다.");
+																			if (br) p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 5단계 보상을 획득하였습니다.");
 																			reload(e);
 																		}
 															        }, speed);
@@ -246,7 +247,7 @@ public class Sliding implements Listener{
 															@Override
 															public void run() {
 																p.getInventory().addItem(m.getBox("§r슬라이딩 보상 <4단계>").getBox());
-																p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 4단계 보상을 획득하였습니다.");
+																if (br) p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 4단계 보상을 획득하였습니다.");
 																reload(e);
 															}
 												        }, speed);
@@ -258,7 +259,7 @@ public class Sliding implements Listener{
 												@Override
 												public void run() {
 													p.getInventory().addItem(m.getBox("§r슬라이딩 보상 <3단계>").getBox());
-													p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 3단계 보상을 획득하였습니다.");
+													if (br) p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 3단계 보상을 획득하였습니다.");
 													reload(e);
 												}
 									        }, speed);
@@ -270,7 +271,7 @@ public class Sliding implements Listener{
 									@Override
 									public void run() {
 										p.getInventory().addItem(m.getBox("§r슬라이딩 보상 <2단계>").getBox());
-										p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 2단계 보상을 획득하였습니다.");
+										if (br) p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 2단계 보상을 획득하였습니다.");
 										reload(e);
 									}
 						        }, speed);
@@ -282,7 +283,7 @@ public class Sliding implements Listener{
 						@Override
 						public void run() {
 							p.getInventory().addItem(m.getBox("§r슬라이딩 보상 <1단계>").getBox());
-							p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 1단계 보상을 획득하였습니다.");
+							if (br) p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 1단계 보상을 획득하였습니다.");
 							reload(e);
 						}
 			        }, speed);

@@ -120,24 +120,24 @@ public class StartGame {
 	
 	//아래는 슬롯
 	public Material materialSlot(){
-		int a = r.nextInt(10000);
-		if (a >= 0 && a < 4215){
+		int a = r.nextInt(1000);
+		if (a >= 0 && a < 284){
 			return Material.DIRT;
-		} else if (a >= 4215 && a < 7155){
+		} else if (a >= 284 && a < 484){
 			return Material.WOOD;
-		} else if (a >= 7155 && a < 7155+1360){
+		} else if (a >= 484 && a < 620){
 			return Material.STONE;
-		} else if (a >= 8515 && a < 9337){
+		} else if (a >= 620 && a < 711){
 			return Material.IRON_INGOT;
-		} else if (a >= 9337 && a < 9640){
+		} else if (a >= 711 && a < 790){
 			return Material.GOLD_INGOT;
-		} else if (a >= 9640 && a < 9817){
+		} else if (a >= 790 && a < 850){
 			return Material.DIAMOND;
-		} else if (a >= 9817 && a < 9917){
+		} else if (a >= 850 && a < 905){
 			return Material.OBSIDIAN;
-		} else if (a >= 9917 && a < 9967){
+		} else if (a >= 905 && a < 945){
 			return Material.EMERALD;
-		} else if (a >= 9967 && a < 9997){
+		} else if (a >= 945 && a < 980){
 			return Material.BEDROCK;
 		} else {
 			return Material.NETHER_STAR;
@@ -187,6 +187,7 @@ public class StartGame {
 		} catch (Exception ex){}
 		long speed = setting.getLong("Speed.Slot");
 		boolean sound = setting.getBoolean("Sound");
+		boolean br = setting.getBoolean("Broadcast");
 		
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
@@ -220,13 +221,13 @@ public class StartGame {
 			public void run() {
 				if (i.getItem(29).getType() == i.getItem(31).getType() &&  i.getItem(31).getType() ==  i.getItem(33).getType()){
 					if (i.getItem(29).getType() == Material.DIRT){
-						p.sendMessage("§6[§9미르 게임§6]§r 흙 3개 맞추기 성공!");
+						if (br) p.sendMessage("§6[§9미르 게임§6]§r 흙 3개 맞추기 성공!");
 						p.getInventory().addItem(m.getBox("§l슬롯 보상 <흙>").getBox());
 					} else if (i.getItem(29).getType() == Material.WOOD){
-						p.sendMessage("§6[§9미르 게임§6]§r 나무 3개 맞추기 성공!");
+						if (br) p.sendMessage("§6[§9미르 게임§6]§r 나무 3개 맞추기 성공!");
 						p.getInventory().addItem(m.getBox("§l슬롯 보상 <나무>").getBox());
 					} else if (i.getItem(29).getType() == Material.STONE){
-						p.sendMessage("§6[§9미르 게임§6]§r 돌 3개 맞추기 성공!");
+						if (br) p.sendMessage("§6[§9미르 게임§6]§r 돌 3개 맞추기 성공!");
 						p.getInventory().addItem(m.getBox("§l슬롯 보상 <돌>").getBox());
 					} else if (i.getItem(29).getType() == Material.IRON_INGOT){
 						Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 슬롯 철 3개를 맞추었습니다!");

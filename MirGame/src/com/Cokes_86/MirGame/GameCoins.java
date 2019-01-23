@@ -32,4 +32,13 @@ public class GameCoins {
 		
 		return Result;
 	}
+	
+	public ItemStack getCloth(int amount){
+		ItemStack Result = new ItemStack(Material.DEAD_BUSH,amount);
+		ItemMeta meta = Result.getItemMeta();
+		meta.setDisplayName("§6조잡한 섬유");
+		Result.setItemMeta(meta);
+		
+		return Result;
+	}
 }

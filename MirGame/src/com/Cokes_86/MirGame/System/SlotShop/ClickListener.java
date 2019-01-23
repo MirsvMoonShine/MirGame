@@ -176,17 +176,11 @@ public class ClickListener implements Listener{
 						if (bean){
 							playeriv.addItem(m.mr.gr.WatermelonSword(0));
 							p.sendMessage("§6[§9미르 게임§6]§r 커먼 §r§2수박아저씨의 칼§r을 구입하였습니다.");
-							for (int k =0;k<36;k++){
-								ItemStack stack2 = playeriv.getItem(k);
-								
-								if (bean && stack2.getItemMeta().hasDisplayName() && stack2.getItemMeta().getDisplayName().equals("§a완두콩")){
-									if (stack2.getAmount() == 20) playeriv.setItem(k,null);
-									else {
-										ItemStack o = stack2;
-										stack2.setAmount(o.getAmount()-20);
-									}
-									bean = false;
-								} 
+							if (stack.getAmount() == 20){
+								playeriv.setItem(s, null);
+							} else if (stack.getAmount()>20){
+								ItemStack s2 = stack;
+								stack.setAmount(s2.getAmount() -20);
 							}
 							break;
 						}
@@ -272,18 +266,20 @@ public class ClickListener implements Listener{
 	public void menu(InventoryClickEvent e){
 		ItemStack Click = e.getCurrentItem();
 		Player p = (Player) e.getWhoClicked();
-		if (Click.getType() == Material.CHEST && Click.hasItemMeta() && Click.getItemMeta().hasDisplayName() &&  Click.getItemMeta().getDisplayName().equals("§r- 미르 게임 상점 -")){
-			m.gi.openCoinShop(p);
-		} else if (Click.getType() == Material.DIAMOND && Click.hasItemMeta() && Click.getItemMeta().hasDisplayName() && Click.getItemMeta().getDisplayName().equals("§a- (구)슬롯 -")){
-			m.gi.openOldSlot(p);
-		} else if (Click.getType() == Material.NETHER_STAR){
-			m.gi.openSlot(p);
-		} else if (Click.getType() == Material.REDSTONE_LAMP_OFF){
-			m.sl.openSliding(p);
-		} else if (Click.getType() == Material.TRAPPED_CHEST){
-			m.gi.openRewards(p);
-		} else if (Click.getType() == Material.ANVIL && Click.hasItemMeta() && Click.getItemMeta().hasDisplayName() && Click.getItemMeta().getDisplayName().equals("§r- 설정 -")){
-			m.st.openSetting(p);
+		if (Click.hasItemMeta() && Click.getItemMeta().hasDisplayName()) {
+			if (Click.getType() == Material.CHEST && Click.getItemMeta().getDisplayName().equals("§r- 미르 게임 상점 -")){
+				m.gi.openCoinShop(p);
+			} else if (Click.getType() == Material.DIAMOND &&  Click.getItemMeta().getDisplayName().equals("§a- (구)슬롯 -")){
+				m.gi.openOldSlot(p);
+			} else if (Click.getType() == Material.NETHER_STAR && p.isOp()){
+				m.gi.openSlot(p);
+			} else if (Click.getType() == Material.REDSTONE_LAMP_OFF){
+				m.sl.openSliding(p);
+			} else if (Click.getType() == Material.TRAPPED_CHEST){
+				m.gi.openRewards(p);
+			} else if (Click.getType() == Material.ANVIL && Click.getItemMeta().getDisplayName().equals("§r- 설정 -")){
+				m.st.openSetting(p);
+			}
 		}
 	}
 	
