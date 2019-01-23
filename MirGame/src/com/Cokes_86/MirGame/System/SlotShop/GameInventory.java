@@ -45,6 +45,8 @@ public class GameInventory {
 		setItem(i, 45, Material.WORKBENCH, 1, 0, "§r합성", new String[]{"§r⇒ 좌클릭시 합성 창으로 이동"});
 		setItem(i, 46, Material.ANVIL, 1, 0, "§r초월", new String[]{"§r⇒ 좌클릭시 초월 창으로 이동"});
 		
+		setItem(i,29, Material.BOW,1 ,0, "§r커먼 사냥터지기의 활 구입",new String[]{"§r⇒ 좌클릭시 커먼 사냥터지기의 활 구입", "§r⇒ 가격: 완두콩 30개"});
+		
 		if (p.isOp()){ //테스트 물품
 			
 		}
@@ -130,6 +132,7 @@ public class GameInventory {
 		setItem(i, 1, Material.DIAMOND, 1, 0, "§a- (구)슬롯 -", new String[]{"§r⇒ 좌클릭시 (구)슬롯으로 이동합니다."});
 		setItem(i, 2, Material.NETHER_STAR, 1, 0, "§b- 슬롯 -", new String[]{"§r⇒ 좌클릭시 슬롯으로 이동합니다.","§4⇒ 점검중. 이용불가."});
 		setItem(i, 3, Material.REDSTONE_LAMP_OFF, 1, 0, "§2- 슬라이딩 -", new String[]{"§r⇒ 좌클릭시 슬라이딩으로 이동합니다."});
+		setItem(i, 4, Material.WOOL, 1, 0, "§4- 블랙잭 -", new String[]{"§r⇒ 좌클릭시 블랙잭으로 이동합니다.","§4⇒ 점검중. 이용불가."});
 		setItem(i, 7, Material.ANVIL, 1, 0, "§r- 설정 -", new String[]{"§r⇒ 좌클릭시 설정으로 이동합니다."});
 		setItem(i, 8, Material.TRAPPED_CHEST, 1, 0, "§r- 미르 게임 보상 목록 -", new String[]{"§r⇒ 좌클릭시 미르 게임 보상 목록으로 이동합니다."});
 	}

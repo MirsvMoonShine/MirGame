@@ -85,27 +85,40 @@ public class ClickListener implements Listener{
 					if (eye){
 						playeriv.addItem(m.mr.gr.UpgradeStone(1));
 						p.sendMessage("§6[§9미르 게임§6]§r §e초월석§r을 구입하였습니다.");
-						
-						for (int k =0;k<36;k++){
-							ItemStack stack2 = playeriv.getItem(k);
-							
-							if (stack2 != null && stack2.hasItemMeta()){
-								if (eye && stack2.getItemMeta().hasDisplayName() && stack2.getItemMeta().getDisplayName().equals("§d캡슐")){
-									if (stack2.getAmount() == 5) playeriv.setItem(k,null);
-									else {
-										ItemStack o = stack2;
-										stack2.setAmount(o.getAmount()-5);
-									}
-									eye = false;
-								} 
-							}
+						if (stack.getAmount() == 5) playeriv.setItem(s,null);
+						else {
+							ItemStack o = stack;
+							stack.setAmount(o.getAmount()-5);
 						}
-						
+						eye = false;
 						break;
 					}
 				}
 			}
-			
+			else if (Click.getType() == Material.BOW){
+				Inventory playeriv = p.getInventory();
+				boolean ball = false;
+				for (int s=0;s<36;s++){
+					ItemStack stack = playeriv.getItem(s);
+					if (stack != null && stack.hasItemMeta() && stack.getItemMeta().hasDisplayName()){
+						if (!ball && stack.getItemMeta().getDisplayName().equals("§a완두콩") && stack.getAmount()>= 30){
+							ball = true;
+						}
+					}
+					
+					if (ball){
+						playeriv.addItem(m.mr.gr.CrokersBow(0));
+						p.sendMessage("§6[§9미르 게임§6]§r 커먼 §3사냥터지기의 활§r을 구입하였습니다.");
+						if (stack.getAmount() == 30) playeriv.setItem(s,null);
+						else {
+							ItemStack o = stack;
+							stack.setAmount(o.getAmount()-30);
+						}
+						ball = false;
+						break;
+					}
+				}
+			}
 			else if (Click.getType() == Material.DIAMOND_SWORD){
 				if (Click.getItemMeta().getDisplayName().equals("§r§4봉인된 드래곤 슬레이어 구입")){
 					Inventory playeriv = p.getInventory();
@@ -279,6 +292,8 @@ public class ClickListener implements Listener{
 				m.gi.openRewards(p);
 			} else if (Click.getType() == Material.ANVIL && Click.getItemMeta().getDisplayName().equals("§r- 설정 -")){
 				m.st.openSetting(p);
+			} else if (Click.getType() == Material.WOOL && Click.getItemMeta().getDisplayName().equals("§4- 블랙잭 -") && p.isOp()){
+				
 			}
 		}
 	}
