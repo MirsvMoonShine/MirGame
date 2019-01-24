@@ -40,7 +40,8 @@ public class MirGame extends JavaPlugin{
 	public Sliding sl = new Sliding(this);
 	public Setting st = new Setting(this);
 	
-	public MirRewards mr = (MirRewards) Bukkit.getPluginManager().getPlugin("MirRewards");
+	public static RegisteredServiceProvider<MirRewards> rsp = Bukkit.getServer().getServicesManager().getRegistration(MirRewards.class);
+	public MirRewards mr = rsp.getProvider();
 	
 	public BoxGui bg = new BoxGui(this);
 	
