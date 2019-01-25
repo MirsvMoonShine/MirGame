@@ -31,6 +31,7 @@ public class BlackJackLis implements Listener {
 		Inventory i = e.getClickedInventory();
 		ItemStack Click = e.getCurrentItem();
 		Player p = (Player) e.getWhoClicked();
+		if (i == null) { return; }
 		if (i.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l미르 게임 - 블랙잭"))){
 			boolean start = bj.start.getOrDefault(p, false);
 			e.setCancelled(true);
