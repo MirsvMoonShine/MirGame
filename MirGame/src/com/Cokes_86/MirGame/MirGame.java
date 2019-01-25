@@ -16,6 +16,8 @@ import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.Cokes_86.MirGame.System.BlackJack.BlackJack;
+import com.Cokes_86.MirGame.System.BlackJack.BlackJackLis;
 import com.Cokes_86.MirGame.System.Box.Box;
 import com.Cokes_86.MirGame.System.Box.BoxGui;
 import com.Cokes_86.MirGame.System.Box.CollectBox;
@@ -39,9 +41,10 @@ public class MirGame extends JavaPlugin{
 	public boolean hottime = false;
 	public Sliding sl = new Sliding(this);
 	public Setting st = new Setting(this);
+	public BlackJack bj = new BlackJack(this);
+	public BlackJackLis bjl = new BlackJackLis(this);
 	
-	public static RegisteredServiceProvider<MirRewards> rsp = Bukkit.getServer().getServicesManager().getRegistration(MirRewards.class);
-	public MirRewards mr = rsp.getProvider();
+	public MirRewards mr = (MirRewards) Bukkit.getPluginManager().getPlugin("MirRewards");
 	
 	public BoxGui bg = new BoxGui(this);
 	
@@ -54,6 +57,7 @@ public class MirGame extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(bg,this);;
 		getServer().getPluginManager().registerEvents(sl,this);
 		getServer().getPluginManager().registerEvents(st,this);
+		getServer().getPluginManager().registerEvents(bjl,this);
 		setupEconomy();
 		
 		box();

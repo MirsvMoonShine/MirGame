@@ -282,18 +282,25 @@ public class ClickListener implements Listener{
 		if (Click.hasItemMeta() && Click.getItemMeta().hasDisplayName()) {
 			if (Click.getType() == Material.CHEST && Click.getItemMeta().getDisplayName().equals("§r- 미르 게임 상점 -")){
 				m.gi.openCoinShop(p);
+				m.bj.start.put(p, false);
 			} else if (Click.getType() == Material.DIAMOND &&  Click.getItemMeta().getDisplayName().equals("§a- (구)슬롯 -")){
 				m.gi.openOldSlot(p);
+				m.bj.start.put(p, false);
 			} else if (Click.getType() == Material.NETHER_STAR && p.isOp()){
 				m.gi.openSlot(p);
+				m.bj.start.put(p, false);
 			} else if (Click.getType() == Material.REDSTONE_LAMP_OFF){
 				m.sl.openSliding(p);
+				m.bj.start.put(p, false);
 			} else if (Click.getType() == Material.TRAPPED_CHEST){
 				m.gi.openRewards(p);
+				m.bj.start.put(p, false);
 			} else if (Click.getType() == Material.ANVIL && Click.getItemMeta().getDisplayName().equals("§r- 설정 -")){
 				m.st.openSetting(p);
+				m.bj.start.put(p, false);
 			} else if (Click.getType() == Material.WOOL && Click.getItemMeta().getDisplayName().equals("§4- 블랙잭 -") && p.isOp()){
-				
+				m.bj.openBlackJack(p);
+				m.bj.start.put(p, false);
 			}
 		}
 	}
