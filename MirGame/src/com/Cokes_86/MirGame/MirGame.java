@@ -63,7 +63,9 @@ public class MirGame extends JavaPlugin{
 		box();
 	}
 	
-	private void box() {
+	public void box() {
+		if (boxs.size() != 0) boxs.clear();
+		
 		boxs.add(new CollectBox("¡×l(±¸)½½·Ô º¸»ó", new ItemStack[]{gc.get¿ÏµÎÄá(35),gc.getEye(2), gc.getCloth(5)})); //(±¸)½½·Ô º¸»ó
 		//½½·Ô º¸»ó
 		boxs.add(new CollectBox("¡×l½½·Ô º¸»ó <Èë>", new ItemStack[]{gc.get¿ÏµÎÄá(1)}));

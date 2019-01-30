@@ -86,6 +86,7 @@ public class BoxGui implements Listener{
 		i.setItem(4, is);
 		
 		p.openInventory(i);
+		m.box();
 	}
 	
 	public void loading(Player p, Inventory i, ItemStack[] list,int a,String title){
@@ -102,9 +103,11 @@ public class BoxGui implements Listener{
 					Random r = new Random();
 			    	int c = r.nextInt(list.length);
 			    	ItemStack get = list[c];
-			    	p.getInventory().addItem(get);
+			    	RandomOpenComplete(p,get,title);
 			    	if (get.hasItemMeta() && get.getItemMeta().getDisplayName() != null) p.sendMessage("§6[§9미르 게임§6]§r 랜덤 상자에서 "+get.getItemMeta().getDisplayName()+" "+get.getAmount()+"개§r를 획득하였습니다.");
 					else p.sendMessage("§6[§9미르 게임§6]§r 랜덤 상자에서 "+get.getType().toString().replace("_", " ").toLowerCase()+" "+get.getAmount()+"개§r를 획득하였습니다.");
+			    	
+			    	p.getInventory().addItem(get);
 			    	ItemStack Hand = p.getInventory().getItemInMainHand();
 					if (Hand.getAmount() == 1){
 						p.getInventory().setItemInMainHand(null);
@@ -113,8 +116,6 @@ public class BoxGui implements Listener{
 						Hand2.setAmount(Hand.getAmount()-1);
 						p.getInventory().setItemInMainHand(Hand2);
 					}
-					
-					RandomOpenComplete(p,get,title);
 				}
 				else {
 					loading(p,i,list,a+1,title);
@@ -149,6 +150,7 @@ public class BoxGui implements Listener{
 							Hand2.setAmount(Hand.getAmount()-1);
 							p.getInventory().setItemInMainHand(Hand2);
 						}
+						m.box();
 					} else if (Click.getItemMeta().getDisplayName().equals("§4취소")){
 						p.closeInventory();
 					}
@@ -190,6 +192,7 @@ public class BoxGui implements Listener{
 				ItemMeta me = stack.getItemMeta();
 				if (me.hasLore()){
 					if (me.getLore().get(0).equals("§a§l미르게임 선택 상자")){
+						m.box();
 						e.setCancelled(true);
 					    String boxname = me.getDisplayName().substring(2);
 					    Box box = null;
@@ -201,6 +204,7 @@ public class BoxGui implements Listener{
 					    if (box!=null && box.Box == 1) BoxOpenReady(p,box.list,boxname);
 					    else p.sendMessage("§6[§9미르 게임§6]§r 이 상자는 더이상 열 수 없습니다.");
 					} else if (me.getLore().get(0).equals("§a§l미르게임 랜덤 상자")){
+						m.box();
 						e.setCancelled(true);
 					    String boxname = me.getDisplayName().substring(2);
 					    Box box = null;
@@ -212,6 +216,7 @@ public class BoxGui implements Listener{
 					    if (box!=null && box.Box == 0) BoxRandom(p,box.list,box.getBoxName());
 					    else p.sendMessage("§6[§9미르 게임§6]§r 이 상자는 더이상 열 수 없습니다.");
 					} else if (me.getLore().get(0).equals("§a§l미르게임 상자")){
+						m.box();
 						e.setCancelled(true);
 					    String boxname = me.getDisplayName().substring(2);
 					    Box box = null;
@@ -235,6 +240,8 @@ public class BoxGui implements Listener{
 								Hand2.setAmount(Hand.getAmount()-1);
 								p.getInventory().setItemInMainHand(Hand2);
 							}
+							
+							m.box();
 					    }
 					    else p.sendMessage("§6[§9미르 게임§6]§r 이 상자는 더이상 열 수 없습니다.");
 					}
