@@ -16,6 +16,7 @@ import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.Cokes_86.MirGame.System.HotTimeListener;
 import com.Cokes_86.MirGame.System.BlackJack.BlackJack;
 import com.Cokes_86.MirGame.System.BlackJack.BlackJackLis;
 import com.Cokes_86.MirGame.System.Box.Box;
@@ -43,6 +44,7 @@ public class MirGame extends JavaPlugin{
 	public Setting st = new Setting(this);
 	public BlackJack bj = new BlackJack(this);
 	public BlackJackLis bjl = new BlackJackLis(this);
+	public HotTimeListener htl = new HotTimeListener(this);
 	
 	public MirRewards mr = (MirRewards) Bukkit.getPluginManager().getPlugin("MirRewards");
 	
@@ -58,6 +60,7 @@ public class MirGame extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(sl,this);
 		getServer().getPluginManager().registerEvents(st,this);
 		getServer().getPluginManager().registerEvents(bjl,this);
+		getServer().getPluginManager().registerEvents(htl,this);
 		setupEconomy();
 		
 		box();
@@ -118,7 +121,7 @@ public class MirGame extends JavaPlugin{
 				if (p.isOp()){
 					if (args[0].equals("핫타임") && args.length == 1){
 						if (!hottime){
-							Bukkit.broadcastMessage("§6[§9미르 게임§6]§r 핫타임이 시작되었습니다!");
+							Bukkit.broadcastMessage("§6[§9미르 게임§6]§r 핫타임이 시작되었습니다! (적용대상: (구)슬롯)");
 							hottime = true;
 						} else {
 							Bukkit.broadcastMessage("§6[§9미르 게임§6]§r 핫타임이 끝났습니다!");
