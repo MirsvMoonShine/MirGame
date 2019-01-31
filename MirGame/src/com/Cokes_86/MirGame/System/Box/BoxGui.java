@@ -138,10 +138,10 @@ public class BoxGui implements Listener{
 					if (Click.getItemMeta().getDisplayName().equals("§a확인")){
 						ItemStack get = inv.getItem(13);
 						p.getInventory().addItem(get);
-						p.closeInventory();
-						w.playSound(p.getLocation(), Sound.UI_BUTTON_CLICK, 1, 0);
 						if (get.hasItemMeta() && get.getItemMeta().getDisplayName() != null) p.sendMessage("§6[§9미르 게임§6]§r 선택 상자에서 "+get.getItemMeta().getDisplayName()+" "+get.getAmount()+"개§r를 획득하였습니다.");
 						else p.sendMessage("§6[§9미르 게임§6]§r 선택 상자에서 "+get.getType().toString().replace("_", " ").toLowerCase()+" "+get.getAmount()+"개§r를 획득하였습니다.");
+						p.closeInventory();
+						w.playSound(p.getLocation(), Sound.UI_BUTTON_CLICK, 1, 0);
 						ItemStack Hand = p.getInventory().getItemInMainHand();
 						if (Hand.getAmount() == 1){
 							p.getInventory().setItemInMainHand(null);
@@ -227,9 +227,9 @@ public class BoxGui implements Listener{
 					    }
 					    if (box!=null && box.Box == 2) {
 					    	for (ItemStack s : box.list){
-					    		p.getInventory().addItem(s);
 					    		if (s.hasItemMeta() && s.getItemMeta().getDisplayName() != null) p.sendMessage("§6[§9미르 게임§6]§r 상자에서 "+s.getItemMeta().getDisplayName()+" "+s.getAmount()+"개§r를 획득하였습니다.");
 								else p.sendMessage("§6[§9미르 게임§6]§r 상자에서 "+s.getType().toString().replace("_", " ").toLowerCase()+" "+s.getAmount()+"개§r를 획득하였습니다.");
+					    		p.getInventory().addItem(s);
 					    	}
 					    	
 					    	ItemStack Hand = p.getInventory().getItemInMainHand();
