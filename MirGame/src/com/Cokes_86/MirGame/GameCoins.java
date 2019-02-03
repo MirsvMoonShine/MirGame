@@ -41,4 +41,13 @@ public class GameCoins {
 		
 		return Result;
 	}
+	
+	public ItemStack getTool(int amount) {
+		ItemStack result = new ItemStack(Material.STICK,amount);
+		ItemMeta meta = result.getItemMeta();
+		meta.setDisplayName("§9도구 조각");
+		result.setItemMeta(meta);
+		
+		return result;
+	}
 }

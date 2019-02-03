@@ -74,9 +74,10 @@ public class GameInventory {
 		Inventory i = Bukkit.createInventory(null, 54, "§l미르 게임 - 슬롯");
 		
 		setMenu(i);
-		setItem(i, 29, Material.STAINED_GLASS_PANE,1,0," ",null);
-		setItem(i, 31, Material.STAINED_GLASS_PANE,1,0," ",null);
-		setItem(i, 33, Material.STAINED_GLASS_PANE,1,0," ",null);
+		setItem(i, 28, Material.STAINED_GLASS_PANE,1,0," ",null);
+		setItem(i, 30, Material.STAINED_GLASS_PANE,1,0," ",null);
+		setItem(i, 32, Material.STAINED_GLASS_PANE,1,0," ",null);
+		setItem(i, 34, Material.STAINED_GLASS_PANE,1,0," ",null);
 		setItem(i, 45, Material.BARRIER,1,0," ",null);
 		i.remove(Material.BARRIER);
 		setItem(i, 46, Material.BOOK,1,0,"§r도움말",new String[]{"§r⇒ 1. 왼쪽에 금화를 놓는다.", "§r⇒ 2. 오른쪽 양털을 누른다.", "§r⇒ 3. 위쪽에 같은 아이템이 3개 나오면 성공.", "§r⇒ 금화 외 다른 아이템을 넣으면 작동 안됨.", "§r⇒ 금화를 넣은 체 종료시 사라짐."});
