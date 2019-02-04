@@ -1,4 +1,4 @@
-package com.Cokes_86.MirGame.System.SlotShop;
+package com.Cokes_86.MirGame.System.Slot;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,31 +24,6 @@ public class GameInventory {
 		Inventory i = Bukkit.createInventory(null, 54, "§l미르 게임");
 		
 		setMenu(i);
-		
-		p.openInventory(i);
-	}
-	
-	public void openCoinShop(Player p){
-		Inventory i = Bukkit.createInventory(null, 54, "§l미르 게임 - 상점");
-		
-		setMenu(i);
-		setItem(i, 18, Material.GOLD_NUGGET, 1, 0, "§r금화 1개 구입", new String[]{"§r⇒ 좌클릭시 금화 1개 구입","§r⇒ 가격: 1000원"});
-		setItem(i, 19, Material.GOLD_NUGGET, 10, 0, "§r금화 10개 구입", new String[]{"§r⇒ 좌클릭시 금화 10개 구입","§r⇒ 가격: 9500원"});
-		setItem(i, 20, Material.GOLD_NUGGET, 64, 0, "§r금화 64개 구입", new String[]{"§r⇒ 좌클릭시 금화 64개 구입","§r⇒ 가격: 60000원"});
-		
-		setItem(i, 27, Material.DIAMOND_SWORD, 1, 0, "§r§4봉인된 드래곤 슬레이어 구입", new String[]{"§r⇒ 좌클릭시 봉인된 드래곤 슬레이어 구입", "§r⇒ 가격: 캡슐 15개, 완두콩 60개"});
-		
-		setItem(i, 49, Material.BOOK, 1, 0, "§r보유자산: "+m.eco.getBalance(p), null);
-		
-		setItem(i, 21, Material.IRON_NUGGET, 1, 0, "§r초월석 구입", new String[]{"§r⇒ 좌클릭시 초월석 구입", "§r⇒ 가격: 캡슐 5개"});
-		setItem(i, 28, Material.DIAMOND_SWORD, 1, 0, "§r커먼 수박아저씨의 칼 구입", new String[]{"§r⇒ 좌클릭시 커먼 수박아저씨의 칼 구입", "§r⇒ 가격: 완두콩 20개"});
-		setItem(i, 45, Material.WORKBENCH, 1, 0, "§r합성", new String[]{"§r⇒ 좌클릭시 합성 창으로 이동"});
-		setItem(i, 46, Material.ANVIL, 1, 0, "§r초월", new String[]{"§r⇒ 좌클릭시 초월 창으로 이동"});
-		setItem(i,29, Material.BOW,1 ,0, "§r커먼 사냥터지기의 활 구입",new String[]{"§r⇒ 좌클릭시 커먼 사냥터지기의 활 구입", "§r⇒ 가격: 완두콩 30개"});
-		
-		if (p.isOp()){ //테스트 물품
-			
-		}
 		
 		p.openInventory(i);
 	}

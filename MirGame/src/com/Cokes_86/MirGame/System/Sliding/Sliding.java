@@ -46,7 +46,7 @@ public class Sliding implements Listener{
 		i.setItem(19, new ItemStack(Material.COOKED_BEEF, 5));
 		i.setItem(20, new ItemStack(Material.DIAMOND, 1));
 		m.gi.setItem(i, 21, Material.GOLD_NUGGET, 1, 0, "§e금화§r", null);
-		i.setItem(22, m.gc.get완두콩(10));
+		i.setItem(22, m.gc.getBean(10));
 		i.setItem(23, m.gc.getEye(2));
 		i.setItem(24, new ItemStack(Material.TOTEM,1));
 		i.setItem(25, new ItemStack(Material.EXP_BOTTLE,10));

@@ -24,7 +24,7 @@ public class GameCoins {
 		return Result;
 	}
 	
-	public ItemStack get¿ÏµÎÄá(int ammount){
+	public ItemStack getBean(int ammount){
 		ItemStack Result = new ItemStack(Material.SLIME_BALL,ammount);
 		ItemMeta meta = Result.getItemMeta();
 		meta.setDisplayName("¡×a¿ÏµÎÄá");

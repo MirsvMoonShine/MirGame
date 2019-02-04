@@ -1,4 +1,4 @@
-package com.Cokes_86.MirGame.System.SlotShop;
+package com.Cokes_86.MirGame.System.Slot;
 
 import java.io.File;
 import java.util.Random;
