@@ -45,7 +45,7 @@ public class Sliding implements Listener{
 		i.setItem(18, new ItemStack(Material.COAL, 20));
 		i.setItem(19, new ItemStack(Material.COOKED_BEEF, 5));
 		i.setItem(20, new ItemStack(Material.DIAMOND, 1));
-		m.gi.setItem(i, 21, Material.GOLD_NUGGET, 1, 0, "§e금화§r", null);
+		m.u.setItem(i, 21, Material.GOLD_NUGGET, 1, 0, "§e금화§r", null);
 		i.setItem(22, m.gc.getBean(10));
 		i.setItem(23, m.gc.getEye(2));
 		i.setItem(24, new ItemStack(Material.TOTEM,1));
@@ -100,10 +100,10 @@ public class Sliding implements Listener{
 				}
 			} else if (Click.getType() == Material.ANVIL){
 				if (Click.getItemMeta().getDisplayName().equals("§r1회 실행")){
-					m.gi.setItem(inv, 52, Material.ANVIL,1,0,"§r반복 실행",new String[]{"§r⇒ 좌클릭시 1회 실행, 반복 실행 설정 가능"});
+					m.u.setItem(inv, 52, Material.ANVIL,1,0,"§r반복 실행",new String[]{"§r⇒ 좌클릭시 1회 실행, 반복 실행 설정 가능"});
 				} else if (Click.getItemMeta().getDisplayName().equals("§r반복 실행")){
 					Click.getItemMeta().setDisplayName("§r1회 실행");
-					m.gi.setItem(inv, 52, Material.ANVIL,1,0,"§r1회 실행",new String[]{"§r⇒ 좌클릭시 1회 실행, 반복 실행 설정 가능"});
+					m.u.setItem(inv, 52, Material.ANVIL,1,0,"§r1회 실행",new String[]{"§r⇒ 좌클릭시 1회 실행, 반복 실행 설정 가능"});
 				}
 			} else if (e.getClickedInventory() == p.getInventory()) e.setCancelled(false);
 			else if (e.getRawSlot() == 45){
@@ -115,11 +115,11 @@ public class Sliding implements Listener{
 	public void start(InventoryClickEvent e){
 		Inventory i = e.getClickedInventory();
 		Player p = (Player) e.getWhoClicked();
-		m.gi.setItem(i, 53, Material.STAINED_GLASS_PANE, 1, 1, "§6[§9미르 게임§6]", null);
+		m.u.setItem(i, 53, Material.STAINED_GLASS_PANE, 1, 1, "§6[§9미르 게임§6]", null);
 		ItemStack coins = i.getItem(45);
-		if (coins == null) {m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null); m.ci.start.put(p, false); return;}
+		if (coins == null) {m.u.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null); m.ci.start.put(p, false); return;}
 		int coin = coins.getAmount();
-		if (!(coins.hasItemMeta() && coins.getItemMeta().hasDisplayName() && coins.getItemMeta().getDisplayName().equals(m.gc.getCoin(1).getItemMeta().getDisplayName()))) {m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null); m.ci.start.put(p, false); return;}
+		if (!(coins.hasItemMeta() && coins.getItemMeta().hasDisplayName() && coins.getItemMeta().getDisplayName().equals(m.gc.getCoin(1).getItemMeta().getDisplayName()))) {m.u.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null); m.ci.start.put(p, false); return;}
 		if (coin >1) i.setItem(45, m.gc.getCoin(coin-1));
 		else if (coin == 1) i.setItem(45, null);
 		File f = new File("plugins/MirGame/Setting/"+p.getUniqueId()+".setting");
@@ -301,7 +301,7 @@ public class Sliding implements Listener{
 		
 		ItemStack repeat = i.getItem(52);
 		if (repeat.getItemMeta().getDisplayName().equals("§r1회 실행")){
-			m.gi.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null);
+			m.u.setItem(i, 53, Material.WOOL,1,13,"§r§l시작",null);
 			m.ci.start.put(p, false);
 		} else if (repeat.getItemMeta().getDisplayName().equals("§r반복 실행") && m.ci.start.get(p)){
 			start(e);

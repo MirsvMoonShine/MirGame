@@ -55,10 +55,10 @@ public class ClickListener implements Listener{
 				}
 			} else if (Click.getType() == Material.ANVIL){
 				if (Click.getItemMeta().getDisplayName().equals("§r1회 실행")){
-					m.gi.setItem(inv, 52, Material.ANVIL,1,0,"§r반복 실행",new String[]{"§r⇒ 좌클릭시 1회 실행, 반복 실행 설정 가능"});
+					m.u.setItem(inv, 52, Material.ANVIL,1,0,"§r반복 실행",new String[]{"§r⇒ 좌클릭시 1회 실행, 반복 실행 설정 가능"});
 				} else if (Click.getItemMeta().getDisplayName().equals("§r반복 실행")){
 					Click.getItemMeta().setDisplayName("§r1회 실행");
-					m.gi.setItem(inv, 52, Material.ANVIL,1,0,"§r1회 실행",new String[]{"§r⇒ 좌클릭시 1회 실행, 반복 실행 설정 가능"});
+					m.u.setItem(inv, 52, Material.ANVIL,1,0,"§r1회 실행",new String[]{"§r⇒ 좌클릭시 1회 실행, 반복 실행 설정 가능"});
 				}
 			}
 		} else if (inv.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l미르 게임 - 슬롯"))){
@@ -84,10 +84,10 @@ public class ClickListener implements Listener{
 				}
 			} else if (Click.getType() == Material.ANVIL){
 				if (Click.getItemMeta().getDisplayName().equals("§r1회 실행")){
-					m.gi.setItem(inv, 52, Material.ANVIL,1,0,"§r반복 실행",new String[]{"§r⇒ 좌클릭시 1회 실행, 반복 실행 설정 가능"});
+					m.u.setItem(inv, 52, Material.ANVIL,1,0,"§r반복 실행",new String[]{"§r⇒ 좌클릭시 1회 실행, 반복 실행 설정 가능"});
 				} else if (Click.getItemMeta().getDisplayName().equals("§r반복 실행")){
 					Click.getItemMeta().setDisplayName("§r1회 실행");
-					m.gi.setItem(inv, 52, Material.ANVIL,1,0,"§r1회 실행",new String[]{"§r⇒ 좌클릭시 1회 실행, 반복 실행 설정 가능"});
+					m.u.setItem(inv, 52, Material.ANVIL,1,0,"§r1회 실행",new String[]{"§r⇒ 좌클릭시 1회 실행, 반복 실행 설정 가능"});
 				}
 			}
 		} else if (inv.getName().equals(ChatColor.translateAlternateColorCodes('&', "&l미르 게임 - 슬라이딩"))){

@@ -1,7 +1,11 @@
 package com.Cokes_86.MirGame.System.Shop;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,26 +28,92 @@ public class ShopInventory implements Listener{
 		
 		m.gi.setMenu(i);
 		//재화
-		m.gi.setItem(i, 18, Material.GOLD_NUGGET, 1, 0, "§r금화 1개 구입", new String[]{"§r⇒ 좌클릭시 금화 1개 구입","§r⇒ 가격: 1000원"});
-		m.gi.setItem(i, 19, Material.GOLD_NUGGET, 10, 0, "§r금화 10개 구입", new String[]{"§r⇒ 좌클릭시 금화 10개 구입","§r⇒ 가격: 9500원"});
-		m.gi.setItem(i, 20, Material.GOLD_NUGGET, 64, 0, "§r금화 64개 구입", new String[]{"§r⇒ 좌클릭시 금화 64개 구입","§r⇒ 가격: 60000원"});
-		m.gi.setItem(i, 21, Material.IRON_NUGGET, 1, 0, "§r초월석 구입", new String[]{"§r⇒ 좌클릭시 초월석 구입", "§r⇒ 가격: 캡슐 5개"});
-		m.gi.setItem(i, 22, Material.SLIME_BALL, 10, 0, "§r완두콩 10개 구입", new String[]{"§r⇒ 좌클릭시 완두콩 10개 구입", "§r⇒ 가격: 캡슐 1개"});
-		m.gi.setItem(i, 23, Material.EYE_OF_ENDER, 1, 0, "§r캡슐 구입", new String[]{"§r⇒ 좌클릭시 캡슐 구입", "§r⇒ 가격: 완두콩 10개"});
+		m.u.setItem(i, 18, Material.GOLD_NUGGET, 1, 0, "§r금화 1개 구입", new String[]{"§r⇒ 좌클릭시 금화 1개 구입","§r⇒ 가격: 1000원"});
+		m.u.setItem(i, 19, Material.GOLD_NUGGET, 10, 0, "§r금화 10개 구입", new String[]{"§r⇒ 좌클릭시 금화 10개 구입","§r⇒ 가격: 9500원"});
+		m.u.setItem(i, 20, Material.GOLD_NUGGET, 64, 0, "§r금화 64개 구입", new String[]{"§r⇒ 좌클릭시 금화 64개 구입","§r⇒ 가격: 60000원"});
+		m.u.setItem(i, 21, Material.IRON_NUGGET, 1, 0, "§r초월석 구입", new String[]{"§r⇒ 좌클릭시 초월석 구입", "§r⇒ 가격: 캡슐 5개"});
+		m.u.setItem(i, 22, Material.SLIME_BALL, 10, 0, "§r완두콩 10개 구입", new String[]{"§r⇒ 좌클릭시 완두콩 10개 구입", "§r⇒ 가격: 캡슐 1개"});
+		m.u.setItem(i, 23, Material.EYE_OF_ENDER, 1, 0, "§r캡슐 구입", new String[]{"§r⇒ 좌클릭시 캡슐 구입", "§r⇒ 가격: 완두콩 10개"});
 		//도구
-		m.gi.setItem(i, 27, Material.DIAMOND_SWORD, 1, 0, "§r§4봉인된 드래곤 슬레이어 §r구입", new String[]{"§r⇒ 좌클릭시 봉인된 드래곤 슬레이어 구입", "§r⇒ 가격: 캡슐 15개, 완두콩 60개"});
-		m.gi.setItem(i, 28, Material.DIAMOND_SWORD, 1, 0, "§r커먼 수박아저씨의 칼 구입", new String[]{"§r⇒ 좌클릭시 커먼 수박아저씨의 칼 구입", "§r⇒ 가격: 완두콩 20개"});
-		m.gi.setItem(i, 29, Material.BOW,1 ,0, "§r커먼 사냥터지기의 활 구입",new String[]{"§r⇒ 좌클릭시 커먼 사냥터지기의 활 구입", "§r⇒ 가격: 완두콩 30개"});
-		//그외
-		m.gi.setItem(i, 45, Material.WORKBENCH, 1, 0, "§r합성", new String[]{"§r⇒ 좌클릭시 합성 창으로 이동"});
-		m.gi.setItem(i, 46, Material.ANVIL, 1, 0, "§r초월", new String[]{"§r⇒ 좌클릭시 초월 창으로 이동"});
-		m.gi.setItem(i, 49, Material.BOOK, 1, 0, "§r보유자산: "+m.eco.getBalance(p), null);
+		m.u.setItem(i, 27, Material.DIAMOND_SWORD, 1, 0, "§r§4봉인된 드래곤 슬레이어 §r구입", new String[]{"§r⇒ 좌클릭시 봉인된 드래곤 슬레이어 구입", "§r⇒ 가격: 캡슐 15개, 완두콩 60개"});
+		m.u.setItem(i, 28, Material.DIAMOND_SWORD, 1, 0, "§r커먼 수박아저씨의 칼 구입", new String[]{"§r⇒ 좌클릭시 커먼 수박아저씨의 칼 구입", "§r⇒ 가격: 완두콩 20개"});
+		m.u.setItem(i, 29, Material.BOW,1 ,0, "§r커먼 사냥터지기의 활 구입",new String[]{"§r⇒ 좌클릭시 커먼 사냥터지기의 활 구입", "§r⇒ 가격: 완두콩 30개"});
+		//초월
+		m.u.setPotionItem(i, 36, 1, "§r초월석 보호 물약 구입", new String[] {"§r⇒ 좌클릭시 초월석 보호 물약 구입", "§r⇒ 가격: 완두콩 30개"}, Color.AQUA);
+		m.u.setPotionItem(i, 37, 1, "§r확률 상승 물약 구입", new String[] {"§r⇒ 좌클릭시 확률 상승 물약 구입", "§r⇒ 가격: 완두콩 50개"}, Color.WHITE);
+		//기타
+		m.u.setItem(i, 45, Material.WORKBENCH, 1, 0, "§r합성", new String[]{"§r⇒ 좌클릭시 합성 창으로 이동"});
+		m.u.setItem(i, 46, Material.ANVIL, 1, 0, "§r초월", new String[]{"§r⇒ 좌클릭시 초월 창으로 이동"});
+		m.u.setItem(i, 49, Material.BOOK, 1, 0, "§r보유자산: "+m.eco.getBalance(p), null);
 		
-		if (p.isOp()){ //테스트 물품
+		if (p.getName().equals("Cokes_86")){ //테스트 물품
+			//재화
+			
+			//도구
+			
+			//초월
+			
+			//기타
 			
 		}
 		
 		p.openInventory(i);
+	}
+	
+	public boolean ShopRecipe() {
+		return false;
+	}
+	
+	public void getItemUsingVault(Player p, ItemStack get, double money) {
+		if (m.eco.getBalance(p) >= money){
+			Inventory playerinv = p.getInventory();
+			playerinv.addItem(get);
+			m.eco.withdrawPlayer(p, money);
+			p.sendMessage("§6[§9미르 게임§6]§r "+get.getItemMeta().getDisplayName()+" §r"+get.getAmount()+"개를 구입하였습니다.");
+		} else {
+			p.sendMessage("§6[§9미르 게임§6]§r 돈이 부족합니다.");
+		}
+	}
+	
+	public void getItemUsingIngradient(Player p, ItemStack get, ItemStack[] input) {
+		List<ItemStack> list = Arrays.asList(input);
+		boolean[] ok = new boolean[list.size()];
+		int[] stack = new int[list.size()];
+		boolean result = true;
+		Inventory i = p.getInventory();
+		for (int a=0;a<list.size();a++) {
+			ok[a] = false; stack[a] = 0;
+		}
+		for (int s=0;s<36;s++){
+			ItemStack is = i.getItem(s);
+			if (is != null) {
+				for (int a = 0;a<list.size();a++) {
+					if (!ok[a] && is.hasItemMeta() && is.getItemMeta().hasDisplayName() && is.getItemMeta().getDisplayName().equals(list.get(a).getItemMeta().getDisplayName()) && is.getAmount() >= list.get(a).getAmount()) {
+						ok[a] = true; stack[a] = s;
+					}
+				}
+			}
+		}
+		for (int a=0;a<list.size();a++) {
+			if (!ok[a]) result = false;
+		}
+		
+		if (result) {
+			for (int a=0;a<list.size();a++) {
+				if (i.getItem(stack[a]).getAmount() == list.get(a).getAmount()) i.setItem(stack[a],null);
+				else {
+					ItemStack o = i.getItem(stack[a]);
+					ItemStack bak = list.get(a);
+					bak.setAmount(o.getAmount() - list.get(a).getAmount());
+					i.setItem(stack[a], bak);
+				}
+			}
+			
+			i.addItem(get);
+			p.sendMessage("§6[§9미르 게임§6]§r "+get.getItemMeta().getDisplayName()+" §r"+get.getAmount()+"개를 구입하였습니다.");
+		} else {
+			p.sendMessage("§6[§9미르 게임§6]§r 재료가 부족합니다.");
+		}
 	}
 	
 	@EventHandler
@@ -59,185 +129,48 @@ public class ShopInventory implements Listener{
 				
 				if (Click.getType() == Material.GOLD_NUGGET){
 					if (Click.getItemMeta().getDisplayName().equals("§r금화 1개 구입")){
-						if (m.eco.getBalance(p) >= 1000.00){
-							Inventory playerinv = p.getInventory();
-							playerinv.addItem(m.gc.getCoin(1));
-							m.eco.withdrawPlayer(p, 1000);
-							p.sendMessage("§6[§9미르 게임§6]§r §e금화 1개§r를 구입하였습니다.");
-							
-							m.gi.setItem(inv, 49, Material.BOOK, 1, 0, "§r보유자산: "+m.eco.getBalance(p), null);
-						}
+						getItemUsingVault(p,m.gc.getCoin(1),1000);
+						m.u.setItem(inv, 49, Material.BOOK, 1, 0, "§r보유자산: "+m.eco.getBalance(p), null);
 					} else if (Click.getItemMeta().getDisplayName().equals("§r금화 10개 구입")){
-						if (m.eco.getBalance(p) >= 9500.00){
-							Inventory playerinv = p.getInventory();
-							playerinv.addItem(m.gc.getCoin(10));
-							m.eco.withdrawPlayer(p, 9500);
-							p.sendMessage("§6[§9미르 게임§6]§r §e금화 10개§r를 구입하였습니다.");
-							
-							m.gi.setItem(inv, 49, Material.BOOK, 1, 0, "§r보유자산: "+m.eco.getBalance(p), null);
-						}
+						getItemUsingVault(p,m.gc.getCoin(10),9500);
+						m.u.setItem(inv, 49, Material.BOOK, 1, 0, "§r보유자산: "+m.eco.getBalance(p), null);
 					} else if (Click.getItemMeta().getDisplayName().equals("§r금화 64개 구입")){
-						if (m.eco.getBalance(p) >= 60000.00){
-							Inventory playerinv = p.getInventory();
-							playerinv.addItem(m.gc.getCoin(64));
-							m.eco.withdrawPlayer(p, 60000);
-							p.sendMessage("§6[§9미르 게임§6]§r §e금화 64개§r를 구입하였습니다.");
-							
-							m.gi.setItem(inv, 49, Material.BOOK, 1, 0, "§r보유자산: "+m.eco.getBalance(p), null);
-						}
+						getItemUsingVault(p,m.gc.getCoin(64),60000);
+						m.u.setItem(inv, 49, Material.BOOK, 1, 0, "§r보유자산: "+m.eco.getBalance(p), null);
 					}
 				}
 				else if (Click.getType() == Material.WORKBENCH){
-					e.setCancelled(true);
 					m.mr.fug.openReadyFusion(p);
 				}
 				else if (Click.getType() == Material.ANVIL){
-					e.setCancelled(true);
 					m.mr.fug.openReadyUpgrade(p);
 				}
 				else if (Click.getType() == Material.IRON_NUGGET){
-					Inventory playeriv = p.getInventory();
-					boolean eye = false;
-					for (int s=0;s<36;s++){
-						ItemStack stack = playeriv.getItem(s);
-						if (stack != null && stack.hasItemMeta() && stack.getItemMeta().hasDisplayName()){
-							if (!eye && stack.getItemMeta().getDisplayName().equals("§d캡슐") && stack.getAmount()>= 5){
-								eye = true;
-							}
-						}
-						
-						if (eye){
-							playeriv.addItem(m.mr.gr.UpgradeStone(1));
-							p.sendMessage("§6[§9미르 게임§6]§r §e초월석§r을 구입하였습니다.");
-							if (stack.getAmount() == 5) playeriv.setItem(s,null);
-							else {
-								ItemStack o = stack;
-								stack.setAmount(o.getAmount()-5);
-							}
-							eye = false;
-							break;
-						}
-					}
+					getItemUsingIngradient(p, m.mr.gr.UpgradeStone(1), new ItemStack[] {m.gc.getEye(5)});
 				}
 				else if (Click.getType() == Material.BOW){
-					Inventory playeriv = p.getInventory();
-					boolean ball = false;
-					for (int s=0;s<36;s++){
-						ItemStack stack = playeriv.getItem(s);
-						if (stack != null && stack.hasItemMeta() && stack.getItemMeta().hasDisplayName()){
-							if (!ball && stack.getItemMeta().getDisplayName().equals("§a완두콩") && stack.getAmount()>= 30){
-								ball = true;
-							}
-						}
-						
-						if (ball){
-							playeriv.addItem(m.mr.gr.CrokersBow(0));
-							p.sendMessage("§6[§9미르 게임§6]§r 커먼 §3사냥터지기의 활§r을 구입하였습니다.");
-							if (stack.getAmount() == 30) playeriv.setItem(s,null);
-							else {
-								ItemStack o = stack;
-								stack.setAmount(o.getAmount()-30);
-							}
-							ball = false;
-							break;
-						}
-					}
+					getItemUsingIngradient(p, m.mr.gr.CrokersBow(0), new ItemStack[] {m.gc.getBean(30)});
 				}
 				else if (Click.getType() == Material.DIAMOND_SWORD){
 					if (Click.getItemMeta().getDisplayName().equals("§r§4봉인된 드래곤 슬레이어 §r구입")){
-						Inventory playeriv = p.getInventory();
-						boolean eye = false;
-						boolean bean = false;
-						for (int s=0;s<36;s++){
-							ItemStack stack = playeriv.getItem(s);
-							
-							if (stack != null && stack.hasItemMeta() && stack.getItemMeta().hasDisplayName()){
-								if (!eye && stack.getItemMeta().getDisplayName().equals("§d캡슐") && stack.getAmount()>= 15){
-									eye = true;
-									if (stack.getAmount() == 15) playeriv.setItem(s,null);
-									else if (stack.getAmount() > 15) {
-										ItemStack o = stack;
-										stack.setAmount(o.getAmount()-15);
-									}
-								}
-								if (!bean && stack.getItemMeta().getDisplayName().equals("§a완두콩") && stack.getAmount()>= 60){
-									bean = true;
-									if (stack.getAmount() == 60) playeriv.setItem(s,null);
-									else if (stack.getAmount() > 60) {
-										ItemStack o = stack;
-										stack.setAmount(o.getAmount()-60);
-									}
-								}
-							}
-							
-							if (eye && bean){
-								playeriv.addItem(m.mr.gr.DragonSlayer(0));
-								p.sendMessage("§6[§9미르 게임§6]§r §4봉인된 드래곤 슬레이어§r를 구입하였습니다.");
-								break;
-							}
-						}
+						getItemUsingIngradient(p, m.mr.gr.DragonSlayer(0), new ItemStack[] {m.gc.getEye(15), m.gc.getBean(60)});
 					} else if (Click.getItemMeta().getDisplayName().equals("§r커먼 수박아저씨의 칼 구입")){
-						Inventory playeriv = p.getInventory();
-						boolean bean = false;
-						for (int s=0;s<36;s++){
-							ItemStack stack = playeriv.getItem(s);
-							
-							if (!bean && stack != null && stack.hasItemMeta() && stack.getItemMeta().hasDisplayName() && 
-									stack.getItemMeta().getDisplayName().equals("§a완두콩") && stack.getAmount() >= 20) bean = true;
-							
-							if (bean){
-								playeriv.addItem(m.mr.gr.WatermelonSword(0));
-								p.sendMessage("§6[§9미르 게임§6]§r 커먼 §r§2수박아저씨의 칼§r을 구입하였습니다.");
-								if (stack.getAmount() == 20){
-									playeriv.setItem(s, null);
-								} else if (stack.getAmount()>20){
-									ItemStack s2 = stack;
-									stack.setAmount(s2.getAmount() -20);
-								}
-								break;
-							}
-						}
+						getItemUsingIngradient(p, m.mr.gr.WatermelonSword(0), new ItemStack[] {m.gc.getBean(20)});
 					}
 				}
 				else if (Click.getItemMeta().getDisplayName().equals("§r완두콩 10개 구입")) {
-					Inventory playeriv = p.getInventory();
-					for (int s=0;s<36;s++){
-						ItemStack stack = playeriv.getItem(s);
-						if (stack != null && stack.hasItemMeta() && stack.getItemMeta().hasDisplayName() && 
-								stack.getItemMeta().getDisplayName().equals("§d캡슐") && stack.getAmount() >= 1) {
-							if (stack.getAmount() == 1) playeriv.setItem(s, null);
-							else {
-								ItemStack s2 = stack;
-								stack.setAmount(s2.getAmount() - 1);
-							}
-							
-							playeriv.addItem(m.gc.getBean(10));
-							p.sendMessage("§6[§9미르 게임§6]§r §a완두콩§r 10개를 구입하였습니다.");
-							break;
-						}
-						
-					}
+					getItemUsingIngradient(p, m.gc.getBean(10), new ItemStack[] {m.gc.getEye(1)});
 				}
 				else if (Click.getItemMeta().getDisplayName().equals("§r캡슐 구입")) {
-					Inventory playeriv = p.getInventory();
-					for (int s=0;s<36;s++){
-						ItemStack stack = playeriv.getItem(s);
-						if (stack != null && stack.hasItemMeta() && stack.getItemMeta().hasDisplayName() && 
-								stack.getItemMeta().getDisplayName().equals("§a완두콩") && stack.getAmount() >= 10) {
-							if (stack.getAmount() == 10) playeriv.setItem(s, null);
-							else {
-								ItemStack s2 = stack;
-								stack.setAmount(s2.getAmount() - 10);
-							}
-							
-							playeriv.addItem(m.gc.getEye(1));
-							p.sendMessage("§6[§9미르 게임§6]§r §d캡슐§r을 구입하였습니다.");
-							break;
-						}
-						
+					getItemUsingIngradient(p, m.gc.getEye(1), new ItemStack[] {m.gc.getBean(10)});
+				}
+				else if (Click.getType() == Material.POTION) {
+					if (Click.getItemMeta().getDisplayName().equals("§r초월석 보호 물약 구입")) {
+						getItemUsingIngradient(p, m.mr.gr.RerollStone(), new ItemStack[] {m.gc.getBean(30)});
+					} else if (Click.getItemMeta().getDisplayName().equals("§r확률 상승 물약 구입")) {
+						getItemUsingIngradient(p, m.mr.gr.SuccessUp(), new ItemStack[] {m.gc.getBean(50)});
 					}
 				}
-				
 			}
 		}
 	}

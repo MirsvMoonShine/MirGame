@@ -35,15 +35,15 @@ public class Setting implements Listener{
 		
 		m.gi.setMenu(i);
 		
-		m.gi.setItem(i, 18, Material.ANVIL, 1, 0, "§r(구)슬롯 속도 설정", new String[]{"§r⇒ 좌클릭시 1씩 증가, 우클릭시 1씩 감소", "§r⇒ 범위: 3 ~ 20 (tick)", "§r⇒ 설정: "+setting.getLong("Speed.OldSlot")});
-		m.gi.setItem(i, 27, Material.ANVIL, 1, 0, "§r슬롯 속도 설정", new String[]{"§r⇒ 좌클릭시 1씩 증가, 우클릭시 1씩 감소", "§r⇒ 범위: 3 ~ 20 (tick)", "§r⇒ 설정: "+setting.getLong("Speed.Slot")});
-		m.gi.setItem(i, 36, Material.ANVIL, 1, 0, "§r슬라이딩 속도 설정", new String[]{"§r⇒ 좌클릭시 1씩 증가, 우클릭시 1씩 감소", "§r⇒ 범위: 3 ~ 20 (tick)", "§r⇒ 설정: "+setting.getLong("Speed.Sliding")});
+		m.u.setItem(i, 18, Material.ANVIL, 1, 0, "§r(구)슬롯 속도 설정", new String[]{"§r⇒ 좌클릭시 1씩 증가, 우클릭시 1씩 감소", "§r⇒ 범위: 3 ~ 20 (tick)", "§r⇒ 설정: "+setting.getLong("Speed.OldSlot")});
+		m.u.setItem(i, 27, Material.ANVIL, 1, 0, "§r슬롯 속도 설정", new String[]{"§r⇒ 좌클릭시 1씩 증가, 우클릭시 1씩 감소", "§r⇒ 범위: 3 ~ 20 (tick)", "§r⇒ 설정: "+setting.getLong("Speed.Slot")});
+		m.u.setItem(i, 36, Material.ANVIL, 1, 0, "§r슬라이딩 속도 설정", new String[]{"§r⇒ 좌클릭시 1씩 증가, 우클릭시 1씩 감소", "§r⇒ 범위: 3 ~ 20 (tick)", "§r⇒ 설정: "+setting.getLong("Speed.Sliding")});
 		
-		if (setting.getBoolean("Sound")) m.gi.setItem(i, 20, Material.ANVIL, 1, 0, "§r소리 설정", new String[]{"§r⇒ 좌클릭시 변경", "§r⇒ 설정: 켜짐"});
-		else m.gi.setItem(i, 20, Material.ANVIL, 1, 0, "§r소리 설정", new String[]{"§r⇒ 좌클릭시 변경", "§r⇒ 설정: 꺼짐"});
+		if (setting.getBoolean("Sound")) m.u.setItem(i, 20, Material.ANVIL, 1, 0, "§r소리 설정", new String[]{"§r⇒ 좌클릭시 변경", "§r⇒ 설정: 켜짐"});
+		else m.u.setItem(i, 20, Material.ANVIL, 1, 0, "§r소리 설정", new String[]{"§r⇒ 좌클릭시 변경", "§r⇒ 설정: 꺼짐"});
 		
-		if (setting.getBoolean("Broadcast")) m.gi.setItem(i, 29, Material.BOOK, 1, 0, "§r보상 획득 개인 안내 메세지", new String[]{"§r⇒ 좌클릭시 변경. (전체 매세지는 송출)", "§r⇒ 설정: 송출함"});
-		else m.gi.setItem(i, 29, Material.BOOK, 1, 0, "§r보상 획득 개인 안내 메세지", new String[]{"§r⇒ 좌클릭시 변경. (전체 매세지는 송출)", "§r⇒ 설정: 송출 안함"});
+		if (setting.getBoolean("Broadcast")) m.u.setItem(i, 29, Material.BOOK, 1, 0, "§r보상 획득 개인 안내 메세지", new String[]{"§r⇒ 좌클릭시 변경. (전체 매세지는 송출)", "§r⇒ 설정: 송출함"});
+		else m.u.setItem(i, 29, Material.BOOK, 1, 0, "§r보상 획득 개인 안내 메세지", new String[]{"§r⇒ 좌클릭시 변경. (전체 매세지는 송출)", "§r⇒ 설정: 송출 안함"});
 		
 		p.openInventory(i);
 	}
@@ -93,14 +93,14 @@ public class Setting implements Listener{
 						try {
 							setting.save(f);
 						} catch (Exception ex){}
-						m.gi.setItem(i, 18, Material.ANVIL, 1, 0, "§r(구)슬롯 속도 설정", new String[]{"§r⇒ 좌클릭시 1씩 증가, 우클릭시 1씩 감소", "§r⇒ 범위: 3 ~ 20 (tick)", "§r⇒ 설정: "+setting.getLong("Speed.OldSlot")});
+						m.u.setItem(i, 18, Material.ANVIL, 1, 0, "§r(구)슬롯 속도 설정", new String[]{"§r⇒ 좌클릭시 1씩 증가, 우클릭시 1씩 감소", "§r⇒ 범위: 3 ~ 20 (tick)", "§r⇒ 설정: "+setting.getLong("Speed.OldSlot")});
 					} else if (c == ClickType.RIGHT && speed != 3){
 						long a = speed - 1;
 						setting.set("Speed.OldSlot", a);
 						try {
 							setting.save(f);
 						} catch (Exception ex){}
-						m.gi.setItem(i, 18, Material.ANVIL, 1, 0, "§r(구)슬롯 속도 설정", new String[]{"§r⇒ 좌클릭시 1씩 증가, 우클릭시 1씩 감소", "§r⇒ 범위: 3 ~ 20 (tick)", "§r⇒ 설정: "+setting.getLong("Speed.OldSlot")});
+						m.u.setItem(i, 18, Material.ANVIL, 1, 0, "§r(구)슬롯 속도 설정", new String[]{"§r⇒ 좌클릭시 1씩 증가, 우클릭시 1씩 감소", "§r⇒ 범위: 3 ~ 20 (tick)", "§r⇒ 설정: "+setting.getLong("Speed.OldSlot")});
 					} 
 				} else if (Click.getItemMeta().getDisplayName().equals("§r슬롯 속도 설정")){
 					long speed = setting.getLong("Speed.Slot");
@@ -110,14 +110,14 @@ public class Setting implements Listener{
 						try {
 							setting.save(f);
 						} catch (Exception ex){}
-						m.gi.setItem(i, 27, Material.ANVIL, 1, 0, "§r슬롯 속도 설정", new String[]{"§r⇒ 좌클릭시 1씩 증가, 우클릭시 1씩 감소", "§r⇒ 범위: 3 ~ 20 (tick)", "§r⇒ 설정: "+setting.getLong("Speed.Slot")});
+						m.u.setItem(i, 27, Material.ANVIL, 1, 0, "§r슬롯 속도 설정", new String[]{"§r⇒ 좌클릭시 1씩 증가, 우클릭시 1씩 감소", "§r⇒ 범위: 3 ~ 20 (tick)", "§r⇒ 설정: "+setting.getLong("Speed.Slot")});
 					} else if (c == ClickType.RIGHT && speed != 3){
 						long a = speed - 1;
 						setting.set("Speed.Slot", a);
 						try {
 							setting.save(f);
 						} catch (Exception ex){}
-						m.gi.setItem(i, 27, Material.ANVIL, 1, 0, "§r슬롯 속도 설정", new String[]{"§r⇒ 좌클릭시 1씩 증가, 우클릭시 1씩 감소", "§r⇒ 범위: 3 ~ 20 (tick)", "§r⇒ 설정: "+setting.getLong("Speed.Slot")});
+						m.u.setItem(i, 27, Material.ANVIL, 1, 0, "§r슬롯 속도 설정", new String[]{"§r⇒ 좌클릭시 1씩 증가, 우클릭시 1씩 감소", "§r⇒ 범위: 3 ~ 20 (tick)", "§r⇒ 설정: "+setting.getLong("Speed.Slot")});
 					} 
 				} else if (Click.getItemMeta().getDisplayName().equals("§r슬라이딩 속도 설정")){
 					long speed = setting.getLong("Speed.Sliding");
@@ -127,14 +127,14 @@ public class Setting implements Listener{
 						try {
 							setting.save(f);
 						} catch (Exception ex){}
-						m.gi.setItem(i, 36, Material.ANVIL, 1, 0, "§r슬라이딩 속도 설정", new String[]{"§r⇒ 좌클릭시 1씩 증가, 우클릭시 1씩 감소", "§r⇒ 범위: 3 ~ 20 (tick)", "§r⇒ 설정: "+setting.getLong("Speed.Sliding")});
+						m.u.setItem(i, 36, Material.ANVIL, 1, 0, "§r슬라이딩 속도 설정", new String[]{"§r⇒ 좌클릭시 1씩 증가, 우클릭시 1씩 감소", "§r⇒ 범위: 3 ~ 20 (tick)", "§r⇒ 설정: "+setting.getLong("Speed.Sliding")});
 					} else if (c == ClickType.RIGHT && speed != 3){
 						long a = speed - 1;
 						setting.set("Speed.Sliding", a);
 						try {
 							setting.save(f);
 						} catch (Exception ex){}
-						m.gi.setItem(i, 36, Material.ANVIL, 1, 0, "§r슬라이딩 속도 설정", new String[]{"§r⇒ 좌클릭시 1씩 증가, 우클릭시 1씩 감소", "§r⇒ 범위: 3 ~ 20 (tick)", "§r⇒ 설정: "+setting.getLong("Speed.Sliding")});
+						m.u.setItem(i, 36, Material.ANVIL, 1, 0, "§r슬라이딩 속도 설정", new String[]{"§r⇒ 좌클릭시 1씩 증가, 우클릭시 1씩 감소", "§r⇒ 범위: 3 ~ 20 (tick)", "§r⇒ 설정: "+setting.getLong("Speed.Sliding")});
 					} 
 				} else if (Click.getItemMeta().getDisplayName().equals("§r소리 설정")){
 					boolean speed = setting.getBoolean("Sound");
@@ -144,14 +144,14 @@ public class Setting implements Listener{
 						try {
 							setting.save(f);
 						} catch (Exception ex){}
-						m.gi.setItem(i, 20, Material.ANVIL, 1, 0, "§r소리 설정", new String[]{"§r⇒ 좌클릭시 변경", "§r⇒ 설정: 꺼짐"});
+						m.u.setItem(i, 20, Material.ANVIL, 1, 0, "§r소리 설정", new String[]{"§r⇒ 좌클릭시 변경", "§r⇒ 설정: 꺼짐"});
 					} else if (!speed){
 						boolean a = true;
 						setting.set("Sound", a);
 						try {
 							setting.save(f);
 						} catch (Exception ex){}
-						m.gi.setItem(i, 20, Material.ANVIL, 1, 0, "§r소리 설정", new String[]{"§r⇒ 좌클릭시 변경", "§r⇒ 설정: 켜짐"});
+						m.u.setItem(i, 20, Material.ANVIL, 1, 0, "§r소리 설정", new String[]{"§r⇒ 좌클릭시 변경", "§r⇒ 설정: 켜짐"});
 					} 
 				}
 			} else if (Click.getType() == Material.BOOK && Click.hasItemMeta() && Click.getItemMeta().hasDisplayName()){
@@ -163,14 +163,14 @@ public class Setting implements Listener{
 						try {
 							setting.save(f);
 						} catch (Exception ex){}
-						m.gi.setItem(i, 29, Material.BOOK, 1, 0, "§r보상 획득 개인 안내 메세지", new String[]{"§r⇒ 좌클릭시 변경. (전체 매세지는 송출)", "§r⇒ 설정: 송출 안함"});
+						m.u.setItem(i, 29, Material.BOOK, 1, 0, "§r보상 획득 개인 안내 메세지", new String[]{"§r⇒ 좌클릭시 변경. (전체 매세지는 송출)", "§r⇒ 설정: 송출 안함"});
 					} else {
 						boolean a = true;
 						setting.set("Broadcast", a);
 						try {
 							setting.save(f);
 						} catch (Exception ex){}
-						m.gi.setItem(i, 29, Material.BOOK, 1, 0, "§r보상 획득 개인 안내 메세지", new String[]{"§r⇒ 좌클릭시 변경. (전체 매세지는 송출)", "§r⇒ 설정: 송출함"});
+						m.u.setItem(i, 29, Material.BOOK, 1, 0, "§r보상 획득 개인 안내 메세지", new String[]{"§r⇒ 좌클릭시 변경. (전체 매세지는 송출)", "§r⇒ 설정: 송출함"});
 					}
 				}
 			}

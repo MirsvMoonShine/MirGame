@@ -17,6 +17,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.Cokes_86.MirGame.System.HotTimeListener;
+import com.Cokes_86.MirGame.System.Util;
 import com.Cokes_86.MirGame.System.BlackJack.BlackJack;
 import com.Cokes_86.MirGame.System.BlackJack.BlackJackLis;
 import com.Cokes_86.MirGame.System.Box.Box;
@@ -47,6 +48,7 @@ public class MirGame extends JavaPlugin{
 	public BlackJackLis bjl = new BlackJackLis(this);
 	public HotTimeListener htl = new HotTimeListener(this);
 	public ShopInventory si = new ShopInventory(this);
+	public Util u = new Util();
 	
 	public MirRewards mr = (MirRewards) Bukkit.getPluginManager().getPlugin("MirRewards");
 	
