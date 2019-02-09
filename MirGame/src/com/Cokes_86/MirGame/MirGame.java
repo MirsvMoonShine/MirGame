@@ -60,7 +60,7 @@ public class MirGame extends JavaPlugin{
 	
 	public void onEnable(){
 		getServer().getPluginManager().registerEvents(ci,this);
-		getServer().getPluginManager().registerEvents(bg,this);;
+		getServer().getPluginManager().registerEvents(bg,this);
 		getServer().getPluginManager().registerEvents(sl,this);
 		getServer().getPluginManager().registerEvents(st,this);
 		getServer().getPluginManager().registerEvents(bjl,this);
@@ -74,18 +74,18 @@ public class MirGame extends JavaPlugin{
 	public void box() {
 		if (boxs.size() != 0) boxs.clear();
 		
-		boxs.add(new CollectBox("§l(구)슬롯 보상", new ItemStack[]{gc.getBean(35),gc.getEye(2), gc.getCloth(5)})); //(구)슬롯 보상
+		boxs.add(new CollectBox("§l(구)슬롯 보상", new ItemStack[]{gc.getBean(35),gc.getEye(2), gc.getTool(5)})); //(구)슬롯 보상
 		//슬롯 보상
-		boxs.add(new CollectBox("§r슬롯 보상 <철 3개>", new ItemStack[]{gc.getBean(1)}));
-		boxs.add(new RandomBox("§r슬롯 보상 <철 4개>",new ItemStack[]{gc.getCoin(30), gc.getBean(5)}));
-		boxs.add(new RandomBox("§r슬롯 보상 <금 3개>",new ItemStack[]{gc.getCoin(30), gc.getBean(5), gc.getEye(1)}));
-		boxs.add(new SelectBox("§r슬롯 보상 <금 4개>",new ItemStack[]{gc.getCoin(30), gc.getBean(5), gc.getEye(1)}));
-		boxs.add(new CollectBox("§r슬롯 보상 <다이아몬드 3개>",new ItemStack[]{gc.getBean(15), gc.getEye(1), new ItemStack(Material.DIAMOND,5)}));
-		boxs.add(new RandomBox("§r슬롯 보상 <다이아몬드 4개>",new ItemStack[]{gc.getBean(20), gc.getEye(2), new ItemStack(Material.TOTEM,1)}));
-		boxs.add(new RandomBox("§l슬롯 보상 <에메랄드 3개>",new ItemStack[]{gc.getBean(30), gc.getEye(5), new ItemStack(Material.TOTEM,3)}));
-		boxs.add(new SelectBox("§l슬롯 보상 <에메랄드 4개>",new ItemStack[]{mr.gr.MendingBook(1), gc.getBean(30), gc.getEye(5), new ItemStack(Material.TOTEM,5)}));
-		boxs.add(new SelectBox("§l슬롯 보상 <네더의 별 3개>",new ItemStack[]{mr.gr.MendingBook(1), gc.getEye(7), gc.getBean(30), new ItemStack(Material.BEACON,1),new ItemStack(Material.TOTEM,5)}));
-		boxs.add(new CollectBox("§a§l슬롯 보상 <네더의 별 4개>",new ItemStack[]{mr.gr.MendingBook(1), gc.getEye(7), new ItemStack(Material.BEACON,1), new ItemStack(Material.TOTEM,5)}));
+		boxs.add(new RandomBox("§r슬롯 보상 <철 3개>", new ItemStack[]{gc.getBean(5), gc.getCoin(15)}));
+		boxs.add(new CollectBox("§r슬롯 보상 <철 4개>",new ItemStack[]{gc.getCoin(50), gc.getBean(35), gc.getEye(3)}));
+		boxs.add(new RandomBox("§r슬롯 보상 <금 3개>",new ItemStack[]{gc.getCoin(10), gc.getBean(10), gc.getEye(1)}));
+		boxs.add(new CollectBox("§l슬롯 보상 <금 4개>",new ItemStack[]{gc.getCoin(50), gc.getBean(45), gc.getEye(5), new ItemStack(Material.TOTEM,1)}));
+		boxs.add(new RandomBox("§r슬롯 보상 <다이아몬드 3개>",new ItemStack[]{gc.getBean(15), gc.getEye(2), gc.getCoin(30)}));
+		boxs.add(new RandomBox("§l슬롯 보상 <다이아몬드 4개>",new ItemStack[]{gc.getCoin(64), gc.getBean(55), gc.getEye(6), new ItemStack(Material.TOTEM,2)}));
+		boxs.add(new RandomBox("§r슬롯 보상 <에메랄드 3개>",new ItemStack[]{gc.getBean(35), gc.getEye(3), gc.getCoin(50)}));
+		boxs.add(new SelectBox("§l슬롯 보상 <에메랄드 4개>",new ItemStack[]{mr.gr.MendingBook(1), gc.getBean(64), gc.getEye(6), new ItemStack(Material.TOTEM,3), new ItemStack(Material.BEACON, 1)}));
+		boxs.add(new RandomBox("§l슬롯 보상 <네더의 별 3개>",new ItemStack[]{mr.gr.MendingBook(1), gc.getCoin(60), gc.getEye(5), gc.getBean(50), new ItemStack(Material.BEACON,1)}));
+		boxs.add(new CollectBox("§a§l슬롯 보상 <네더의 별 4개>",new ItemStack[]{mr.gr.MendingBook(1), gc.getEye(14), gc.getBean(5), new ItemStack(Material.BEACON,1), new ItemStack(Material.TOTEM,5)}));
 		//슬라이딩 보상
 		boxs.add(new CollectBox("§r슬라이딩 보상 <1단계>", new ItemStack[]{new ItemStack(Material.COAL, 20)}));
 		boxs.add(new CollectBox("§r슬라이딩 보상 <2단계>", new ItemStack[]{new ItemStack(Material.COAL, 20), new ItemStack(Material.COOKED_BEEF, 5)}));

@@ -66,7 +66,7 @@ public class GameInventory {
 		setMenu(i);
 		
 		for (int a= 0; a<m.boxs.size();a++){
-			i.setItem(a+9, m.boxs.get(a).getBox());
+			i.setItem(a+9, m.boxs.get(a).getBox(p));
 		}
 		
 		p.openInventory(i);
@@ -102,7 +102,7 @@ public class GameInventory {
 		
 		m.u.setItem(i, 0, Material.CHEST, 1, 0, "§r- 미르 게임 상점 -", new String[]{"§r⇒ 좌클릭시 미르 게임 상점으로 이동합니다."} );
 		m.u.setItem(i, 1, Material.DIAMOND, 1, 0, "§a- (구)슬롯 -", new String[]{"§r⇒ 좌클릭시 (구)슬롯으로 이동합니다."});
-		m.u.setItem(i, 2, Material.NETHER_STAR, 1, 0, "§b- 슬롯 -", new String[]{"§r⇒ 좌클릭시 슬롯으로 이동합니다.","§4⇒ 점검중. 이용불가."});
+		m.u.setItem(i, 2, Material.NETHER_STAR, 1, 0, "§b- 슬롯 -", new String[]{"§r⇒ 좌클릭시 슬롯으로 이동합니다."});
 		m.u.setItem(i, 3, Material.REDSTONE_LAMP_OFF, 1, 0, "§2- 슬라이딩 -", new String[]{"§r⇒ 좌클릭시 슬라이딩으로 이동합니다."});
 		m.u.setItem(i, 4, Material.WOOL, 1, 0, "§4- 블랙잭 -", new String[]{"§r⇒ 좌클릭시 블랙잭으로 이동합니다.","§4⇒ 점검중. 이용불가."});
 		m.u.setItem(i, 7, Material.ANVIL, 1, 0, "§r- 설정 -", new String[]{"§r⇒ 좌클릭시 설정으로 이동합니다."});

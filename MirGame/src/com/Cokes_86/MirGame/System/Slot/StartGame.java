@@ -28,20 +28,20 @@ public class StartGame {
 	
 	// 아래는 (구)슬롯
 	public Material materialOldSlot(){
-		int a = r.nextInt(64*9);
-		if (a >= 0 && a < 64){
-			return Material.DIAMOND;
+		if (!m.hottime) {
+			int a = r.nextInt(64*9);
+			if (a >= 0 && a < 64){
+				return Material.DIAMOND;
+			} else {
+				return Material.COAL;
+			}
 		} else {
-			return Material.COAL;
-		}
-	}
-	
-	public Material materialOldSlot_HotTime(){
-		int a = r.nextInt(64*9);
-		if (a >= 0 && a < 128){
-			return Material.DIAMOND;
-		} else {
-			return Material.COAL;
+			int a = r.nextInt(100);
+			if (a >= 0 && a < 18){
+				return Material.DIAMOND;
+			} else {
+				return Material.COAL;
+			}
 		}
 	}
 	
@@ -67,8 +67,7 @@ public class StartGame {
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
-				if (!m.hottime) m.u.setItem(i, 29, materialOldSlot(), 1, 0, " ", null);
-				else m.u.setItem(i, 29, materialOldSlot_HotTime(), 1, 0, " ", null);
+				m.u.setItem(i, 29, materialOldSlot(), 1, 0, " ", null);
 				if(sound) w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
 			}
         }, speed);
@@ -76,8 +75,7 @@ public class StartGame {
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
-				if (!m.hottime) m.u.setItem(i, 31, materialOldSlot(), 1, 0, " ", null);
-				else m.u.setItem(i, 31, materialOldSlot_HotTime(), 1, 0, " ", null);
+				m.u.setItem(i, 31, materialOldSlot(), 1, 0, " ", null);
 				if(sound) w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
 			}
         }, speed*2);
@@ -85,8 +83,7 @@ public class StartGame {
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
-				if (!m.hottime) m.u.setItem(i, 33, materialOldSlot(), 1, 0, " ", null);
-				else m.u.setItem(i, 33, materialOldSlot_HotTime(), 1, 0, " ", null);
+				m.u.setItem(i, 33, materialOldSlot(), 1, 0, " ", null);
 				if(sound) w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
 			}
         }, speed*3);
@@ -96,7 +93,7 @@ public class StartGame {
 			public void run() {
 				if (i.getItem(29).getType() == i.getItem(31).getType() &&  i.getItem(31).getType() ==  i.getItem(33).getType() && i.getItem(29).getType() == Material.DIAMOND){
 					Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 (구)슬롯에 당첨되었습니다.");
-					p.getInventory().addItem(m.getBox("§l(구)슬롯 보상").getBox());
+					p.getInventory().addItem(m.getBox("§l(구)슬롯 보상").getBox(p));
 					p.giveExp(325);
 					
 					m.firework(p);
@@ -121,31 +118,30 @@ public class StartGame {
 	//아래는 슬롯
 	public Material materialSlot(){
 		int a = r.nextInt(100);
-		if (a >= 0 && a<30) {
-			return Material.IRON_INGOT;
-		} else if (a>= 30 && a< 55) {
-			return Material.GOLD_INGOT;
-		} else if (a>=55 && a<75) {
-			return Material.DIAMOND;
-		} else if (a>=75 && a<90) {
-			return Material.EMERALD;
+		if (!m.hottime) {
+			if (a >= 0 && a<30) {
+				return Material.IRON_INGOT;
+			} else if (a>= 30 && a< 55) {
+				return Material.GOLD_INGOT;
+			} else if (a>=55 && a<75) {
+				return Material.DIAMOND;
+			} else if (a>=75 && a<90) {
+				return Material.EMERALD;
+			} else {
+				return Material.NETHER_STAR;
+			}
 		} else {
-			return Material.NETHER_STAR;
-		}
-	}
-	
-	public Material materialSlot_HotTime(){
-		int a = r.nextInt(1000);
-		if (a >= 0 && a<275) {
-			return Material.IRON_INGOT;
-		} else if (a>= 275 && a< 500) {
-			return Material.GOLD_INGOT;
-		} else if (a>=500 && a<700) {
-			return Material.DIAMOND;
-		} else if (a>=700 && a<875) {
-			return Material.EMERALD;
-		} else {
-			return Material.NETHER_STAR;
+			if (a >= 0 && a<25) {
+				return Material.IRON_INGOT;
+			} else if (a>= 25 && a< 47) {
+				return Material.GOLD_INGOT;
+			} else if (a>=47 && a<68) {
+				return Material.DIAMOND;
+			} else if (a>=68 && a<85) {
+				return Material.EMERALD;
+			} else {
+				return Material.NETHER_STAR;
+			}
 		}
 	}
 	
@@ -172,8 +168,7 @@ public class StartGame {
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
-				if (!m.hottime) m.u.setItem(i, 28, materialSlot(), 1, 0, " ", null);
-				else m.u.setItem(i, 28, materialSlot_HotTime(), 1, 0, " ", null);
+				m.u.setItem(i, 28, materialSlot(), 1, 0, " ", null);
 				if (sound) w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
 			}
         }, speed);
@@ -181,8 +176,7 @@ public class StartGame {
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
-				if (!m.hottime) m.u.setItem(i, 30, materialSlot(), 1, 0, " ", null);
-				else m.u.setItem(i, 30, materialSlot_HotTime(), 1, 0, " ", null);
+				m.u.setItem(i, 30, materialSlot(), 1, 0, " ", null);
 				if (sound) w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
 			}
         }, speed*2);
@@ -190,8 +184,7 @@ public class StartGame {
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
-				if (!m.hottime) m.u.setItem(i, 32, materialSlot(), 1, 0, " ", null);
-				else m.u.setItem(i, 32, materialSlot_HotTime(), 1, 0, " ", null);
+				m.u.setItem(i, 32, materialSlot(), 1, 0, " ", null);
 				if (sound) w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
 			}
         }, speed*3);
@@ -199,8 +192,7 @@ public class StartGame {
 		scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 			@Override
 			public void run() {
-				if (!m.hottime) m.u.setItem(i, 34, materialSlot(), 1, 0, " ", null);
-				else m.u.setItem(i, 34, materialSlot_HotTime(), 1, 0, " ", null);
+				m.u.setItem(i, 34, materialSlot(), 1, 0, " ", null);
 				if (sound) w.playSound(p.getLocation(), Sound.BLOCK_DISPENSER_DISPENSE, 0.5F, 0);
 			}
         }, speed*4);
@@ -219,24 +211,34 @@ public class StartGame {
 				
 				if (iron == 3) {
 					if (br) p.sendMessage("§6[§9미르 게임§6]§r 슬롯에서 철 3개가 나왔습니다.");
+					p.getInventory().addItem(m.getBox("§r슬롯 보상 <철 3개>").getBox(p));
 				} else if (iron ==4) {
 					if (br) p.sendMessage("§6[§9미르 게임§6]§r 슬롯에서 철 4개가 나왔습니다.");
+					p.getInventory().addItem(m.getBox("§r슬롯 보상 <철 4개>").getBox(p));
 				} else if (gold == 3) {
 					if (br) p.sendMessage("§6[§9미르 게임§6]§r 슬롯에서 금 3개가 나왔습니다.");
+					p.getInventory().addItem(m.getBox("§r슬롯 보상 <금 3개>").getBox(p));
 				} else if (gold ==4) {
 					Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 슬롯에서 금 4개가 나왔습니다.");
+					p.getInventory().addItem(m.getBox("§l슬롯 보상 <금 4개>").getBox(p));
 				} else if (dia == 3) {
 					if (br) p.sendMessage("§6[§9미르 게임§6]§r 슬롯에서 다이아몬드 3개가 나왔습니다.");
+					p.getInventory().addItem(m.getBox("§r슬롯 보상 <다이아몬드 3개>").getBox(p));
 				} else if (dia ==4) {
 					Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 슬롯에서 다이아몬드 4개가 나왔습니다.");
+					p.getInventory().addItem(m.getBox("§l슬롯 보상 <다이아몬드 4개>").getBox(p));
 				} else if (emerald == 3) {
 					if (br) p.sendMessage("§6[§9미르 게임§6]§r 슬롯에서 에메랄드 3개가 나왔습니다.");
+					p.getInventory().addItem(m.getBox("§r슬롯 보상 <에메랄드 3개>").getBox(p));
 				} else if (emerald ==4) {
 					Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 슬롯에서 에메랄드 4개가 나왔습니다.");
+					p.getInventory().addItem(m.getBox("§l슬롯 보상 <에메랄드 4개>").getBox(p));
 				} else if (star == 3) {
 					Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 슬롯에서 네더의 별 3개가 나왔습니다.");
+					p.getInventory().addItem(m.getBox("§l슬롯 보상 <네더의 별 3개>").getBox(p));
 				} else if (star ==4) {
 					Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 슬롯에서 네더의 별 4개가 나왔습니다.");
+					p.getInventory().addItem(m.getBox("§a§l슬롯 보상 <네더의 별 4개>").getBox(p));
 				} 
 				
 				m.u.setItem(i, 28,  Material.STAINED_GLASS_PANE,1,0," ",null);

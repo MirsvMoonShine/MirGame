@@ -3,8 +3,11 @@ package com.Cokes_86.MirGame.System.Box;
 import java.util.ArrayList;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import com.meowj.langutils.lang.LanguageHelper;
 
 public class Box {
 	final String BoxName;
@@ -25,7 +28,7 @@ public class Box {
 		return list;
 	}
 	
-	public ItemStack getBox(){
+	public ItemStack getBox(Player p){
 		if (Box==0){
 			ItemStack result = new ItemStack(Material.CHEST,1);
 			ItemMeta m = result.getItemMeta();
@@ -36,7 +39,7 @@ public class Box {
 			lore.add("§r《구성품 중 하나 획득》");
 			for (ItemStack list : this.list){
 				if (list.hasItemMeta() && list.getItemMeta() != null) lore.add("§r- "+list.getItemMeta().getDisplayName()+ " "+ list.getAmount()+"개");
-				else lore.add("§r- "+list.getType().toString().replace("_", " ").toLowerCase()+ " "+ list.getAmount()+"개");
+				else lore.add("§r- "+LanguageHelper.getItemDisplayName(list, p)+ " "+ list.getAmount()+"개");
 			}
 			m.setLore(lore);
 			result.setItemMeta(m);
@@ -51,7 +54,7 @@ public class Box {
 			lore.add("§r《구성품 중 하나 선택 획득》");
 			for (ItemStack list : this.list){
 				if (list.hasItemMeta() && list.getItemMeta() != null) lore.add("§r- "+list.getItemMeta().getDisplayName()+ " "+ list.getAmount()+"개");
-				else lore.add("§r- "+list.getType().toString().replace("_", " ").toLowerCase()+ " "+ list.getAmount()+"개");
+				else lore.add("§r- "+LanguageHelper.getItemDisplayName(list, p)+ " "+ list.getAmount()+"개");
 			}
 			m.setLore(lore);
 			result.setItemMeta(m);
@@ -66,7 +69,7 @@ public class Box {
 			lore.add("§r《구성품 전부 획득》");
 			for (ItemStack list : this.list){
 				if (list.hasItemMeta() && list.getItemMeta() != null) lore.add("§r- "+list.getItemMeta().getDisplayName()+ " "+ list.getAmount()+"개");
-				else lore.add("§r- "+list.getType().toString().replace("_", " ").toLowerCase()+ " "+ list.getAmount()+"개");
+				else lore.add("§r- "+LanguageHelper.getItemDisplayName(list, p)+ " "+ list.getAmount()+"개");
 			}
 			m.setLore(lore);
 			result.setItemMeta(m);

@@ -187,7 +187,7 @@ public class Sliding implements Listener{
 																												scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 																													@Override
 																													public void run() {
-																														p.getInventory().addItem(m.getBox("§a§l슬라이딩 보상 <9단계>").getBox());
+																														p.getInventory().addItem(m.getBox("§a§l슬라이딩 보상 <9단계>").getBox(p));
 																														Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 슬라이딩 9단계 보상을 획득하였습니다.");
 																														reload(e);
 																													}
@@ -198,7 +198,7 @@ public class Sliding implements Listener{
 																										scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 																											@Override
 																											public void run() {
-																												p.getInventory().addItem(m.getBox("§l슬라이딩 보상 <8단계>").getBox());
+																												p.getInventory().addItem(m.getBox("§l슬라이딩 보상 <8단계>").getBox(p));
 																												Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 슬라이딩 8단계 보상을 획득하였습니다.");
 																												reload(e);
 																											}
@@ -210,7 +210,7 @@ public class Sliding implements Listener{
 																							scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 																								@Override
 																								public void run() {
-																									p.getInventory().addItem(m.getBox("§l슬라이딩 보상 <7단계>").getBox());
+																									p.getInventory().addItem(m.getBox("§l슬라이딩 보상 <7단계>").getBox(p));
 																									Bukkit.broadcastMessage("§6[§9미르 게임§6]§r §e§l"+p.getName()+"§r님이 슬라이딩 7단계 보상을 획득하였습니다.");
 																									reload(e);
 																								}
@@ -222,7 +222,7 @@ public class Sliding implements Listener{
 																				scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 																					@Override
 																					public void run() {
-																						p.getInventory().addItem(m.getBox("§l슬라이딩 보상 <6단계>").getBox());
+																						p.getInventory().addItem(m.getBox("§l슬라이딩 보상 <6단계>").getBox(p));
 																						if (br) p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 6단계 보상을 획득하였습니다.");
 																						reload(e);
 																					}
@@ -234,7 +234,7 @@ public class Sliding implements Listener{
 																	scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 																		@Override
 																		public void run() {
-																			p.getInventory().addItem(m.getBox("§l슬라이딩 보상 <5단계>").getBox());
+																			p.getInventory().addItem(m.getBox("§l슬라이딩 보상 <5단계>").getBox(p));
 																			if (br) p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 5단계 보상을 획득하였습니다.");
 																			reload(e);
 																		}
@@ -246,7 +246,7 @@ public class Sliding implements Listener{
 														scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 															@Override
 															public void run() {
-																p.getInventory().addItem(m.getBox("§r슬라이딩 보상 <4단계>").getBox());
+																p.getInventory().addItem(m.getBox("§r슬라이딩 보상 <4단계>").getBox(p));
 																if (br) p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 4단계 보상을 획득하였습니다.");
 																reload(e);
 															}
@@ -258,7 +258,7 @@ public class Sliding implements Listener{
 											scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 												@Override
 												public void run() {
-													p.getInventory().addItem(m.getBox("§r슬라이딩 보상 <3단계>").getBox());
+													p.getInventory().addItem(m.getBox("§r슬라이딩 보상 <3단계>").getBox(p));
 													if (br) p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 3단계 보상을 획득하였습니다.");
 													reload(e);
 												}
@@ -270,7 +270,7 @@ public class Sliding implements Listener{
 								scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 									@Override
 									public void run() {
-										p.getInventory().addItem(m.getBox("§r슬라이딩 보상 <2단계>").getBox());
+										p.getInventory().addItem(m.getBox("§r슬라이딩 보상 <2단계>").getBox(p));
 										if (br) p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 2단계 보상을 획득하였습니다.");
 										reload(e);
 									}
@@ -282,7 +282,7 @@ public class Sliding implements Listener{
 					scheduler.scheduleSyncDelayedTask(m, new Runnable(){
 						@Override
 						public void run() {
-							p.getInventory().addItem(m.getBox("§r슬라이딩 보상 <1단계>").getBox());
+							p.getInventory().addItem(m.getBox("§r슬라이딩 보상 <1단계>").getBox(p));
 							if (br) p.sendMessage("§6[§9미르 게임§6]§r 슬라이딩 1단계 보상을 획득하였습니다.");
 							reload(e);
 						}

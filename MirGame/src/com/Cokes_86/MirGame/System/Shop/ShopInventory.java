@@ -34,6 +34,7 @@ public class ShopInventory implements Listener{
 		m.u.setItem(i, 21, Material.IRON_NUGGET, 1, 0, "§r초월석 구입", new String[]{"§r⇒ 좌클릭시 초월석 구입", "§r⇒ 가격: 캡슐 5개"});
 		m.u.setItem(i, 22, Material.SLIME_BALL, 10, 0, "§r완두콩 10개 구입", new String[]{"§r⇒ 좌클릭시 완두콩 10개 구입", "§r⇒ 가격: 캡슐 1개"});
 		m.u.setItem(i, 23, Material.EYE_OF_ENDER, 1, 0, "§r캡슐 구입", new String[]{"§r⇒ 좌클릭시 캡슐 구입", "§r⇒ 가격: 완두콩 10개"});
+		m.u.setItem(i, 24, Material.STICK, 1, 0, "§r도구 조각 구입", new String[]{"§r⇒ 좌클릭시 도구 조각 구입", "§r⇒ 가격: 조잡한 섬유 1개", "§r⇒ 갑옷 제작 철회로 인해 추가"});
 		//도구
 		m.u.setItem(i, 27, Material.DIAMOND_SWORD, 1, 0, "§r§4봉인된 드래곤 슬레이어 §r구입", new String[]{"§r⇒ 좌클릭시 봉인된 드래곤 슬레이어 구입", "§r⇒ 가격: 캡슐 15개, 완두콩 60개"});
 		m.u.setItem(i, 28, Material.DIAMOND_SWORD, 1, 0, "§r커먼 수박아저씨의 칼 구입", new String[]{"§r⇒ 좌클릭시 커먼 수박아저씨의 칼 구입", "§r⇒ 가격: 완두콩 20개"});
@@ -67,9 +68,9 @@ public class ShopInventory implements Listener{
 	public void getItemUsingVault(Player p, ItemStack get, double money) {
 		if (m.eco.getBalance(p) >= money){
 			Inventory playerinv = p.getInventory();
-			playerinv.addItem(get);
 			m.eco.withdrawPlayer(p, money);
 			p.sendMessage("§6[§9미르 게임§6]§r "+get.getItemMeta().getDisplayName()+" §r"+get.getAmount()+"개를 구입하였습니다.");
+			playerinv.addItem(get);
 		} else {
 			p.sendMessage("§6[§9미르 게임§6]§r 돈이 부족합니다.");
 		}
@@ -109,8 +110,8 @@ public class ShopInventory implements Listener{
 				}
 			}
 			
-			i.addItem(get);
 			p.sendMessage("§6[§9미르 게임§6]§r "+get.getItemMeta().getDisplayName()+" §r"+get.getAmount()+"개를 구입하였습니다.");
+			i.addItem(get);
 		} else {
 			p.sendMessage("§6[§9미르 게임§6]§r 재료가 부족합니다.");
 		}
@@ -170,6 +171,9 @@ public class ShopInventory implements Listener{
 					} else if (Click.getItemMeta().getDisplayName().equals("§r확률 상승 물약 구입")) {
 						getItemUsingIngradient(p, m.mr.gr.SuccessUp(), new ItemStack[] {m.gc.getBean(50)});
 					}
+				}
+				else if (Click.getType() == Material.STICK) {
+					getItemUsingIngradient(p, m.gc.getTool(1), new ItemStack[] {m.gc.getCloth(1)});
 				}
 			}
 		}

@@ -99,7 +99,7 @@ public class ClickListener implements Listener{
 			if (p.isOp()){
 				ItemStack s = e.getCurrentItem();
 				for (Box b : m.boxs){
-					if (s.hasItemMeta() && s.getItemMeta().getDisplayName().equals(b.getBox().getItemMeta().getDisplayName())){
+					if (s.hasItemMeta() && s.getItemMeta().getDisplayName().equals(b.getBox(p).getItemMeta().getDisplayName())){
 						p.getInventory().addItem(s);
 						break;
 					}
@@ -118,7 +118,7 @@ public class ClickListener implements Listener{
 			} else if (Click.getType() == Material.DIAMOND &&  Click.getItemMeta().getDisplayName().equals("¡×a- (±¸)½½·Ô -")){
 				m.gi.openOldSlot(p);
 				m.bj.start.put(p, false);
-			} else if (Click.getType() == Material.NETHER_STAR && p.isOp()){
+			} else if (Click.getType() == Material.NETHER_STAR){
 				m.gi.openSlot(p);
 				m.bj.start.put(p, false);
 			} else if (Click.getType() == Material.REDSTONE_LAMP_OFF){
