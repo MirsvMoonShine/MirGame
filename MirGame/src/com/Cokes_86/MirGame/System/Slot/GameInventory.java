@@ -66,7 +66,7 @@ public class GameInventory {
 		setMenu(i);
 		
 		for (int a= 0; a<m.boxs.size();a++){
-			i.setItem(a+9, m.boxs.get(a).getBox(p));
+			i.setItem(a+9, m.boxs.get(a).getFakeBox(p));
 		}
 		
 		p.openInventory(i);

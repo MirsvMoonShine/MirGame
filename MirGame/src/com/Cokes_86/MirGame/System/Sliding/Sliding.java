@@ -42,15 +42,15 @@ public class Sliding implements Listener{
 			setItem(i, a, Material.STAINED_GLASS_PANE, 1, 0, " ", null);
 		}
 		//º¸»ó µî·Ï
-		i.setItem(18, new ItemStack(Material.COAL, 20));
-		i.setItem(19, new ItemStack(Material.COOKED_BEEF, 5));
-		i.setItem(20, new ItemStack(Material.DIAMOND, 1));
+		m.u.setItem(i, 18, Material.COAL, 20, 0, p, null);
+		m.u.setItem(i, 19, Material.COOKED_BEEF, 5, 0, p, null);
+		m.u.setItem(i, 20, Material.DIAMOND, 1, 0, p, null);
 		m.u.setItem(i, 21, Material.GOLD_NUGGET, 1, 0, "¡×e±ÝÈ­¡×r", null);
-		i.setItem(22, m.gc.getBean(10));
-		i.setItem(23, m.gc.getEye(2));
-		i.setItem(24, new ItemStack(Material.TOTEM,1));
-		i.setItem(25, new ItemStack(Material.EXP_BOTTLE,10));
-		i.setItem(26, m.mr.gr.MendingBook(1));
+		m.u.setItem(i, 22, Material.SLIME_BALL, 10, 0, "¡×a¿ÏµÎÄá¡×r", null);
+		m.u.setItem(i, 23, Material.EYE_OF_ENDER, 10, 0, "¡×dÄ¸½¶¡×r", null);
+		m.u.setItem(i, 24, Material.TOTEM, 1, 0, p, null);
+		m.u.setItem(i, 25, Material.EXP_BOTTLE, 10, 0, p, null);
+		i.setItem(26, m.u.getFakeItem(m.mr.gr.MendingBook(1)));
 		
 		//±âº»Æ²
 		setItem(i, 45, Material.BARRIER,1,0," ",null);

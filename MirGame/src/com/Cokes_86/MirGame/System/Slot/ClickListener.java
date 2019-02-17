@@ -99,8 +99,8 @@ public class ClickListener implements Listener{
 			if (p.isOp()){
 				ItemStack s = e.getCurrentItem();
 				for (Box b : m.boxs){
-					if (s.hasItemMeta() && s.getItemMeta().getDisplayName().equals(b.getBox(p).getItemMeta().getDisplayName())){
-						p.getInventory().addItem(s);
+					if (s.equals(b.getFakeBox(p))){
+						p.getInventory().addItem(b.getBox(p));
 						break;
 					}
 				}
