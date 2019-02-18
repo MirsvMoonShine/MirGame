@@ -32,7 +32,7 @@ public class Util {
 		ItemStack name = new ItemStack(m,ammount,(short)data);
 		ItemStack result = new ItemStack(m,ammount,(short)data);
 		ItemMeta resultm = result.getItemMeta();
-		resultm.setDisplayName(LanguageHelper.getItemDisplayName(name, p));
+		resultm.setDisplayName("¡×r"+LanguageHelper.getItemDisplayName(name, p));
 		if (lore != null){
 			List<String> lore2 = Arrays.asList(lore);
 			resultm.setLore(lore2);
@@ -56,7 +56,16 @@ public class Util {
 	public ItemStack getFakeItem(ItemStack r) {
 		ItemStack result = r;
 		ItemMeta m = result.getItemMeta();
-		m.setDisplayName("¡×r"+r.getItemMeta().getDisplayName());
+		m.setDisplayName("&r"+r.getItemMeta().getDisplayName());
+		result.setItemMeta(m);
+		
+		return result;
+	}
+	
+	public ItemStack getRealItem(ItemStack r) {
+		ItemStack result = r;
+		ItemMeta m = result.getItemMeta();
+		m.setDisplayName(r.getItemMeta().getDisplayName().substring(2));
 		result.setItemMeta(m);
 		
 		return result;
