@@ -15,6 +15,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import com.Cokes_86.MirGame.MirGame;
+import com.Cokes_86.MirRewards.InnocentCarbon;
 
 public class ShopInventory implements Listener{
 	MirGame m;
@@ -39,6 +40,7 @@ public class ShopInventory implements Listener{
 		m.u.setItem(i, 27, Material.DIAMOND_SWORD, 1, 0, "§r§4봉인된 드래곤 슬레이어 §r구입", new String[]{"§r⇒ 좌클릭시 봉인된 드래곤 슬레이어 구입", "§r⇒ 가격: 캡슐 15개, 완두콩 60개"});
 		m.u.setItem(i, 28, Material.DIAMOND_SWORD, 1, 0, "§r커먼 수박아저씨의 칼 구입", new String[]{"§r⇒ 좌클릭시 커먼 수박아저씨의 칼 구입", "§r⇒ 가격: 완두콩 20개"});
 		m.u.setItem(i, 29, Material.BOW,1 ,0, "§r커먼 사냥터지기의 활 구입",new String[]{"§r⇒ 좌클릭시 커먼 사냥터지기의 활 구입", "§r⇒ 가격: 완두콩 30개"});
+		m.u.setItem(i, 30, Material.DIAMOND_PICKAXE, 1, 0, "§r이노센트 카본 곡괭이 구입", new String[] {"§r⇒ 좌클릭시 이노센트 카본 곡괭이 구입", "§r⇒ 가격: 도구 조각 20개, 캡슐 30개"});
 		//초월
 		m.u.setPotionItem(i, 36, 1, "§r초월석 보호 물약 구입", new String[] {"§r⇒ 좌클릭시 초월석 보호 물약 구입", "§r⇒ 가격: 완두콩 30개"}, Color.AQUA);
 		m.u.setPotionItem(i, 37, 1, "§r확률 상승 물약 구입", new String[] {"§r⇒ 좌클릭시 확률 상승 물약 구입", "§r⇒ 가격: 완두콩 50개"}, Color.WHITE);
@@ -174,6 +176,11 @@ public class ShopInventory implements Listener{
 				}
 				else if (Click.getType() == Material.STICK) {
 					getItemUsingIngradient(p, m.gc.getTool(1), new ItemStack[] {m.gc.getCloth(1)});
+				}
+				else if (Click.getType() == Material.DIAMOND_PICKAXE) {
+					if (Click.getItemMeta().getDisplayName().equals("§r이노센트 카본 곡괭이 구입")){
+						getItemUsingIngradient(p, InnocentCarbon.getPickaxe(), new ItemStack[] {m.gc.getTool(20), m.gc.getEye(30)}); 
+					}
 				}
 			}
 		}

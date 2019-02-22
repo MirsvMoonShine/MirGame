@@ -74,7 +74,7 @@ public class MirGame extends JavaPlugin{
 	public void box() {
 		if (boxs.size() != 0) boxs.clear();
 		
-		boxs.add(new CollectBox("¡×l(±¸)½½·Ô º¸»ó", new ItemStack[]{gc.getBean(35),gc.getEye(2), gc.getTool(5)})); //(±¸)½½·Ô º¸»ó
+		boxs.add(new CollectBox("¡×l(±¸)½½·Ô º¸»ó", new ItemStack[]{gc.getBean(35),gc.getEye(2), gc.getTool(5), gc.getCoin(10)})); //(±¸)½½·Ô º¸»ó
 		//½½·Ô º¸»ó
 		boxs.add(new CollectBox("¡×r½½·Ô º¸»ó <Ã¶ 3°³>", new ItemStack[]{gc.getBean(5)}));
 		boxs.add(new RandomBox("¡×r½½·Ô º¸»ó <Ã¶ 4°³>",new ItemStack[]{gc.getCoin(10), gc.getBean(10), gc.getEye(1)}));
