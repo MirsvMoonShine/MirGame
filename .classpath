@@ -2,9 +2,8 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="MirGame/src"/>
-	<classpathentry kind="lib" path="E:/Programming/test 1.12.2/spigot - 1.12.jar"/>
-	<classpathentry kind="lib" path="E:/Programming/test 1.12.2/plugins/Vault.jar"/>
-	<classpathentry kind="lib" path="E:/Programming/test 1.12.2/plugins/LangUtils-1.9.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/MirRewards"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MirServer"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Bukkit"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

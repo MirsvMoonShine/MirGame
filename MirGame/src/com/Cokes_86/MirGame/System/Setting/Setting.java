@@ -56,13 +56,14 @@ public class Setting implements Listener{
 		FileConfiguration setting = YamlConfiguration.loadConfiguration(f);
 		if (!dir.exists()) { dir.mkdirs(); }
 		try { 
-			if (!f.exists()) {
+			if (!f.exists() || setting.getInt("Speed.OldSlot") == 0) {
 				setting.save(f);
 				setting.set("Speed.OldSlot", 5);
 				setting.set("Speed.Slot", 5);
 				setting.set("Speed.Sliding", 5);
 				setting.set("Sound", true);
 				setting.set("Broadcast", true);
+				setting.save(f);
 				}
 			setting.load(f);
 		} catch (Exception ex){}

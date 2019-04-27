@@ -50,7 +50,7 @@ public class MirGame extends JavaPlugin{
 	public ShopInventory si = new ShopInventory(this);
 	public Util u = new Util();
 	
-	public MirRewards mr = (MirRewards) Bukkit.getPluginManager().getPlugin("MirRewards");
+	public MirRewards mr;
 	
 	public BoxGui bg = new BoxGui(this);
 	
@@ -59,6 +59,8 @@ public class MirGame extends JavaPlugin{
 	public Economy eco = null;
 	
 	public void onEnable(){
+		mr = (MirRewards) Bukkit.getPluginManager().getPlugin("MirRewards");
+		
 		getServer().getPluginManager().registerEvents(ci,this);
 		getServer().getPluginManager().registerEvents(bg,this);
 		getServer().getPluginManager().registerEvents(sl,this);

@@ -15,7 +15,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import com.Cokes_86.MirGame.MirGame;
-import com.Cokes_86.MirRewards.InnocentCarbon;
+import com.Cokes_86.MirRewards.Items.InnocentCarbon;
 
 public class ShopInventory implements Listener{
 	MirGame m;
@@ -152,11 +152,11 @@ public class ShopInventory implements Listener{
 					getItemUsingIngradient(p, m.mr.gr.UpgradeStone(1), new ItemStack[] {m.gc.getEye(5)});
 				}
 				else if (Click.getType() == Material.BOW){
-					getItemUsingIngradient(p, m.mr.gr.CrokersBow(0), new ItemStack[] {m.gc.getBean(30)});
+					getItemUsingIngradient(p, m.mr.gr.CrokersBow(0, false), new ItemStack[] {m.gc.getBean(30)});
 				}
 				else if (Click.getType() == Material.DIAMOND_SWORD){
 					if (Click.getItemMeta().getDisplayName().equals("§r§4봉인된 드래곤 슬레이어 §r구입")){
-						getItemUsingIngradient(p, m.mr.gr.DragonSlayer(0), new ItemStack[] {m.gc.getEye(15), m.gc.getBean(60)});
+						getItemUsingIngradient(p, m.mr.gr.DragonSlayer(0, false), new ItemStack[] {m.gc.getEye(15), m.gc.getBean(60)});
 					} else if (Click.getItemMeta().getDisplayName().equals("§r커먼 수박아저씨의 칼 구입")){
 						getItemUsingIngradient(p, m.mr.gr.WatermelonSword(0), new ItemStack[] {m.gc.getBean(20)});
 					}
